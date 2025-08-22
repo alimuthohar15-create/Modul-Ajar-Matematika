@@ -1,0 +1,841 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Modul Ajar Deep Learning - Matematika</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            color: #333;
+            line-height: 1.6;
+            padding: 20px;
+            min-height: 100vh;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+        }
+        
+        header {
+            background: linear-gradient(to right, #3494e6, #ec6ead);
+            color: white;
+            padding: 25px;
+            text-align: center;
+        }
+        
+        h1 {
+            font-size: 2.2rem;
+            margin-bottom: 10px;
+        }
+        
+        .subtitle {
+            font-size: 1.4rem;
+            margin-bottom: 5px;
+        }
+        
+        .topic {
+            font-size: 1.2rem;
+            font-weight: 500;
+        }
+        
+        .divider {
+            height: 4px;
+            background: linear-gradient(to right, #3494e6, #ec6ead);
+            margin: 5px 0 15px;
+            border-radius: 2px;
+        }
+        
+        .tabs {
+            display: flex;
+            background: #f8f9fa;
+            border-bottom: 2px solid #e9ecef;
+            overflow-x: auto;
+        }
+        
+        .tab-btn {
+            padding: 15px 25px;
+            background: none;
+            border: none;
+            cursor: pointer;
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: #495057;
+            transition: all 0.3s ease;
+            min-width: 120px;
+            text-align: center;
+        }
+        
+        .tab-btn:hover {
+            background: #e9ecef;
+            color: #3494e6;
+        }
+        
+        .tab-btn.active {
+            background: white;
+            color: #3494e6;
+            border-bottom: 3px solid #3494e6;
+        }
+        
+        .tab-content {
+            display: none;
+            padding: 30px;
+            animation: fadeIn 0.5s ease;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        
+        .tab-content.active {
+            display: block;
+        }
+        
+        h2 {
+            color: #3494e6;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid #e9ecef;
+        }
+        
+        h3 {
+            color: #ec6ead;
+            margin: 20px 0 10px;
+        }
+        
+        p {
+            margin-bottom: 15px;
+            text-align: justify;
+        }
+        
+        ul, ol {
+            margin-left: 30px;
+            margin-bottom: 20px;
+        }
+        
+        li {
+            margin-bottom: 10px;
+        }
+        
+        .highlight {
+            background: #f8f9fa;
+            padding: 20px;
+            border-radius: 10px;
+            border-left: 4px solid #3494e6;
+            margin: 20px 0;
+        }
+        
+        .grid-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+            margin: 20px 0;
+        }
+        
+        .card {
+            background: white;
+            border-radius: 10px;
+            padding: 20px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            border-top: 4px solid #ec6ead;
+        }
+        
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+        }
+        
+        th, td {
+            padding: 12px 15px;
+            text-align: left;
+            border-bottom: 1px solid #e9ecef;
+        }
+        
+        th {
+            background: #f8f9fa;
+            color: #3494e6;
+            font-weight: 600;
+        }
+        
+        tr:hover {
+            background: #f8f9fa;
+        }
+        
+        @media (max-width: 768px) {
+            .tab-btn {
+                min-width: 80px;
+                padding: 12px 15px;
+                font-size: 1rem;
+            }
+            
+            .grid-container {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>📘 MODUL AJAR DEEP LEARNING</h1>
+            <div class="subtitle">MATA PELAJARAN : MATEMATIKA</div>
+            <div class="topic">BAB : TRANSFORMASI FUNGSI – BAGIAN II (DILATASI DAN ROTASI)</div>
+        </header>
+        
+        <div class="tabs">
+            <button class="tab-btn active" onclick="openTab('tabA')">A. IDENTITAS MODUL</button>
+            <button class="tab-btn" onclick="openTab('tabB')">B. INFORMASI UMUM</button>
+            <button class="tab-btn" onclick="openTab('tabC')">C. DESAIN PEMBELAJARAN</button>
+            <button class="tab-btn" onclick="openTab('tabD')">D. RENCANA PELAKSANAAN</button>
+            <button class="tab-btn" onclick="openTab('tabE')">E. ASESMEN PEMBELAJARAN</button>
+            <button class="tab-btn" onclick="openTab('tabF')">F. TINDAK LANJUT</button>
+        </div>
+        
+        <div id="tabA" class="tab-content active">
+            <h2>A. IDENTITAS MODUL</h2>
+            <ul>
+                <li><strong>Nama Sekolah</strong>: SMAN 1 Cluring</li>
+                <li><strong>Nama Penyusun</strong>: Ali Muthohar,S.Pd</li>
+                <li><strong>Mata Pelajaran</strong>: Matematika</li>
+                <li><strong>Kelas/Fase/Semester</strong>: XI1/F/Ganjil</li>
+                <li><strong>Pertemuan Ke</strong>: 5 S.d 8</li>
+                <li><strong>Alokasi Waktu</strong>: 12 JP (4 Pertemuan @ 2-4 JP)</li>
+                <li><strong>Tahun Pelajaran</strong>: 2025/2026</li>
+            </ul>
+        </div>
+        
+        <div id="tabB" class="tab-content">
+            <h2>B. INFORMASI UMUM</h2>
+            
+            <h3>1. Identifikasi Kesiapan Peserta Didik</h3>
+            <p>Sebagian besar peserta didik telah memahami bentuk dasar grafik fungsi linear, kuadrat, dan eksponen. Namun, beberapa masih mengalami kesulitan dalam memahami konsep perubahan bentuk grafik sebagai akibat dari transformasi.</p>
+            <p>Minat siswa cukup tinggi terhadap pembelajaran kontekstual yang terkait kehidupan nyata, seperti grafik keuangan dan pergerakan dalam animasi atau teknologi. Kebutuhan belajar siswa mencakup:</p>
+            <ul>
+                <li>Visualisasi interaktif transformasi grafik.</li>
+                <li>Contoh soal kontekstual.</li>
+                <li>Latihan bertahap untuk memperkuat konsep.</li>
+            </ul>
+            
+            <h3>2. Karakteristik Materi</h3>
+            <p>Materi transformasi fungsi — khususnya dilatasi dan rotasi — menuntut pemahaman pola dan perubahan geometri grafik fungsi. Konsep ini relevan dengan pengembangan kemampuan bernalar kritis dan pemecahan masalah, yang sejalan dengan semangat nilai-nilai Pancasila, yaitu:</p>
+            <ul>
+                <li>Berpikir logis dan jujur (sila ke-2 dan ke-5).</li>
+                <li>Kreativitas dalam mencari solusi (sila ke-5).</li>
+                <li>Kerja sama dalam pembelajaran kelompok (sila ke-3).</li>
+                <li>Tanggung jawab belajar mandiri (sila ke-1 dan ke-4).</li>
+            </ul>
+            
+            <h3>3. Dimensi Profil Lulusan Pembelajaran</h3>
+            <div class="grid-container">
+                <div class="card">
+                    <h4>Bernalar Kritis</h4>
+                    <p>Menganalisis pola transformasi grafik.</p>
+                </div>
+                <div class="card">
+                    <h4>Kreatif</h4>
+                    <p>Mendesain soal transformasi dan menyajikan dalam bentuk digital/poster.</p>
+                </div>
+                <div class="card">
+                    <h4>Mandiri</h4>
+                    <p>Belajar mandiri melalui simulasi grafik.</p>
+                </div>
+                <div class="card">
+                    <h4>Bergotong-royong</h4>
+                    <p>Diskusi kelompok menyelesaikan soal transformasi.</p>
+                </div>
+                <div class="card">
+                    <h4>Berkebinekaan Global</h4>
+                    <p>Menghargai pendapat dan gaya belajar teman.</p>
+                </div>
+                <div class="card">
+                    <h4>Beriman dan bertakwa</h4>
+                    <p>Memulai dan mengakhiri pembelajaran dengan doa dan sikap hormat.</p>
+                </div>
+            </div>
+        </div>
+        
+        <div id="tabC" class="tab-content">
+            <h2>C. DESAIN PEMBELAJARAN</h2>
+            
+            <h3>1) Capaian Pembelajaran (CP)</h3>
+            <table>
+                <tr>
+                    <th>Pertemuan</th>
+                    <th>Elemen</th>
+                    <th>Capaian Pembelajaran</th>
+                </tr>
+                <tr>
+                    <td>5</td>
+                    <td>Aljabar & Fungsi</td>
+                    <td>Memahami bentuk dilatasi pada fungsi linear, kuadrat, dan eksponen untuk memodelkan perubahan skala grafik.</td>
+                </tr>
+                <tr>
+                    <td>6</td>
+                    <td>Aljabar & Fungsi</td>
+                    <td>Menganalisis dan mengeksplorasi hubungan antar-transformasi dilatasi, baik secara aljabar maupun visual.</td>
+                </tr>
+                <tr>
+                    <td>7</td>
+                    <td>Aljabar & Fungsi</td>
+                    <td>Memahami bentuk rotasi grafik fungsi linear, kuadrat, dan eksponen, serta penerapannya dalam kehidupan nyata.</td>
+                </tr>
+                <tr>
+                    <td>8</td>
+                    <td>Aljabar & Fungsi</td>
+                    <td>Menganalisis dan mengeksplorasi hubungan antar-transformasi rotasi serta dampaknya terhadap bentuk grafik.</td>
+                </tr>
+            </table>
+            
+            <h3>2) Lintas Disiplin Ilmu</h3>
+            <ul>
+                <li><strong>Informatika:</strong> Menggunakan software grafik seperti GeoGebra untuk eksplorasi transformasi dilatasi dan rotasi.</li>
+                <li><strong>Fisika:</strong> Menganalisis pergerakan objek dengan rotasi dan perubahan skala dalam sistem koordinat.</li>
+                <li><strong>Seni Rupa Digital:</strong> Visualisasi grafik dan transformasi dalam desain grafis.</li>
+                <li><strong>Ekonomi:</strong> Interpretasi grafik eksponensial dan linier dalam konteks pertumbuhan & penyusutan nilai.</li>
+            </ul>
+            
+            <h3>3) Tujuan Pembelajaran</h3>
+            <table>
+                <tr>
+                    <th>Pertemuan</th>
+                    <th>Topik/BAB</th>
+                    <th>Tujuan Pembelajaran (SMART)</th>
+                    <th>Aktivitas Pembelajaran</th>
+                    <th>Penilaian</th>
+                </tr>
+                <tr>
+                    <td>5</td>
+                    <td>Dilatasi pada fungsi</td>
+                    <td>Peserta didik mampu mengidentifikasi dan menerapkan bentuk dilatasi pada fungsi linear, kuadrat, dan eksponen secara akurat, melalui grafik dan tabel nilai, dalam waktu 3 JP.</td>
+                    <td>- Diskusi konsep dilatasi.<br>- Menggambar grafik fungsi hasil dilatasi.<br>- Simulasi digital dengan GeoGebra.<br>- Latihan soal kontekstual.</td>
+                    <td>Kuis singkat, LKPD menggambar grafik dilatasi, presentasi hasil diskusi.</td>
+                </tr>
+                <tr>
+                    <td>6</td>
+                    <td>Hubungan antar-transformasi dilatasi</td>
+                    <td>Peserta didik mampu menganalisis pola hubungan antar-transformasi dilatasi, serta menjelaskan pengaruh parameter skala pada grafik fungsi, dengan minimal 2 contoh kasus dalam 2 JP.</td>
+                    <td>- Membuat peta konsep pola dilatasi.<br>- Diskusi kelompok pola transformasi.<br>- Debat mini: urutan dilatasi pada fungsi.</td>
+                    <td>Penugasan pola hubungan, peta konsep, diskusi kelompok, refleksi tertulis.</td>
+                </tr>
+                <tr>
+                    <td>7</td>
+                    <td>Rotasi pada fungsi</td>
+                    <td>Peserta didik mampu menjelaskan dan mempraktikkan bentuk rotasi pada grafik fungsi linear, kuadrat, dan eksponen melalui representasi visual, dalam waktu 3 JP.</td>
+                    <td>- Penjelasan konsep rotasi.<br>- Simulasi rotasi grafik dengan alat bantu digital.<br>- Latihan menggambar grafik rotasi.</td>
+                    <td>Kuis, evaluasi hasil grafik rotasi, peer review presentasi hasil kerja kelompok.</td>
+                </tr>
+                <tr>
+                    <td>8</td>
+                    <td>Hubungan antar-transformasi rotasi</td>
+                    <td>Peserta didik mampu menganalisis hubungan antar-transformasi rotasi, menggabungkan rotasi dengan transformasi lain, serta menyajikan hasil eksplorasi dalam bentuk laporan, selesai dalam 2 JP.</td>
+                    <td>- Diskusi pola transformasi gabungan.<br>- Studi kasus rotasi ganda.<br>- Presentasi dan umpan balik.</td>
+                    <td>Tes formatif, laporan hasil eksplorasi, umpan balik diskusi.</td>
+                </tr>
+            </table>
+            
+            <h3>4) Topik Pembelajaran Kontekstual</h3>
+            <div class="grid-container">
+                <div class="card">
+                    <h4>Animasi & Desain Grafis</h4>
+                    <p>Bagaimana dilatasi & rotasi diterapkan untuk memperbesar, memperkecil, atau memutar objek visual.</p>
+                </div>
+                <div class="card">
+                    <h4>Peta & Geografi</h4>
+                    <p>Contoh dilatasi skala peta, atau rotasi koordinat dalam navigasi.</p>
+                </div>
+                <div class="card">
+                    <h4>Pertumbuhan Populasi</h4>
+                    <p>Fungsi eksponensial dengan dilatasi skala waktu.</p>
+                </div>
+                <div class="card">
+                    <h4>Teknologi Robotik</h4>
+                    <p>Rotasi lengan robot dalam koordinat kartesius.</p>
+                </div>
+                <div class="card">
+                    <h4>Ekonomi</h4>
+                    <p>Interpretasi dilatasi fungsi pertumbuhan laba atau biaya.</p>
+                </div>
+                <div class="card">
+                    <h4>Olahraga</h4>
+                    <p>Gerakan rotasi bola atau atlet di lintasan melingkar.</p>
+                </div>
+            </div>
+            
+            <h3>5) Kerangka Pembelajaran</h3>
+            <table>
+                <tr>
+                    <th>Aspek</th>
+                    <th>Pertemuan 5</th>
+                    <th>Pertemuan 6</th>
+                    <th>Pertemuan 7</th>
+                    <th>Pertemuan 8</th>
+                </tr>
+                <tr>
+                    <td><strong>Model</strong></td>
+                    <td>Problem Based Learning (PBL) untuk memahami dilatasi melalui soal kontekstual.</td>
+                    <td>Discovery Learning untuk mengeksplorasi pola hubungan dilatasi.</td>
+                    <td>Project Based Learning (PjBL) untuk mendesain grafik rotasi.</td>
+                    <td>Collaborative Learning untuk analisis rotasi ganda & presentasi studi kasus.</td>
+                </tr>
+                <tr>
+                    <td><strong>Strategi</strong></td>
+                    <td>Demonstrasi grafik dilatasi, diskusi tutor sebaya, latihan berjenjang.</td>
+                    <td>Peta konsep pola transformasi, debat mini, refleksi tertulis.</td>
+                    <td>Eksperimen visual, simulasi software, peer review presentasi.</td>
+                    <td>Studi kasus nyata, diskusi kelompok, laporan eksplorasi.</td>
+                </tr>
+                <tr>
+                    <td><strong>Mindful Learning</strong></td>
+                    <td>Siswa fokus mengamati perbedaan grafik asli & dilatasi.</td>
+                    <td>Siswa sadar hubungan antar-skala dan pola.</td>
+                    <td>Siswa memahami rotasi sebagai pergeseran sudut & arah.</td>
+                    <td>Siswa memetakan pola rotasi ganda secara terpadu.</td>
+                </tr>
+                <tr>
+                    <td><strong>Meaningful Learning</strong></td>
+                    <td>Soal dilatasi dikaitkan dengan skala peta & desain visual.</td>
+                    <td>Hubungan pola dilatasi diterapkan ke animasi digital.</td>
+                    <td>Rotasi fungsi dikaitkan dengan navigasi & gerakan benda.</td>
+                    <td>Hubungan rotasi dikaitkan ke aplikasi robotik & teknologi.</td>
+                </tr>
+                <tr>
+                    <td><strong>Joyful Learning</strong></td>
+                    <td>Simulasi GeoGebra & tantangan soal kompetitif.</td>
+                    <td>Debat kelompok & game pola transformasi.</td>
+                    <td>Peer review & voting hasil grafik terbaik.</td>
+                    <td>Poster kelompok & presentasi kreatif.</td>
+                </tr>
+            </table>
+            
+            <h3>Kemitraan Pembelajaran</h3>
+            <table>
+                <tr>
+                    <th>Lingkungan</th>
+                    <th>Pertemuan 5</th>
+                    <th>Pertemuan 6</th>
+                    <th>Pertemuan 7</th>
+                    <th>Pertemuan 8</th>
+                </tr>
+                <tr>
+                    <td><strong>Sekolah</strong></td>
+                    <td>Kolaborasi antar kelas paralel untuk kuis grafik dilatasi.</td>
+                    <td>Diskusi lintas kelompok untuk pola dilatasi.</td>
+                    <td>Workshop rotasi dengan kelas informatika.</td>
+                    <td>Pameran mini hasil poster pola transformasi rotasi.</td>
+                </tr>
+                <tr>
+                    <td><strong>Luar Sekolah</strong></td>
+                    <td>Studi contoh skala peta wilayah setempat.</td>
+                    <td>Mencari pola transformasi di desain mural lokal.</td>
+                    <td>Observasi rotasi pada teknologi (kipas, roda kendaraan).</td>
+                    <td>Wawancara virtual dengan praktisi animasi/desainer grafis.</td>
+                </tr>
+            </table>
+            
+            <h3>Lingkungan Belajar</h3>
+            <table>
+                <tr>
+                    <th>Aspek</th>
+                    <th>Deskripsi</th>
+                </tr>
+                <tr>
+                    <td><strong>Ruang Fisik</strong></td>
+                    <td>Laboratorium komputer, ruang kelas dengan papan tulis besar untuk coretan grafik.</td>
+                </tr>
+                <tr>
+                    <td><strong>Ruang Virtual</strong></td>
+                    <td>Kelas virtual LMS untuk latihan grafik interaktif, forum diskusi daring, simulasi GeoGebra online.</td>
+                </tr>
+                <tr>
+                    <td><strong>Budaya Belajar</strong></td>
+                    <td>Saling menghargai kesalahan dan koreksi bersama, membiasakan debat sehat & refleksi.</td>
+                </tr>
+                <tr>
+                    <td><strong>Pemanfaatan Digital</strong></td>
+                    <td>Penggunaan GeoGebra untuk dilatasi, peta konsep digital & animasi transformasi, simulasi grafik rotasi.</td>
+                </tr>
+            </table>
+        </div>
+        
+        <div id="tabD" class="tab-content">
+            <h2>D. RENCANA PELAKSANAAN PEMBELAJARAN</h2>
+            
+            <h3>Pertemuan 5</h3>
+            <table>
+                <tr>
+                    <th>Kegiatan</th>
+                    <th>Deskripsi</th>
+                    <th>Menit</th>
+                </tr>
+                <tr>
+                    <td><strong>PENDAHULUAN</strong></td>
+                    <td>
+                        <p>- Guru membuka pembelajaran dengan salam, doa, dan motivasi awal.</p>
+                        <p>- Mindful: Guru menampilkan grafik fungsi asli dan hasil dilatasi secara berdampingan.</p>
+                        <p>- Meaningful: Mengaitkan perubahan grafik dengan penerapan skala pada peta atau desain digital.</p>
+                        <p>- Joyful: Siswa diminta menyebutkan contoh sehari-hari yang melibatkan perubahan ukuran.</p>
+                    </td>
+                    <td>10</td>
+                </tr>
+                <tr>
+                    <td><strong>INTI</strong></td>
+                    <td>
+                        <p><strong>Understanding:</strong></p>
+                        <p>- Guru menjelaskan konsep dilatasi secara aljabar dan grafik pada fungsi linear, kuadrat, dan eksponen.</p>
+                        <p>- Siswa mengamati perbedaan grafik sebelum dan sesudah dilatasi.</p>
+                        
+                        <p><strong>Applying:</strong></p>
+                        <p>- Siswa menyelesaikan LKPD: menggambar grafik hasil dilatasi dari fungsi yang diberikan.</p>
+                        <p>- Diskusi kelompok: menelaah pengaruh faktor skala pada bentuk grafik.</p>
+                        
+                        <p><strong>Reflecting:</strong></p>
+                        <p>- Siswa menuliskan refleksi singkat tentang bagaimana mereka memahami konsep perubahan skala grafik.</p>
+                    </td>
+                    <td>70</td>
+                </tr>
+                <tr>
+                    <td><strong>PENUTUP</strong></td>
+                    <td>
+                        <p>- Guru memberikan umpan balik atas hasil diskusi dan latihan siswa.</p>
+                        <p>- Siswa dan guru bersama-sama menyimpulkan inti materi dilatasi pada fungsi.</p>
+                        <p>- Guru meminta 2–3 siswa menyampaikan hasil refleksi mereka.</p>
+                        <p>- Guru menutup pembelajaran dengan doa dan motivasi untuk pertemuan berikutnya.</p>
+                    </td>
+                    <td>10</td>
+                </tr>
+            </table>
+            
+            <h3>Pertemuan 6</h3>
+            <table>
+                <tr>
+                    <th>Kegiatan</th>
+                    <th>Deskripsi</th>
+                    <th>Menit</th>
+                </tr>
+                <tr>
+                    <td><strong>PENDAHULUAN</strong></td>
+                    <td>
+                        <p>- Guru membuka pembelajaran dengan salam, doa, dan ice-breaking singkat.</p>
+                        <p>- Mindful: Guru meminta siswa menganalisis dua grafik yang mengalami dilatasi berbeda.</p>
+                        <p>- Meaningful: Mengaitkan pola perubahan grafik dengan animasi digital atau efek visual.</p>
+                        <p>- Joyful: Guru memfasilitasi debat ringan dua kelompok tentang skala.</p>
+                    </td>
+                    <td>10</td>
+                </tr>
+                <tr>
+                    <td><strong>INTI</strong></td>
+                    <td>
+                        <p><strong>Understanding:</strong></p>
+                        <p>- Guru menjelaskan hubungan antar-transformasi dilatasi: urutan skala, efek ganda, dan pembalikan grafik.</p>
+                        <p>- Siswa menganalisis grafik-grafik hasil transformasi bertingkat.</p>
+                        
+                        <p><strong>Applying:</strong></p>
+                        <p>- Siswa menyusun peta konsep yang menggambarkan hubungan antar transformasi dilatasi.</p>
+                        <p>- Siswa melakukan eksperimen digital (GeoGebra) untuk menguji hipotesis pola transformasi.</p>
+                        
+                        <p><strong>Reflecting:</strong></p>
+                        <p>- Siswa menulis kesimpulan pribadi tentang urutan transformasi yang paling berpengaruh.</p>
+                    </td>
+                    <td>70</td>
+                </tr>
+                <tr>
+                    <td><strong>PENUTUP</strong></td>
+                    <td>
+                        <p>- Guru memberi umpan balik atas presentasi dan peta konsep siswa.</p>
+                        <p>- Siswa dan guru menyimpulkan pola penting dalam transformasi dilatasi.</p>
+                        <p>- Guru memberi preview materi rotasi untuk pertemuan berikutnya.</p>
+                        <p>- Diakhiri dengan doa dan apresiasi atas kerja kelompok.</p>
+                    </td>
+                    <td>10</td>
+                </tr>
+            </table>
+            
+            <h3>Pertemuan 7</h3>
+            <table>
+                <tr>
+                    <th>Kegiatan</th>
+                    <th>Deskripsi</th>
+                    <th>Menit</th>
+                </tr>
+                <tr>
+                    <td><strong>PENDAHULUAN</strong></td>
+                    <td>
+                        <p>- Guru membuka pembelajaran dengan salam, doa, dan sapaan hangat.</p>
+                        <p>- Mindful: Guru memutar video animasi singkat tentang rotasi objek/geometri.</p>
+                        <p>- Meaningful: Guru bertanya: "Bagaimana jika grafik fungsi kita putar?"</p>
+                        <p>- Joyful: Siswa bermain kuis cepat: menebak hasil rotasi bentuk sederhana.</p>
+                    </td>
+                    <td>10</td>
+                </tr>
+                <tr>
+                    <td><strong>INTI</strong></td>
+                    <td>
+                        <p><strong>Understanding:</strong></p>
+                        <p>- Guru menjelaskan konsep rotasi pada fungsi (sumbu, sudut putar) secara visual.</p>
+                        <p>- Siswa mengamati perubahan grafik fungsi saat dirotasi.</p>
+                        
+                        <p><strong>Applying:</strong></p>
+                        <p>- Siswa berlatih menggambar grafik hasil rotasi secara manual dan digital.</p>
+                        <p>- Diskusi kelompok: menganalisis bagaimana sudut rotasi memengaruhi arah dan bentuk grafik.</p>
+                        
+                        <p><strong>Reflecting:</strong></p>
+                        <p>- Siswa menuliskan refleksi: kesulitan apa yang mereka hadapi saat memutar grafik.</p>
+                    </td>
+                    <td>70</td>
+                </tr>
+                <tr>
+                    <td><strong>PENUTUP</strong></td>
+                    <td>
+                        <p>- Guru memberikan umpan balik terhadap hasil latihan menggambar dan diskusi.</p>
+                        <p>- Guru dan siswa bersama-sama merumuskan simpulan kunci rotasi fungsi.</p>
+                        <p>- Beberapa siswa membacakan refleksinya.</p>
+                        <p>- Guru menutup dengan doa, apresiasi, dan motivasi untuk tantangan di pertemuan selanjutnya.</p>
+                    </td>
+                    <td>10</td>
+                </tr>
+            </table>
+            
+            <h3>Pertemuan 8</h3>
+            <table>
+                <tr>
+                    <th>Kegiatan</th>
+                    <th>Deskripsi</th>
+                    <th>Menit</th>
+                </tr>
+                <tr>
+                    <td><strong>PENDAHULUAN</strong></td>
+                    <td>
+                        <p>- Guru membuka pembelajaran dengan salam, doa, dan sapaan.</p>
+                        <p>- Mindful: Guru menampilkan contoh grafik fungsi yang mengalami rotasi bertingkat.</p>
+                        <p>- Meaningful: Guru mengajak siswa berdiskusi tentang pengaruh rotasi ganda pada grafik.</p>
+                        <p>- Joyful: Siswa memainkan game "Tebak Sudut Rotasi" dengan gambar acak.</p>
+                    </td>
+                    <td>10</td>
+                </tr>
+                <tr>
+                    <td><strong>INTI</strong></td>
+                    <td>
+                        <p><strong>Understanding:</strong></p>
+                        <p>- Guru menjelaskan pola hubungan antar-rotasi, termasuk komposisi transformasi.</p>
+                        <p>- Diskusi: bagaimana rotasi memengaruhi posisi dan orientasi grafik.</p>
+                        
+                        <p><strong>Applying:</strong></p>
+                        <p>- Siswa menganalisis kasus nyata, misalnya perputaran kamera drone, rotasi roda kendaraan.</p>
+                        <p>- Kelompok siswa menyusun laporan mini tentang hasil eksplorasi pola rotasi ganda.</p>
+                        
+                        <p><strong>Reflecting:</strong></p>
+                        <p>- Siswa menuliskan refleksi akhir: hubungan rotasi dengan transformasi lain.</p>
+                    </td>
+                    <td>70</td>
+                </tr>
+                <tr>
+                    <td><strong>PENUTUP</strong></td>
+                    <td>
+                        <p>- Guru memberikan umpan balik atas presentasi laporan mini.</p>
+                        <p>- Siswa bersama guru menyimpulkan hubungan antar-rotasi dan transformasi kombinasi.</p>
+                        <p>- Beberapa kelompok berbagi refleksi dan temuan menarik.</p>
+                        <p>- Guru menutup dengan doa, motivasi untuk pengayaan, dan apresiasi atas kerja sama kelompok.</p>
+                    </td>
+                    <td>10</td>
+                </tr>
+            </table>
+        </div>
+        
+        <div id="tabE" class="tab-content">
+            <h2>E. ASESMEN PEMBELAJARAN</h2>
+            
+            <h3>1. Asesmen Awal (Diagnostik):</h3>
+            <table>
+                <tr>
+                    <th>Pertemuan</th>
+                    <th>Format Asesmen</th>
+                    <th>Tujuan</th>
+                    <th>Instrumen</th>
+                </tr>
+                <tr>
+                    <td>5</td>
+                    <td>Kuis singkat & Tanya jawab</td>
+                    <td>Mengidentifikasi pemahaman awal siswa tentang konsep skala/dilatasi pada grafik fungsi</td>
+                    <td>Kartu pertanyaan, kuis digital (Google Form/Quizizz)</td>
+                </tr>
+                <tr>
+                    <td>6</td>
+                    <td>Diskusi kelas & Brainstorming</td>
+                    <td>Memeriksa pemahaman hubungan transformasi dilatasi bertingkat</td>
+                    <td>Lembar observasi pendapat siswa, catatan diskusi</td>
+                </tr>
+                <tr>
+                    <td>7</td>
+                    <td>Kuis visual & Ice Breaking</td>
+                    <td>Mengukur kesiapan siswa tentang konsep rotasi geometri sebelum diterapkan pada fungsi</td>
+                    <td>Flash card gambar, simulasi GeoGebra sederhana</td>
+                </tr>
+                <tr>
+                    <td>8</td>
+                    <td>Tanya jawab & Pengamatan kasus</td>
+                    <td>Mengecek kesiapan siswa menganalisis komposisi rotasi dan transformasi lain</td>
+                    <td>Lembar diskusi awal, pertanyaan pemantik studi kasus</td>
+                </tr>
+            </table>
+            
+            <h3>2. Asesmen Proses (Formatif):</h3>
+            <table>
+                <tr>
+                    <th>Pertemuan</th>
+                    <th>Format Asesmen</th>
+                    <th>Tujuan</th>
+                    <th>Instrumen</th>
+                </tr>
+                <tr>
+                    <td>5</td>
+                    <td>Observasi aktivitas & Produk: Gambar Grafik</td>
+                    <td>Mengukur pemahaman siswa dalam menggambar hasil dilatasi fungsi</td>
+                    <td>Lembar kerja, evaluasi hasil gambar manual & digital</td>
+                </tr>
+                <tr>
+                    <td>6</td>
+                    <td>Produk: Peta Konsep & Diskusi</td>
+                    <td>Menilai kemampuan menyusun pola hubungan transformasi dilatasi</td>
+                    <td>Peta konsep kelompok, lembar presentasi, jurnal refleksi</td>
+                </tr>
+                <tr>
+                    <td>7</td>
+                    <td>Observasi & Produk: Laporan Mini</td>
+                    <td>Menilai kemampuan menganalisis rotasi fungsi & menjelaskan hasilnya</td>
+                    <td>Draft grafik hasil rotasi, catatan kelompok, video singkat</td>
+                </tr>
+                <tr>
+                    <td>8</td>
+                    <td>Observasi & Produk: Presentasi</td>
+                    <td>Mengevaluasi pemahaman pola rotasi kombinasi & kemampuan komunikasi</td>
+                    <td>Laporan presentasi, poster infografis, jurnal refleksi individu</td>
+                </tr>
+            </table>
+            
+            <h3>3. Asesmen Akhir (Sumatif):</h3>
+            <table>
+                <tr>
+                    <th>Pertemuan</th>
+                    <th>Format Sumatif</th>
+                    <th>Tujuan</th>
+                    <th>Instrumen Rubrik</th>
+                </tr>
+                <tr>
+                    <td>5</td>
+                    <td>Penilaian proyek</td>
+                    <td>Mengukur kemampuan membuat grafik hasil dilatasi & menganalisis perubahannya</td>
+                    <td>Rubrik: Kejelasan grafik, akurasi skala, kreativitas</td>
+                </tr>
+                <tr>
+                    <td>6</td>
+                    <td>Penilaian proyek</td>
+                    <td>Menilai produk peta konsep hubungan transformasi</td>
+                    <td>Rubrik: Keterkaitan ide, logika hubungan, estetika, kolaborasi</td>
+                </tr>
+                <tr>
+                    <td>7</td>
+                    <td>Penilaian proyek</td>
+                    <td>Menilai laporan mini analisis rotasi</td>
+                    <td>Rubrik: Analisis isu (pola rotasi), solusi visual, kreativitas, ketepatan</td>
+                </tr>
+                <tr>
+                    <td>8</td>
+                    <td>Penilaian proyek</td>
+                    <td>Mengevaluasi presentasi akhir komposisi rotasi dan transformasi lain</td>
+                    <td>Rubrik: Kejelasan penjelasan, kreativitas visual, kerja tim, refleksi penjiwaan nilai Pancasila</td>
+                </tr>
+            </table>
+        </div>
+        
+        <div id="tabF" class="tab-content">
+            <h2>F. RENCANA TINDAK LANJUT PENGAYAAN & REMEDIAL</h2>
+            
+            <table>
+                <tr>
+                    <th>Pertemuan</th>
+                    <th>Tindak Lanjut Remedial</th>
+                    <th>Tindak Lanjut Pengayaan</th>
+                </tr>
+                <tr>
+                    <td>5</td>
+                    <td>
+                        <p>- Bimbingan tambahan untuk siswa yang belum memahami langkah menggambar hasil dilatasi secara manual.</p>
+                        <p>- Latihan soal sederhana: soal skala pembesaran/pengecilan grafik fungsi linear.</p>
+                    </td>
+                    <td>
+                        <p>- Tantangan membuat animasi transformasi dilatasi dengan GeoGebra atau aplikasi grafis.</p>
+                        <p>- Diskusi mini: membandingkan dilatasi fungsi dengan fenomena real-life.</p>
+                    </td>
+                </tr>
+                <tr>
+                    <td>6</td>
+                    <td>
+                        <p>- Diskusi ulang pola hubungan transformasi dilatasi dengan contoh kasus lain.</p>
+                        <p>- Tanya jawab dan kuis singkat tambahan untuk memperkuat pemahaman.</p>
+                    </td>
+                    <td>
+                        <p>- Tugas mandiri: merancang peta konsep transformasi gabungan (dilatasi + translasi/refleksi).</p>
+                        <p>- Presentasi peta konsep di forum mini.</p>
+                    </td>
+                </tr>
+                <tr>
+                    <td>7</td>
+                    <td>
+                        <p>- Latihan soal praktis: soal rotasi titik-titik koordinat sederhana.</p>
+                        <p>- Pendampingan guru secara individu menggunakan kertas grafik.</p>
+                    </td>
+                    <td>
+                        <p>- Proyek mini: meneliti rotasi grafik fungsi pada software.</p>
+                        <p>- Membuat video pendek menjelaskan hasil rotasi.</p>
+                    </td>
+                </tr>
+                <tr>
+                    <td>8</td>
+                    <td>
+                        <p>- Diskusi kelompok kecil: menganalisis kesalahan umum pada komposisi rotasi.</p>
+                        <p>- Guru memberikan lembar soal evaluasi ulang.</p>
+                    </td>
+                    <td>
+                        <p>- Tugas proyek kolaboratif: menciptakan desain visual yang memadukan rotasi, translasi, dan refleksi.</p>
+                        <p>- Presentasi di depan kelas dengan kritik membangun.</p>
+                    </td>
+                </tr>
+            </table>
+        </div>
+    </div>
+
+    <script>
+        function openTab(tabId) {
+            // Sembunyikan semua konten tab
+            var tabContents = document.getElementsByClassName('tab-content');
+            for (var i = 0; i < tabContents.length; i++) {
+                tabContents[i].classList.remove('active');
+            }
+            
+            // Nonaktifkan semua tombol tab
+            var tabButtons = document.getElementsByClassName('tab-btn');
+            for (var i = 0; i < tabButtons.length; i++) {
+                tabButtons[i].classList.remove('active');
+            }
+            
+            // Tampilkan tab yang dipilih dan aktifkan tombolnya
+            document.getElementById(tabId).classList.add('active');
+            event.currentTarget.classList.add('active');
+        }
+    </script>
+</body>
+</html>

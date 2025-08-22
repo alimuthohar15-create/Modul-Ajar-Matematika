@@ -1,0 +1,739 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Modul Ajar Deep Learning - Matematika: Lingkaran</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background: linear-gradient(135deg, #6a11cb 0%, #2575fc 100%);
+            color: #333;
+            min-height: 100vh;
+            padding: 20px;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            overflow: hidden;
+        }
+        
+        header {
+            background: linear-gradient(to right, #2575fc, #6a11cb);
+            color: white;
+            padding: 25px;
+            text-align: center;
+        }
+        
+        header h1 {
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+        }
+        
+        header h2 {
+            font-size: 1.5rem;
+            font-weight: 400;
+        }
+        
+        .divider {
+            height: 5px;
+            background: linear-gradient(to right, #ff7e5f, #feb47b);
+            margin: 5px 0 15px;
+        }
+        
+        .tabs {
+            display: flex;
+            background: #f1f3f6;
+            overflow-x: auto;
+        }
+        
+        .tab-button {
+            padding: 15px 25px;
+            background: #dbe1e8;
+            border: none;
+            cursor: pointer;
+            font-weight: 600;
+            font-size: 1.1rem;
+            transition: all 0.3s ease;
+            min-width: 120px;
+            text-align: center;
+        }
+        
+        .tab-button:hover {
+            background: #c8d0db;
+        }
+        
+        .tab-button.active {
+            background: white;
+            color: #2575fc;
+            border-bottom: 4px solid #2575fc;
+        }
+        
+        .tab-content {
+            display: none;
+            padding: 30px;
+            animation: fadeIn 0.5s ease;
+        }
+        
+        .tab-content.active {
+            display: block;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        
+        h3 {
+            color: #2575fc;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid #eaeaea;
+        }
+        
+        .info-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+            margin: 20px 0;
+        }
+        
+        .info-card {
+            background: #f9fafc;
+            border-radius: 10px;
+            padding: 20px;
+            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.08);
+            border-left: 4px solid #6a11cb;
+        }
+        
+        .info-card h4 {
+            color: #6a11cb;
+            margin-bottom: 15px;
+        }
+        
+        ul {
+            padding-left: 20px;
+            margin: 10px 0;
+        }
+        
+        li {
+            margin-bottom: 8px;
+            line-height: 1.5;
+        }
+        
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.08);
+        }
+        
+        th, td {
+            padding: 12px 15px;
+            text-align: left;
+            border-bottom: 1px solid #eaeaea;
+        }
+        
+        th {
+            background-color: #2575fc;
+            color: white;
+        }
+        
+        tr:nth-child(even) {
+            background-color: #f9fafc;
+        }
+        
+        .highlight {
+            background: linear-gradient(120deg, #f6d365 0%, #fda085 100%);
+            padding: 25px;
+            border-radius: 10px;
+            margin: 20px 0;
+            color: #333;
+        }
+        
+        .highlight h4 {
+            color: #c36d0a;
+            margin-bottom: 15px;
+        }
+        
+        .two-columns {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
+        }
+        
+        .circle-badge {
+            display: inline-block;
+            width: 30px;
+            height: 30px;
+            background: #2575fc;
+            color: white;
+            border-radius: 50%;
+            text-align: center;
+            line-height: 30px;
+            margin-right: 10px;
+        }
+        
+        footer {
+            text-align: center;
+            padding: 20px;
+            background: #f1f3f6;
+            color: #6c757d;
+            font-size: 0.9rem;
+        }
+        
+        .framework-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
+        }
+        
+        .framework-table th {
+            background: linear-gradient(to right, #2575fc, #6a11cb);
+            color: white;
+            text-align: center;
+            padding: 15px;
+        }
+        
+        .framework-table td {
+            padding: 12px;
+            border: 1px solid #e0e0e0;
+            vertical-align: top;
+        }
+        
+        .framework-table tr:nth-child(even) {
+            background-color: #f8f9fa;
+        }
+        
+        .framework-table tr:hover {
+            background-color: #e9ecef;
+        }
+        
+        .sub-header {
+            background-color: #e3f2fd !important;
+            font-weight: bold;
+        }
+        
+        @media (max-width: 768px) {
+            .two-columns {
+                grid-template-columns: 1fr;
+            }
+            
+            .tab-button {
+                min-width: 80px;
+                padding: 12px 15px;
+                font-size: 1rem;
+            }
+            
+            header h1 {
+                font-size: 2rem;
+            }
+            
+            header h2 {
+                font-size: 1.2rem;
+            }
+            
+            .framework-table {
+                display: block;
+                overflow-x: auto;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1><i class="fas fa-book"></i> 📘 MODUL AJAR DEEP LEARNING</h1>
+            <h2>MATA PELAJARAN : MATEMATIKA</h2>
+            <h2>BAB : LINGKARAN (BUSUR & JURING)</h2>
+            <div class="divider"></div>
+        </header>
+        
+        <div class="tabs">
+            <button class="tab-button active" onclick="openTab('tabA')">A. Identitas</button>
+            <button class="tab-button" onclick="openTab('tabB')">B. Informasi Umum</button>
+            <button class="tab-button" onclick="openTab('tabC')">C. Desain Pembelajaran</button>
+            <button class="tab-button" onclick="openTab('tabD')">D. Rencana Pelaksanaan</button>
+            <button class="tab-button" onclick="openTab('tabE')">E. Asesmen</button>
+            <button class="tab-button" onclick="openTab('tabF')">F. Tindak Lanjut</button>
+        </div>
+        
+        <div id="tabA" class="tab-content active">
+            <h3><span class="circle-badge">A</span> IDENTITAS MODUL</h3>
+            <div class="info-grid">
+                <div class="info-card">
+                    <h4><i class="fas fa-school"></i> Informasi Sekolah</h4>
+                    <ul>
+                        <li><strong>Nama Sekolah:</strong> SMAN 1 Cluring</li>
+                        <li><strong>Nama Penyusun:</strong> Ali Muthohar, S.Pd</li>
+                        <li><strong>Mata Pelajaran:</strong> Matematika</li>
+                    </ul>
+                </div>
+                
+                <div class="info-card">
+                    <h4><i class="fas fa-info-circle"></i> Detail Modul</h4>
+                    <ul>
+                        <li><strong>Kelas/Fase/Semester:</strong> XI1/F/Ganjil</li>
+                        <li><strong>Pertemuan Ke:</strong> 11 S.d 13</li>
+                        <li><strong>Alokasi Waktu:</strong> 8 JP (3 Pertemuan @ 2-4JP)</li>
+                        <li><strong>Tahun Pelajaran:</strong> 2025/2026</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="highlight">
+                <h4><i class="fas fa-lightbulb"></i> Fokus Pembelajaran</h4>
+                <p>Modul ini dirancang untuk membantu peserta didik memahami konsep lingkaran, khususnya busur dan juring, melalui pendekatan deep learning yang menekankan pada pemahaman mendalam dan penerapan dalam konteks nyata.</p>
+            </div>
+        </div>
+        
+        <div id="tabB" class="tab-content">
+            <h3><span class="circle-badge">B</span> INFORMASI UMUM</h3>
+            
+            <div class="info-card">
+                <h4><i class="fas fa-user-graduate"></i> 1. Identifikasi Kesiapan Peserta Didik</h4>
+                <p>Peserta didik telah mempelajari materi dasar geometri pada fase sebelumnya, memiliki kemampuan dasar dalam memahami sifat-sifat bangun datar dan bangun ruang, serta telah menguasai konsep dasar lingkaran. Minat belajar cukup tinggi ditunjukkan dengan antusiasme saat menyelesaikan masalah kontekstual. Kesiapan belajar bervariasi, sehingga perlu penerapan pembelajaran diferensiasi agar setiap peserta didik dapat mencapai capaian pembelajaran dengan optimal.</p>
+            </div>
+            
+            <div class="info-card">
+                <h4><i class="fas fa-shapes"></i> 2. Karakteristik Materi</h4>
+                <p>Materi Lingkaran (Busur & Juring) merupakan bagian dari elemen geometri yang membahas tentang elemen-elemen lingkaran, hubungan antar elemen, hingga keterkaitannya dengan panjang busur dan sudut pusat. Materi ini relevan karena diaplikasikan dalam perhitungan praktis, misalnya perancangan bidang teknik, arsitektur, dan kehidupan sehari-hari seperti pengukuran jalan melengkung. Dengan demikian, materi ini bersifat kontekstual dan mendukung penguatan keterampilan berpikir kritis dan bernalar matematis.</p>
+            </div>
+            
+            <div class="info-card">
+                <h4><i class="fas fa-star"></i> 3. Dimensi Profil Lulusan Pembelajaran</h4>
+                <ul>
+                    <li><strong>Bernalar Kritis:</strong> Mengkaji hubungan elemen-elemen lingkaran secara mendalam.</li>
+                    <li><strong>Kreatif:</strong> Membuat model visualisasi busur dan juring dari benda konkret di sekitar.</li>
+                    <li><strong>Mandiri:</strong> Melatih tanggung jawab peserta didik dalam menyelesaikan tugas analisis panjang busur.</li>
+                    <li><strong>Bergotong Royong:</strong> Diskusi kelompok dalam memecahkan masalah kontekstual.</li>
+                </ul>
+            </div>
+        </div>
+        
+        <div id="tabC" class="tab-content">
+            <h3><span class="circle-badge">C</span> DESAIN PEMBELAJARAN</h3>
+            
+            <div class="info-card">
+                <h4><i class="fas fa-bullseye"></i> 1) Capaian Pembelajaran (CP)</h4>
+                <table>
+                    <tr>
+                        <th>Pertemuan</th>
+                        <th>Elemen</th>
+                        <th>Capaian Pembelajaran</th>
+                    </tr>
+                    <tr>
+                        <td>11</td>
+                        <td>Geometri</td>
+                        <td>Memahami elemen-elemen suatu lingkaran.</td>
+                    </tr>
+                    <tr>
+                        <td>12</td>
+                        <td>Geometri</td>
+                        <td>Menganalisis hubungan elemen-elemen lingkaran.</td>
+                    </tr>
+                    <tr>
+                        <td>13</td>
+                        <td>Geometri</td>
+                        <td>Mengeksplorasi hubungan sudut pusat dengan panjang busur.</td>
+                    </tr>
+                </table>
+            </div>
+            
+            <div class="info-card">
+                <h4><i class="fas fa-crosshairs"></i> 2) Lintas Disiplin Ilmu</h4>
+                <ul>
+                    <li><strong>Fisika:</strong> Konsep gerak melingkar berhubungan dengan sudut pusat dan busur lingkaran.</li>
+                    <li><strong>Teknik/Desain:</strong> Penerapan busur dan juring dalam desain pola bangunan atau jembatan melengkung.</li>
+                    <li><strong>Informatika:</strong> Pemrograman untuk menghitung panjang busur secara otomatis.</li>
+                </ul>
+            </div>
+            
+            <div class="info-card">
+                <h4><i class="fas fa-bullseye"></i> 3) Tujuan Pembelajaran</h4>
+                <table>
+                    <tr>
+                        <th>Pertemuan</th>
+                        <th>Topik/BAB</th>
+                        <th>Tujuan Pembelajaran</th>
+                        <th>Aktivitas Pembelajaran</th>
+                        <th>Penilaian</th>
+                    </tr>
+                    <tr>
+                        <td>11</td>
+                        <td>Elemen Lingkaran</td>
+                        <td>Peserta didik dapat mengidentifikasi elemen-elemen lingkaran dengan benar melalui contoh konkret dalam 2 JP.</td>
+                        <td>Diskusi pengenalan elemen lingkaran, mengamati benda sekitar, membuat poster elemen lingkaran.</td>
+                        <td>Lembar observasi identifikasi elemen, kuis elemen lingkaran.</td>
+                    </tr>
+                    <tr>
+                        <td>12</td>
+                        <td>Hubungan Elemen Lingkaran</td>
+                        <td>Peserta didik dapat menganalisis hubungan antar elemen lingkaran secara logis melalui pemecahan masalah kontekstual dalam 2 JP.</td>
+                        <td>Diskusi kelompok menyelesaikan soal hubungan elemen, presentasi hasil analisis, tanya jawab refleksi.</td>
+                        <td>Penilaian presentasi, rubrik analisis hubungan elemen.</td>
+                    </tr>
+                    <tr>
+                        <td>13</td>
+                        <td>Sudut Pusat & Panjang Busur</td>
+                        <td>Peserta didik dapat menentukan panjang busur berdasarkan sudut pusat dengan menerapkan rumus secara tepat pada masalah kontekstual dalam 4 JP.</td>
+                        <td>Eksperimen mengukur sudut pusat pada benda nyata, diskusi cara menghitung panjang busur, latihan soal kontekstual.</td>
+                        <td>Tes tertulis soal panjang busur, penilaian hasil diskusi.</td>
+                    </tr>
+                </table>
+            </div>
+            
+            <div class="info-card">
+                <h4><i class="fas fa-bullseye"></i> 4) Topik Pembelajaran Kontekstual</h4>
+                <ul>
+                    <li>Mengaitkan elemen lingkaran dengan rambu lalu lintas berbentuk bundar, taman berbentuk lingkaran, atau jalur lintasan lari stadion.</li>
+                    <li>Hubungan elemen lingkaran pada desain jam dinding.</li>
+                    <li>Aplikasi panjang busur dalam perhitungan jalan melengkung, pembuatan pola kerajinan, atau perhitungan biaya pengecatan mural melingkar.</li>
+                </ul>
+            </div>
+            
+            <div class="info-card">
+                <h4><i class="fas fa-table"></i> 5) Kerangka Pembelajaran</h4>
+                
+                <h4 style="margin-top: 20px;">Praktik Pedagogik</h4>
+                <table class="framework-table">
+                    <tr>
+                        <th>Aspek</th>
+                        <th>Pertemuan 11</th>
+                        <th>Pertemuan 12</th>
+                        <th>Pertemuan 13</th>
+                    </tr>
+                    <tr>
+                        <td class="sub-header">Model</td>
+                        <td>Discovery Learning: Mengamati elemen lingkaran melalui benda nyata.</td>
+                        <td>Problem Based Learning: Menganalisis hubungan elemen lingkaran.</td>
+                        <td>Project Based Learning: Menyelesaikan masalah kontekstual panjang busur.</td>
+                    </tr>
+                    <tr>
+                        <td class="sub-header">Strategi</td>
+                        <td>Eksplorasi & Observasi Terarah.</td>
+                        <td>Diskusi Kelompok & Presentasi Temuan.</td>
+                        <td>Eksperimen Praktik, Simulasi Kasus, Diskusi Hasil.</td>
+                    </tr>
+                    <tr>
+                        <td class="sub-header">Mindful Learning</td>
+                        <td>Menyadari keterkaitan elemen lingkaran dengan benda di sekitar.</td>
+                        <td>Memahami keterkaitan antar elemen dan implikasinya dalam perhitungan praktis.</td>
+                        <td>Menyadari pentingnya konsep sudut pusat dan panjang busur dalam kehidupan nyata.</td>
+                    </tr>
+                    <tr>
+                        <td class="sub-header">Meaningful Learning</td>
+                        <td>Menghubungkan elemen lingkaran dengan rambu, jam, piring, taman.</td>
+                        <td>Menerapkan hubungan elemen dalam soal kontekstual.</td>
+                        <td>Menerapkan panjang busur pada perhitungan biaya pengecatan/pembuatan pola melengkung.</td>
+                    </tr>
+                    <tr>
+                        <td class="sub-header">Joyful Learning</td>
+                        <td>Bermain tebak-tebakan benda lingkaran, membuat poster elemen lingkaran.</td>
+                        <td>Menyelesaikan teka-teki hubungan elemen, presentasi bergilir.</td>
+                        <td>Simulasi menghitung panjang busur dari benda nyata, refleksi kelompok.</td>
+                    </tr>
+                </table>
+                
+                <h4 style="margin-top: 30px;">Kemitraan Pembelajaran</h4>
+                <table class="framework-table">
+                    <tr>
+                        <th>Aspek</th>
+                        <th>Pertemuan 11</th>
+                        <th>Pertemuan 12</th>
+                        <th>Pertemuan 13</th>
+                    </tr>
+                    <tr>
+                        <td class="sub-header">Lingkungan Sekolah</td>
+                        <td>Bekerja sama dengan guru seni/IPA untuk mengaitkan bentuk lingkaran.</td>
+                        <td>Bekerja sama dengan guru fisika untuk memahami konsep gerak melingkar.</td>
+                        <td>Mengundang praktisi desain/arsitektur untuk berbagi pengalaman penerapan busur.</td>
+                    </tr>
+                    <tr>
+                        <td class="sub-header">Lingkungan Luar Sekolah/Masyarakat</td>
+                        <td>Mengamati benda berbentuk lingkaran di sekitar rumah/sekolah.</td>
+                        <td>Studi kasus jalur melengkung di jalan raya atau stadion.</td>
+                        <td>Observasi proyek pengecatan mural lingkaran atau pola keramik di masyarakat.</td>
+                    </tr>
+                </table>
+                
+                <h4 style="margin-top: 30px;">Lingkungan Belajar</h4>
+                <table class="framework-table">
+                    <tr>
+                        <th>Aspek</th>
+                        <th>Pertemuan 11</th>
+                        <th>Pertemuan 12</th>
+                        <th>Pertemuan 13</th>
+                    </tr>
+                    <tr>
+                        <td class="sub-header">Ruang Fisik</td>
+                        <td>Kelas dengan media konkret (benda bundar).</td>
+                        <td>Ruang diskusi dengan alat peraga lingkaran.</td>
+                        <td>Laboratorium mini/area praktek pengukuran panjang busur.</td>
+                    </tr>
+                    <tr>
+                        <td class="sub-header">Ruang Virtual</td>
+                        <td>Google Classroom untuk berbagi gambar elemen lingkaran.</td>
+                        <td>Forum diskusi online untuk share hasil analisis hubungan elemen.</td>
+                        <td>Aplikasi GeoGebra/Desmos untuk simulasi panjang busur.</td>
+                    </tr>
+                    <tr>
+                        <td class="sub-header">Budaya Belajar</td>
+                        <td>Reflektif dan saling menghargai pendapat.</td>
+                        <td>Kolaboratif dan kritis dalam memecahkan masalah.</td>
+                        <td>Kreatif, inovatif, dan bertanggung jawab dalam presentasi solusi.</td>
+                    </tr>
+                    <tr>
+                        <td class="sub-header">Pemanfaatan Digital</td>
+                        <td>Video pengantar elemen lingkaran.</td>
+                        <td>Slide interaktif hubungan elemen lingkaran.</td>
+                        <td>Simulasi digital panjang busur dan latihan kuis online.</td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+        
+        <div id="tabD" class="tab-content">
+            <h3><span class="circle-badge">D</span> RENCANA PELAKSANAAN PEMBELAJARAN</h3>
+            
+            <div class="info-card">
+                <h4><i class="fas fa-chalkboard-teacher"></i> Rencana Pembelajaran Pertemuan 11</h4>
+                <table>
+                    <tr>
+                        <th>Kegiatan</th>
+                        <th>Deskripsi</th>
+                        <th>Menit</th>
+                    </tr>
+                    <tr>
+                        <td>PENDAHULUAN</td>
+                        <td>Guru membuka pelajaran dengan salam, doa, dan absensi. Menyampaikan tujuan pembelajaran secara jelas. Mindful, Meaningful, dan Joyful Learning.</td>
+                        <td>10</td>
+                    </tr>
+                    <tr>
+                        <td>INTI</td>
+                        <td>Understanding: Guru menjelaskan elemen lingkaran. Applying: Peserta didik mengamati benda nyata. Reflecting: Tanya jawab & diskusi.</td>
+                        <td>70</td>
+                    </tr>
+                    <tr>
+                        <td>PENUTUP</td>
+                        <td>Peserta didik menyampaikan pemahaman. Guru memberi umpan balik. Peserta didik menulis ringkasan. Penutup dengan salam dan doa.</td>
+                        <td>10</td>
+                    </tr>
+                </table>
+            </div>
+            
+            <div class="info-card">
+                <h4><i class="fas fa-chalkboard-teacher"></i> Rencana Pembelajaran Pertemuan 12</h4>
+                <table>
+                    <tr>
+                        <th>Kegiatan</th>
+                        <th>Deskripsi</th>
+                        <th>Menit</th>
+                    </tr>
+                    <tr>
+                        <td>PENDAHULUAN</td>
+                        <td>Salam, doa, absensi. Review materi sebelumnya. Mindful, Meaningful, dan Joyful Learning.</td>
+                        <td>10</td>
+                    </tr>
+                    <tr>
+                        <td>INTI</td>
+                        <td>Understanding: Guru menjelaskan hubungan elemen. Applying: Memecahkan soal kontekstual. Reflecting: Presentasi hasil diskusi.</td>
+                        <td>70</td>
+                    </tr>
+                    <tr>
+                        <td>PENUTUP</td>
+                        <td>Umpan balik presentasi. Menyimpulkan hubungan elemen. Refleksi diri. Salam dan doa penutup.</td>
+                        <td>10</td>
+                    </tr>
+                </table>
+            </div>
+            
+            <div class="info-card">
+                <h4><i class="fas fa-chalkboard-teacher"></i> Rencana Pembelajaran Pertemuan 13</h4>
+                <table>
+                    <tr>
+                        <th>Kegiatan</th>
+                        <th>Deskripsi</th>
+                        <th>Menit</th>
+                    </tr>
+                    <tr>
+                        <td>PENDAHULUAN</td>
+                        <td>Salam, doa, absensi. Mengaitkan materi sebelumnya. Mindful, Meaningful, dan Joyful Learning.</td>
+                        <td>10</td>
+                    </tr>
+                    <tr>
+                        <td>INTI</td>
+                        <td>Understanding: Konsep sudut pusat dan panjang busur. Applying: Mengerjakan soal kontekstual. Reflecting: Diskusi jawaban.</td>
+                        <td>70</td>
+                    </tr>
+                    <tr>
+                        <td>PENUTUP</td>
+                        <td>Umpan balik diskusi. Menyimpulkan langkah perhitungan. Catatan singkat. Salam dan doa penutup.</td>
+                        <td>10</td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+        
+        <div id="tabE" class="tab-content">
+            <h3><span class="circle-badge">E</span> ASESMEN PEMBELAJARAN</h3>
+            
+            <div class="info-card">
+                <h4><i class="fas fa-clipboard-check"></i> 1. Asesmen Awal (Diagnostik)</h4>
+                <table>
+                    <tr>
+                        <th>Pertemuan</th>
+                        <th>Format Asesmen</th>
+                        <th>Tujuan</th>
+                        <th>Instrumen</th>
+                    </tr>
+                    <tr>
+                        <td>11</td>
+                        <td>Pertanyaan lisan, kuis gambar</td>
+                        <td>Mengidentifikasi pemahaman awal tentang elemen-elemen lingkaran</td>
+                        <td>Kartu gambar elemen lingkaran, pertanyaan identifikasi</td>
+                    </tr>
+                    <tr>
+                        <td>12</td>
+                        <td>Diskusi pemantik, soal pramateri</td>
+                        <td>Mengetahui pemahaman awal tentang hubungan antar elemen</td>
+                        <td>Soal singkat, diskusi hubungan elemen</td>
+                    </tr>
+                    <tr>
+                        <td>13</td>
+                        <td>Tanya jawab kasus, brainstorming</td>
+                        <td>Menggali pengetahuan awal tentang sudut pusat dan panjang busur</td>
+                        <td>Studi kasus perhitungan panjang lintasan melengkung</td>
+                    </tr>
+                </table>
+            </div>
+            
+            <div class="info-card">
+                <h4><i class="fas fa-chart-line"></i> 2. Asesmen Proses (Formatif)</h4>
+                <table>
+                    <tr>
+                        <th>Pertemuan</th>
+                        <th>Format Asesmen</th>
+                        <th>Tujuan</th>
+                        <th>Instrumen</th>
+                    </tr>
+                    <tr>
+                        <td>11</td>
+                        <td>Observasi, produk poster, jurnal refleksi</td>
+                        <td>Mengukur kemampuan identifikasi elemen lingkaran</td>
+                        <td>Lembar observasi, penilaian poster, jurnal refleksi</td>
+                    </tr>
+                    <tr>
+                        <td>12</td>
+                        <td>Observasi diskusi, produk peta konsep, jurnal refleksi</td>
+                        <td>Mengukur kemampuan menganalisis hubungan elemen</td>
+                        <td>Rubrik penilaian peta konsep, lembar observasi</td>
+                    </tr>
+                    <tr>
+                        <td>13</td>
+                        <td>Observasi praktik, produk perhitungan, jurnal refleksi</td>
+                        <td>Mengukur kemampuan menerapkan rumus panjang busur</td>
+                        <td>Lembar observasi praktik, lembar kerja latihan</td>
+                    </tr>
+                </table>
+            </div>
+            
+            <div class="info-card">
+                <h4><i class="fas fa-tasks"></i> 3. Asesmen Akhir (Sumatif)</h4>
+                <table>
+                    <tr>
+                        <th>Pertemuan</th>
+                        <th>Format Sumatif</th>
+                        <th>Tujuan</th>
+                        <th>Instrumen Rubrik</th>
+                    </tr>
+                    <tr>
+                        <td>11</td>
+                        <td>Penilaian produk (Poster Elemen Lingkaran)</td>
+                        <td>Mengevaluasi hasil identifikasi elemen lingkaran secara kreatif dan tepat</td>
+                        <td>Rubrik penilaian mencakup ketepatan elemen, kerapihan, kreativitas visual</td>
+                    </tr>
+                    <tr>
+                        <td>12</td>
+                        <td>Penilaian produk (Peta Konsep Hubungan Elemen)</td>
+                        <td>Mengevaluasi kemampuan menganalisis hubungan elemen dengan logis dan sistematis</td>
+                        <td>Rubrik analisis: kelengkapan hubungan, logika alur, kreativitas, kerjasama kelompok</td>
+                    </tr>
+                    <tr>
+                        <td>13</td>
+                        <td>Penilaian proyek (Simulasi Perhitungan Panjang Busur)</td>
+                        <td>Mengevaluasi penerapan rumus panjang busur pada masalah nyata, serta kemampuan presentasi</td>
+                        <td>Rubrik: ketepatan perhitungan, penjelasan solusi, kreativitas, kolaborasi, relevansi dengan kasus kontekstual</td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+        
+        <div id="tabF" class="tab-content">
+            <h3><span class="circle-badge">F</span> RENCANA TINDAK LANJUT PENGAYAAN & REMEDIAL</h3>
+            
+            <div class="two-columns">
+                <div class="info-card">
+                    <h4><i class="fas fa-hands-helping"></i> Tindak Lanjut Remedial</h4>
+                    <ul>
+                        <li><strong>Pertemuan 11:</strong> Bimbingan ulang dengan media konkret, diskusi kelompok kecil, tutor sebaya, soal identifikasi tambahan</li>
+                        <li><strong>Pertemuan 12:</strong> Soal bervariasi dengan bimbingan, sesi tanya jawab, memperkuat logika hubungan elemen</li>
+                        <li><strong>Pertemuan 13:</strong> Mengulang latihan level dasar, diskusi tutor sebaya, tanya jawab penuntun langkah perhitungan</li>
+                    </ul>
+                </div>
+                
+                <div class="info-card">
+                    <h4><i class="fas fa-rocket"></i> Tindak Lanjut Pengayaan</h4>
+                    <ul>
+                        <li><strong>Pertemuan 11:</strong> Poster digital elemen lingkaran, diskusi ide penerapan dalam desain produk</li>
+                        <li><strong>Pertemuan 12:</strong> Peta konsep digital/video penjelasan, studi mini kasus perhitungan nyata</li>
+                        <li><strong>Pertemuan 13:</strong> Proyek studi kasus perhitungan panjang busur, presentasi hasil untuk dipublikasikan</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="highlight">
+                <h4><i class="fas fa-balance-scale"></i> Prinsip Pembelajaran Diferensiasi</h4>
+                <p>Pembelajaran remedial dan pengayaan dilaksanakan dengan memperhatikan kebutuhan individual peserta didik, memberikan tantangan yang sesuai dengan tingkat kemampuan, dan memastikan semua peserta didik mencapai kompetensi yang ditetapkan.</p>
+            </div>
+        </div>
+        
+        <footer>
+            <p>© 2025 SMAN 1 Cluring | Modul Ajar Matematika - Lingkaran (Busur & Juring)</p>
+            <p>Disusun oleh: Ali Muthohar, S.Pd</p>
+        </footer>
+    </div>
+
+    <script>
+        function openTab(tabId) {
+            // Sembunyikan semua tab content
+            var tabContents = document.getElementsByClassName('tab-content');
+            for (var i = 0; i < tabContents.length; i++) {
+                tabContents[i].classList.remove('active');
+            }
+            
+            // Nonaktifkan semua tab buttons
+            var tabButtons = document.getElementsByClassName('tab-button');
+            for (var i = 0; i < tabButtons.length; i++) {
+                tabButtons[i].classList.remove('active');
+            }
+            
+            // Tampilkan tab content yang dipilih dan aktifkan tab button
+            document.getElementById(tabId).classList.add('active');
+            event.currentTarget.classList.add('active');
+        }
+    </script>
+</body>
+</html>

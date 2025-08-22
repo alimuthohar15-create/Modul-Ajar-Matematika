@@ -1,0 +1,882 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MODUL AJAR DEEP LEARNING - MATEMATIKA: LINGKARAN</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            color: #333;
+            line-height: 1.6;
+            padding: 20px;
+            min-height: 100vh;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+        }
+        
+        header {
+            background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
+            color: white;
+            padding: 30px;
+            text-align: center;
+        }
+        
+        header h1 {
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+        }
+        
+        header h2 {
+            font-size: 1.8rem;
+            font-weight: 400;
+            margin-bottom: 15px;
+        }
+        
+        .divider {
+            height: 4px;
+            background: linear-gradient(90deg, transparent, #fff, transparent);
+            margin: 10px 0 20px;
+        }
+        
+        .tabs {
+            display: flex;
+            background: #f1f1f1;
+            overflow-x: auto;
+        }
+        
+        .tab-button {
+            padding: 18px 25px;
+            background: #e9ecef;
+            border: none;
+            outline: none;
+            cursor: pointer;
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: #495057;
+            transition: all 0.3s ease;
+            min-width: 120px;
+            text-align: center;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+        }
+        
+        .tab-button:hover {
+            background: #dee2e6;
+        }
+        
+        .tab-button.active {
+            background: white;
+            color: #1e3c72;
+            border-bottom: 4px solid #1e3c72;
+        }
+        
+        .tab-content {
+            display: none;
+            padding: 30px;
+            animation: fadeIn 0.5s ease;
+        }
+        
+        .tab-content.active {
+            display: block;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        
+        h3 {
+            color: #1e3c72;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid #e9ecef;
+        }
+        
+        .section {
+            margin-bottom: 25px;
+        }
+        
+        .section-title {
+            color: #2a5298;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .section-content {
+            padding-left: 20px;
+        }
+        
+        ul, ol {
+            margin-left: 20px;
+            margin-bottom: 15px;
+        }
+        
+        li {
+            margin-bottom: 8px;
+        }
+        
+        .card {
+            background: #f8f9fa;
+            border-left: 4px solid #2a5298;
+            padding: 15px;
+            border-radius: 0 8px 8px 0;
+            margin-bottom: 15px;
+        }
+        
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.05);
+        }
+        
+        th, td {
+            padding: 12px 15px;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+        }
+        
+        th {
+            background-color: #2a5298;
+            color: white;
+        }
+        
+        tr:nth-child(even) {
+            background-color: #f8f9fa;
+        }
+        
+        tr:hover {
+            background-color: #e9ecef;
+        }
+        
+        .circle-diagram {
+            display: flex;
+            justify-content: center;
+            margin: 20px 0;
+        }
+        
+        .circle {
+            width: 250px;
+            height: 250px;
+            border-radius: 50%;
+            background: conic-gradient(
+                #4e54c8 0deg 60deg, 
+                #8f94fb 60deg 150deg, 
+                #00d2ff 150deg 240deg, 
+                #3a7bd5 240deg 360deg
+            );
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: bold;
+        }
+        
+        .center-dot {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background: white;
+            position: absolute;
+        }
+        
+        .highlight {
+            background: linear-gradient(120deg, #f6d365 0%, #fda085 100%);
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-weight: 600;
+        }
+        
+        footer {
+            text-align: center;
+            padding: 20px;
+            background: #1e3c72;
+            color: white;
+            font-size: 0.9rem;
+        }
+        
+        @media (max-width: 768px) {
+            .tab-button {
+                min-width: 90px;
+                padding: 15px 20px;
+                font-size: 1rem;
+            }
+            
+            header h1 {
+                font-size: 2rem;
+            }
+            
+            header h2 {
+                font-size: 1.4rem;
+            }
+            
+            .circle {
+                width: 200px;
+                height: 200px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>📘 MODUL AJAR DEEP LEARNING</h1>
+            <h2>MATA PELAJARAN : MATEMATIKA</h2>
+            <div class="divider"></div>
+            <p>BAB : LINGKARAN (RUMUS PANJANG BUSUR & LUAS JURING)</p>
+        </header>
+        
+        <div class="tabs">
+            <button class="tab-button active" onclick="openTab('tabA')"><i class="fas fa-info-circle"></i> A. IDENTITAS</button>
+            <button class="tab-button" onclick="openTab('tabB')"><i class="fas fa-info"></i> B. INFORMASI</button>
+            <button class="tab-button" onclick="openTab('tabC')"><i class="fas fa-chalkboard-teacher"></i> C. DESAIN</button>
+            <button class="tab-button" onclick="openTab('tabD')"><i class="fas fa-tasks"></i> D. RPP</button>
+            <button class="tab-button" onclick="openTab('tabE')"><i class="fas fa-clipboard-check"></i> E. ASESMEN</button>
+            <button class="tab-button" onclick="openTab('tabF')"><i class="fas fa-hands-helping"></i> F. TINDAK LANJUT</button>
+        </div>
+        
+        <div id="tabA" class="tab-content active">
+            <h3>A. IDENTITAS MODUL</h3>
+            
+            <div class="section">
+                <div class="card">
+                    <ul>
+                        <li><span class="highlight">Nama Sekolah</span> : SMAN 1 Cluring</li>
+                        <li><span class="highlight">Nama Penyusun</span> : Ali Muthohar, S.Pd</li>
+                        <li><span class="highlight">Mata Pelajaran</span> : Matematika</li>
+                        <li><span class="highlight">Kelas/Fase/Semester</span> : XI1/F/Ganjil</li>
+                        <li><span class="highlight">Pertemuan Ke</span> : 14 S.d 16</li>
+                        <li><span class="highlight">Alokasi Waktu</span> : 12 JP (3 Pertemuan @ 4 JP)</li>
+                        <li><span class="highlight">Tahun Pelajaran</span> : 2025/2026</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="circle-diagram">
+                <div class="circle">
+                    <div class="center-dot"></div>
+                </div>
+            </div>
+            
+            <p>Diagram lingkaran di atas menunjukkan contoh penerapan konsep sudut pusat dan panjang busur dalam membagi lingkaran menjadi beberapa bagian yang proporsional.</p>
+        </div>
+        
+        <div id="tabB" class="tab-content">
+            <h3>B. INFORMASI UMUM</h3>
+            
+            <div class="section">
+                <h4 class="section-title"><i class="fas fa-user-graduate"></i> 1. Identifikasi Kesiapan Peserta Didik</h4>
+                <div class="section-content">
+                    <p>Peserta didik telah memahami elemen lingkaran dan hubungan sudut pusat dengan panjang busur dari pertemuan sebelumnya. Mereka memiliki kemampuan dasar berhitung, mengukur sudut, dan mengenal konsep pecahan lingkaran.</p>
+                    <p>Kesiapan belajar bervariasi: peserta didik dengan minat tinggi cenderung cepat memahami pola rumus, sedangkan yang butuh bimbingan perlu latihan soal bertahap. Penguatan literasi numerasi dan latihan kontekstual akan membantu semua peserta didik mencapai kompetensi dengan optimal.</p>
+                </div>
+            </div>
+            
+            <div class="section">
+                <h4 class="section-title"><i class="fas fa-book"></i> 2. Karakteristik Materi</h4>
+                <div class="section-content">
+                    <p>Materi rumus panjang busur dan luas juring lingkaran menekankan hubungan proporsional antara sudut pusat dengan bagian lingkaran. Konsep ini kontekstual karena banyak diterapkan di dunia nyata:</p>
+                    <ul>
+                        <li>Desain pola taman</li>
+                        <li>Jalur lintasan lari</li>
+                        <li>Potongan pizza</li>
+                        <li>Pola keramik</li>
+                        <li>Pengecatan mural melengkung</li>
+                    </ul>
+                    <p>Materi ini mendukung keterampilan berpikir kritis, pemecahan masalah, dan penguatan numerasi.</p>
+                </div>
+            </div>
+            
+            <div class="section">
+                <h4 class="section-title"><i class="fas fa-graduation-cap"></i> 3. Dimensi Profil Lulusan Pembelajaran</h4>
+                <div class="section-content">
+                    <ul>
+                        <li><span class="highlight">Bernalar Kritis</span>: Menghitung rumus panjang busur & luas juring dengan teliti.</li>
+                        <li><span class="highlight">Mandiri</span>: Bertanggung jawab dalam memecahkan soal latihan.</li>
+                        <li><span class="highlight">Kreatif</span>: Membuat model pola juring dalam proyek sederhana.</li>
+                        <li><span class="highlight">Gotong Royong</span>: Diskusi kelompok dalam studi kasus aplikasi juring di kehidupan nyata.</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        
+        <div id="tabC" class="tab-content">
+            <h3>C. DESAIN PEMBELAJARAN</h3>
+            
+            <div class="section">
+                <h4 class="section-title"><i class="fas fa-bullseye"></i> 1) Capaian Pembelajaran (CP)</h4>
+                <div class="section-content">
+                    <table>
+                        <tr>
+                            <th>Pertemuan</th>
+                            <th>Elemen</th>
+                            <th>Capaian Pembelajaran</th>
+                        </tr>
+                        <tr>
+                            <td>Pertemuan 14</td>
+                            <td>Geometri</td>
+                            <td>Menentukan rumus panjang busur suatu lingkaran melalui eksplorasi rumus dan latihan soal kontekstual.</td>
+                        </tr>
+                        <tr>
+                            <td>Pertemuan 15</td>
+                            <td>Geometri</td>
+                            <td>Mengeksplorasi hubungan sudut pusat dengan luas juring melalui pemecahan masalah kontekstual.</td>
+                        </tr>
+                        <tr>
+                            <td>Pertemuan 16</td>
+                            <td>Geometri</td>
+                            <td>Menentukan rumus luas juring suatu lingkaran dan menerapkannya pada masalah sehari-hari.</td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+            
+            <div class="section">
+                <h4 class="section-title"><i class="fas fa-network-wired"></i> 2) Lintas Disiplin Ilmu</h4>
+                <div class="section-content">
+                    <ul>
+                        <li><span class="highlight">Fisika</span>: Hubungan sudut pusat dengan gerak melingkar atau jarak tempuh lintasan melengkung.</li>
+                        <li><span class="highlight">Geografi</span>: Peta area berbentuk juring atau sektor pada diagram.</li>
+                        <li><span class="highlight">Seni/Desain</span>: Pembuatan pola lantai lingkaran atau dekorasi keramik berbentuk juring.</li>
+                        <li><span class="highlight">Informatika</span>: Menggunakan aplikasi GeoGebra/Desmos untuk simulasi panjang busur dan luas juring.</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="section">
+                <h4 class="section-title"><i class="fas fa-target"></i> 3) Tujuan Pembelajaran</h4>
+                <div class="section-content">
+                    <table>
+                        <tr>
+                            <th>Pertemuan</th>
+                            <th>Topik/BAB</th>
+                            <th>Tujuan Pembelajaran</th>
+                            <th>Aktivitas Pembelajaran</th>
+                            <th>Penilaian</th>
+                        </tr>
+                        <tr>
+                            <td>14</td>
+                            <td>Rumus Panjang Busur</td>
+                            <td>Peserta didik dapat menentukan rumus panjang busur lingkaran melalui eksplorasi hubungan sudut pusat dengan keliling lingkaran secara tepat dalam 4 JP.</td>
+                            <td>- Diskusi menurunkan rumus panjang busur.<br>- Eksperimen mengukur sudut pusat & busur pada benda nyata.<br>- Mengerjakan soal kontekstual panjang busur.</td>
+                            <td>LKPD hitung panjang busur, tes tertulis perhitungan, presentasi cara kerja.</td>
+                        </tr>
+                        <tr>
+                            <td>15</td>
+                            <td>Hubungan Sudut Pusat & Luas Juring</td>
+                            <td>Peserta didik dapat mengeksplorasi hubungan sudut pusat dengan luas juring melalui diskusi dan pemecahan soal secara logis dalam 4 JP.</td>
+                            <td>- Mengamati potongan lingkaran (misalnya pizza).<br>- Diskusi hubungan sudut pusat dan proporsi luas juring.<br>- Mengerjakan latihan soal hubungan sudut pusat & juring.</td>
+                            <td>LKPD gambar potongan juring, lembar analisis hubungan sudut-luas, observasi diskusi.</td>
+                        </tr>
+                        <tr>
+                            <td>16</td>
+                            <td>Rumus Luas Juring</td>
+                            <td>Peserta didik dapat menentukan rumus luas juring lingkaran dan menerapkannya pada masalah sehari-hari dengan benar dan kreatif dalam 4 JP.</td>
+                            <td>- Praktik menghitung luas juring pada studi kasus (pola taman, potongan kue).<br>- Diskusi pemecahan masalah.<br>- Presentasi mini proyek perhitungan luas juring.</td>
+                            <td>Lembar kerja studi kasus, rubrik presentasi solusi, penilaian ketepatan & kreativitas aplikasi rumus.</td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+            
+            <div class="section">
+                <h4 class="section-title"><i class="fas fa-lightbulb"></i> 4) Topik Pembelajaran Kontekstual</h4>
+                <div class="section-content">
+                    <div class="card">
+                        <p><span class="highlight">Panjang Busur:</span></p>
+                        <ul>
+                            <li>Menghitung jarak lintasan lari di jalur stadion.</li>
+                            <li>Mendesain pagar keliling taman berbentuk busur.</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="card">
+                        <p><span class="highlight">Hubungan Sudut Pusat & Luas Juring:</span></p>
+                        <ul>
+                            <li>Membandingkan potongan pizza atau kue tart dengan sudut berbeda.</li>
+                            <li>Desain pola lantai melingkar di halaman.</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="card">
+                        <p><span class="highlight">Rumus Luas Juring:</span></p>
+                        <ul>
+                            <li>Menghitung biaya pengecatan mural melengkung.</li>
+                            <li>Membuat pola keramik sektor lingkaran.</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="section">
+                <h4 class="section-title"><i class="fas fa-chalkboard"></i> 5) Kerangka Pembelajaran</h4>
+                <div class="section-content">
+                    <table>
+                        <tr>
+                            <th>Aspek</th>
+                            <th>Pertemuan 14</th>
+                            <th>Pertemuan 15</th>
+                            <th>Pertemuan 16</th>
+                        </tr>
+                        <tr>
+                            <td><strong>Praktik Pedagogik</strong></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td>Model</td>
+                            <td>Discovery Learning: Menurunkan rumus panjang busur melalui eksperimen.</td>
+                            <td>Problem Based Learning: Menjelaskan hubungan sudut pusat dengan luas juring lewat pemecahan masalah.</td>
+                            <td>Project Based Learning: Menentukan rumus luas juring melalui proyek kontekstual menghitung pola taman atau potongan makanan.</td>
+                        </tr>
+                        <tr>
+                            <td>Strategi</td>
+                            <td>Eksperimen pengukuran sudut & busur pada benda nyata.</td>
+                            <td>Diskusi studi kasus potongan juring.</td>
+                            <td>Proyek kelompok membuat simulasi pola juring pada desain nyata.</td>
+                        </tr>
+                        <tr>
+                            <td>Mindful Learning</td>
+                            <td>Menyadari bahwa panjang busur dapat diterapkan dalam perencanaan jalur melengkung.</td>
+                            <td>Sadar akan kaitan sudut pusat dengan proporsi luas juring pada desain sehari-hari.</td>
+                            <td>Sadar bahwa rumus luas juring membantu dalam perhitungan biaya/material di kehidupan nyata.</td>
+                        </tr>
+                        <tr>
+                            <td>Meaningful Learning</td>
+                            <td>Menghubungkan panjang busur dengan lintasan lari di stadion atau jalan melengkung.</td>
+                            <td>Membandingkan potongan pizza atau kue tart dengan sudut berbeda.</td>
+                            <td>Menghitung luas pola taman atau mural lingkaran.</td>
+                        </tr>
+                        <tr>
+                            <td>Joyful Learning</td>
+                            <td>Bermain game "Tebak Panjang Busur" dari gambar lingkaran.</td>
+                            <td>Membuat model kertas potongan juring, tebak besar sudut & luasnya.</td>
+                            <td>Simulasi menghitung luas juring dari benda nyata, lalu presentasi hasilnya.</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Kemitraan Pembelajaran</strong></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td>Lingkungan Sekolah</td>
+                            <td>Kolaborasi dengan guru PJOK (lintasan lari) atau seni rupa (desain busur).</td>
+                            <td>Kolaborasi dengan guru seni (desain pola juring).</td>
+                            <td>Kolaborasi dengan guru matematika lanjut atau prakarya (pola taman/keramik).</td>
+                        </tr>
+                        <tr>
+                            <td>Lingkungan Luar Sekolah / Masyarakat</td>
+                            <td>Observasi jalur jalan melengkung di taman atau stadion.</td>
+                            <td>Membandingkan pola pizza/kue tart di toko roti.</td>
+                            <td>Studi mini perhitungan biaya pengecatan mural melingkar di lingkungan sekitar.</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Lingkungan Belajar</strong></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td>Ruang Fisik</td>
+                            <td>Kelas dengan media konkret (busur derajat, lingkaran karton).</td>
+                            <td>Ruang diskusi dengan peraga pola juring (kertas karton/pizza dummy).</td>
+                            <td>Ruang praktik untuk proyek hitung luas juring (bisa lab mini/area diskusi).</td>
+                        </tr>
+                        <tr>
+                            <td>Ruang Virtual</td>
+                            <td>Google Classroom: simpan catatan rumus & latihan panjang busur.</td>
+                            <td>Forum diskusi online: share foto pola juring & perhitungan.</td>
+                            <td>Aplikasi GeoGebra/Desmos untuk simulasi hitung luas juring.</td>
+                        </tr>
+                        <tr>
+                            <td>Budaya Belajar</td>
+                            <td>Reflektif, teliti, menghargai proses diskusi.</td>
+                            <td>Kolaboratif, berani bertanya, menganalisis.</td>
+                            <td>Kreatif, mandiri, bertanggung jawab pada hasil proyek.</td>
+                        </tr>
+                        <tr>
+                            <td>Pemanfaatan Digital</td>
+                            <td>Video pengantar menurunkan rumus panjang busur & latihan online.</td>
+                            <td>Slide interaktif hubungan sudut pusat & luas juring.</td>
+                            <td>Simulasi digital hitung luas juring & mini kuis online.</td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+        </div>
+        
+        <div id="tabD" class="tab-content">
+            <h3>D. RENCANA PELAKSANAAN PEMBELAJARAN</h3>
+            
+            <div class="section">
+                <h4 class="section-title"><i class="fas fa-calendar-day"></i> Pertemuan 14</h4>
+                <div class="section-content">
+                    <table>
+                        <tr>
+                            <th>Kegiatan Pembelajaran</th>
+                            <th>Deskripsi Langkah-langkah</th>
+                            <th>Menit</th>
+                        </tr>
+                        <tr>
+                            <td>PENDAHULUAN</td>
+                            <td>
+                                - Guru membuka pelajaran dengan salam, doa, dan menanyakan kabar peserta didik.<br>
+                                - Menjelaskan tujuan belajar hari ini: menentukan rumus panjang busur.<br>
+                                - Mindful: menekankan pentingnya ketelitian menghitung.<br>
+                                - Meaningful: mengaitkan dengan jalur lintasan lari/stadion.<br>
+                                - Joyful: ice breaking tebak panjang busur dari gambar.
+                            </td>
+                            <td>10</td>
+                        </tr>
+                        <tr>
+                            <td>INTI</td>
+                            <td>
+                                <strong>Understanding:</strong><br>
+                                - Siswa mengamati gambar lingkaran dan elemen busur.<br>
+                                - Diskusi menurunkan rumus panjang busur berdasarkan proporsi sudut pusat.<br>
+                                - Guru menjelaskan rumus & contoh soal.<br><br>
+                                
+                                <strong>Applying:</strong><br>
+                                - Praktik menghitung panjang busur dari soal kontekstual (lintasan melengkung, pagar taman).<br>
+                                - Diskusi kelompok memecahkan soal variasi panjang busur.<br><br>
+                                
+                                <strong>Reflecting:</strong><br>
+                                - Siswa menuliskan refleksi konsep & kesulitan.
+                            </td>
+                            <td>70</td>
+                        </tr>
+                        <tr>
+                            <td>PENUTUP</td>
+                            <td>
+                                - Siswa menyampaikan kesimpulan hasil diskusi.<br>
+                                - Guru memberikan umpan balik atas hasil perhitungan.<br>
+                                - Refleksi: menanyakan apa manfaat belajar panjang busur.<br>
+                                - Guru menutup dengan salam & doa.
+                            </td>
+                            <td>10</td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+            
+            <div class="section">
+                <h4 class="section-title"><i class="fas fa-calendar-day"></i> Pertemuan 15</h4>
+                <div class="section-content">
+                    <table>
+                        <tr>
+                            <th>Kegiatan Pembelajaran</th>
+                            <th>Deskripsi Langkah-langkah</th>
+                            <th>Menit</th>
+                        </tr>
+                        <tr>
+                            <td>PENDAHULUAN</td>
+                            <td>
+                                - Salam, doa, dan apersepsi materi sebelumnya.<br>
+                                - Menjelaskan tujuan: mengeksplorasi hubungan sudut pusat dengan luas juring.<br>
+                                - Mindful: fokus pada hubungan sudut dengan area lingkaran.<br>
+                                - Meaningful: contoh potongan pizza/kue tart.<br>
+                                - Joyful: simulasi memotong kertas lingkaran jadi potongan juring.
+                            </td>
+                            <td>10</td>
+                        </tr>
+                        <tr>
+                            <td>INTI</td>
+                            <td>
+                                <strong>Understanding:</strong><br>
+                                - Diskusi: bagaimana besar sudut memengaruhi besar luas juring.<br>
+                                - Guru menunjukkan rumus luas juring = (θ/360°) x πr².<br><br>
+                                
+                                <strong>Applying:</strong><br>
+                                - Siswa menghitung luas juring dari soal kontekstual (pizza, pola taman).<br>
+                                - Kerja kelompok menganalisis gambar pola juring dengan sudut berbeda.<br><br>
+                                
+                                <strong>Reflecting:</strong><br>
+                                - Menulis jurnal refleksi hubungan sudut & luas juring.
+                            </td>
+                            <td>70</td>
+                        </tr>
+                        <tr>
+                            <td>PENUTUP</td>
+                            <td>
+                                - Presentasi hasil diskusi.<br>
+                                - Guru memberikan umpan balik & menegaskan kembali cara kerja rumus.<br>
+                                - Kesimpulan dan refleksi kegunaan menghitung luas juring.<br>
+                                - Salam & doa penutup.
+                            </td>
+                            <td>10</td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+            
+            <div class="section">
+                <h4 class="section-title"><i class="fas fa-calendar-day"></i> Pertemuan 16</h4>
+                <div class="section-content">
+                    <table>
+                        <tr>
+                            <th>Kegiatan Pembelajaran</th>
+                            <th>Deskripsi Langkah-langkah</th>
+                            <th>Menit</th>
+                        </tr>
+                        <tr>
+                            <td>PENDAHULUAN</td>
+                            <td>
+                                - Salam, doa, dan meninjau materi luas juring sebelumnya.<br>
+                                - Menjelaskan tujuan: menentukan rumus luas juring dan menerapkannya pada masalah nyata.<br>
+                                - Mindful: menghindari kesalahan substitusi nilai.<br>
+                                - Meaningful: contoh pola taman, mural lingkaran.<br>
+                                - Joyful: diskusi mini proyek aplikasi luas juring.
+                            </td>
+                            <td>10</td>
+                        </tr>
+                        <tr>
+                            <td>INTI</td>
+                            <td>
+                                <strong>Understanding:</strong><br>
+                                - Diskusi kembali rumus luas juring dengan contoh.<br>
+                                - Guru memberikan studi kasus: menghitung luas pola taman melengkung.<br><br>
+                                
+                                <strong>Applying:</strong><br>
+                                - Kelompok siswa menyelesaikan proyek mini: menghitung luas juring dari gambar nyata, membuat poster hasil perhitungan.<br>
+                                - Presentasi hasil proyek.<br><br>
+                                
+                                <strong>Reflecting:</strong><br>
+                                - Refleksi mandiri tentang tantangan menghitung luas juring.
+                            </td>
+                            <td>70</td>
+                        </tr>
+                        <tr>
+                            <td>PENUTUP</td>
+                            <td>
+                                - Umpan balik hasil proyek & presentasi.<br>
+                                - Diskusi kesimpulan manfaat rumus luas juring di kehidupan sehari-hari.<br>
+                                - Guru menutup dengan salam & doa.
+                            </td>
+                            <td>10</td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+        </div>
+        
+        <div id="tabE" class="tab-content">
+            <h3>E. ASESMEN PEMBELAJARAN</h3>
+            
+            <div class="section">
+                <h4 class="section-title"><i class="fas fa-diagnoses"></i> 1. Asesmen Awal (Diagnostik)</h4>
+                <div class="section-content">
+                    <table>
+                        <tr>
+                            <th>Pertemuan</th>
+                            <th>Format Asesmen</th>
+                            <th>Tujuan</th>
+                            <th>Instrumen</th>
+                        </tr>
+                        <tr>
+                            <td>14</td>
+                            <td>Tanya jawab & brainstorming</td>
+                            <td>Mengetahui pemahaman awal siswa tentang panjang busur & keliling lingkaran.</td>
+                            <td>Kuis cepat: "Bagaimana cara menghitung keliling lingkaran?" Diskusi: "Apa yang dimaksud busur?"</td>
+                        </tr>
+                        <tr>
+                            <td>15</td>
+                            <td>Tanya jawab & penugasan lisan</td>
+                            <td>Mengidentifikasi pemahaman tentang sudut pusat dan pecahan area lingkaran.</td>
+                            <td>Pertanyaan lisan: "Bagaimana sudut pusat memengaruhi luas bagian lingkaran?"</td>
+                        </tr>
+                        <tr>
+                            <td>16</td>
+                            <td>Kuis singkat & diskusi awal</td>
+                            <td>Menilai kesiapan siswa menentukan rumus luas juring dan penerapannya.</td>
+                            <td>Kuis ringan: hitung area juring sederhana dengan sudut 90°. Diskusi: "Kapan kita pakai rumus juring?"</td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+            
+            <div class="section">
+                <h4 class="section-title"><i class="fas fa-chart-line"></i> 2. Asesmen Proses (Formatif)</h4>
+                <div class="section-content">
+                    <table>
+                        <tr>
+                            <th>Pertemuan</th>
+                            <th>Format Asesmen</th>
+                            <th>Tujuan</th>
+                            <th>Instrumen</th>
+                        </tr>
+                        <tr>
+                            <td>14</td>
+                            <td>Observasi aktivitas diskusi, produk: peta konsep panjang busur, jurnal refleksi.</td>
+                            <td>Memastikan siswa mampu memahami dan menurunkan rumus panjang busur secara benar.</td>
+                            <td>Lembar observasi diskusi, hasil peta konsep busur, jurnal refleksi individu.</td>
+                        </tr>
+                        <tr>
+                            <td>15</td>
+                            <td>Observasi kelompok, produk: infografis hubungan sudut pusat & juring, jurnal refleksi.</td>
+                            <td>Mengukur kemampuan siswa menjelaskan hubungan sudut pusat & luas juring.</td>
+                            <td>Lembar observasi kerja kelompok, hasil infografis, jurnal refleksi.</td>
+                        </tr>
+                        <tr>
+                            <td>16</td>
+                            <td>Observasi presentasi, produk: mini proyek menghitung luas juring, jurnal refleksi.</td>
+                            <td>Mengukur kemampuan siswa menerapkan rumus luas juring dalam konteks nyata.</td>
+                            <td>Rubrik observasi presentasi, hasil poster mini proyek, jurnal refleksi hasil belajar.</td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+            
+            <div class="section">
+                <h4 class="section-title"><i class="fas fa-check-double"></i> 3. Asesmen Akhir (Sumatif)</h4>
+                <div class="section-content">
+                    <table>
+                        <tr>
+                            <th>Pertemuan</th>
+                            <th>Format Sumatif</th>
+                            <th>Tujuan</th>
+                            <th>Instrumen Rubrik</th>
+                        </tr>
+                        <tr>
+                            <td>14</td>
+                            <td>Penilaian proyek & tes</td>
+                            <td>Mengukur kemampuan menentukan rumus panjang busur dan menghitung contoh soal.</td>
+                            <td>Rubrik analisis langkah kerja, ketepatan perhitungan, kreativitas penyajian peta konsep panjang busur.</td>
+                        </tr>
+                        <tr>
+                            <td>15</td>
+                            <td>Penilaian produk/infografis</td>
+                            <td>Menilai kemampuan menjelaskan hubungan sudut pusat & luas juring melalui karya infografis.</td>
+                            <td>Rubrik kreativitas desain, kejelasan hubungan sudut & area, kemampuan menjawab pertanyaan saat presentasi.</td>
+                        </tr>
+                        <tr>
+                            <td>16</td>
+                            <td>Penilaian mini proyek</td>
+                            <td>Mengukur kemampuan menerapkan rumus luas juring pada masalah nyata dan bekerja sama.</td>
+                            <td>Rubrik analisis akurasi hasil hitung, relevansi solusi, kreativitas poster mini proyek, kerjasama tim, kemampuan menjelaskan penerapan luas juring di kehidupan sehari-hari.</td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+        </div>
+        
+        <div id="tabF" class="tab-content">
+            <h3>F. RENCANA TINDAK LANJUT PENGAYAAN & REMEDIAL</h3>
+            
+            <div class="section">
+                <h4 class="section-title"><i class="fas fa-hands-helping"></i> Tindak Lanjut Remedial</h4>
+                <div class="section-content">
+                    <div class="card">
+                        <p><span class="highlight">Pertemuan 14:</span></p>
+                        <ul>
+                            <li>Pemberian soal latihan tambahan panjang busur dengan variasi sudut yang lebih sederhana.</li>
+                            <li>Bimbingan kecil secara bertahap menggunakan media konkret lingkaran kertas.</li>
+                            <li>Diskusi ulang menurunkan rumus bersama teman tutor sebaya.</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="card">
+                        <p><span class="highlight">Pertemuan 15:</span></p>
+                        <ul>
+                            <li>Pemberian soal drill hubungan sudut pusat dengan luas juring menggunakan sudut-sudut khusus (30°, 45°, 90°).</li>
+                            <li>Diskusi pembetulan kesalahan umum dalam substitusi rumus.</li>
+                            <li>Bimbingan belajar berkelompok.</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="card">
+                        <p><span class="highlight">Pertemuan 16:</span></p>
+                        <ul>
+                            <li>Siswa mengulang perhitungan luas juring dengan contoh yang lebih sederhana.</li>
+                            <li>Pendampingan menggunakan langkah hitung langkah demi langkah.</li>
+                            <li>Saling mengoreksi hasil hitungan bersama teman sekelompok.</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="section">
+                <h4 class="section-title"><i class="fas fa-rocket"></i> Tindak Lanjut Pengayaan</h4>
+                <div class="section-content">
+                    <div class="card">
+                        <p><span class="highlight">Pertemuan 14:</span></p>
+                        <ul>
+                            <li>Siswa membuat contoh kasus perhitungan panjang busur dari desain jalur lintasan melengkung atau pola taman.</li>
+                            <li>Tantangan: membuat soal panjang busur dan saling menukar antar kelompok untuk diselesaikan.</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="card">
+                        <p><span class="highlight">Pertemuan 15:</span></p>
+                        <ul>
+                            <li>Membuat infografis hubungan sudut pusat & juring dari situasi sehari-hari (misalnya pizza, pola keramik).</li>
+                            <li>Membuat video pendek menjelaskan hubungan sudut pusat dengan luas juring.</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="card">
+                        <p><span class="highlight">Pertemuan 16:</span></p>
+                        <ul>
+                            <li>Mengembangkan proyek mini perhitungan luas juring dari desain nyata (misalnya pola taman, mural lingkaran).</li>
+                            <li>Presentasi simulasi di depan kelas dan mendapat umpan balik teman.</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <footer>
+            <p>© 2025 SMAN 1 Cluring - Modul Ajar Deep Learning Matematika | Disusun oleh: Ali Muthohar, S.Pd</p>
+        </footer>
+    </div>
+
+    <script>
+        function openTab(tabId) {
+            // Sembunyikan semua tab content
+            var tabContents = document.getElementsByClassName("tab-content");
+            for (var i = 0; i < tabContents.length; i++) {
+                tabContents[i].classList.remove("active");
+            }
+            
+            // Nonaktifkan semua tab buttons
+            var tabButtons = document.getElementsByClassName("tab-button");
+            for (var i = 0; i < tabButtons.length; i++) {
+                tabButtons[i].classList.remove("active");
+            }
+            
+            // Aktifkan tab yang dipilih
+            document.getElementById(tabId).classList.add("active");
+            
+            // Temukan tombol yang sesuai dan aktifkan
+            var buttons = document.getElementsByClassName("tab-button");
+            for (var i = 0; i < buttons.length; i++) {
+                if (buttons[i].getAttribute("onclick").includes(tabId)) {
+                    buttons[i].classList.add("active");
+                }
+            }
+        }
+    </script>
+</body>
+</html>
