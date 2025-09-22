@@ -1,446 +1,130 @@
 <!DOCTYPE html>
 <html lang="id">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>📑 Lampiran 2 – Instrumen Asesmen</title>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-        body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background: linear-gradient(135deg, #f5f7fa, #c3cfe2);
-            padding: 20px;
-            color: #2d3748;
-            line-height: 1.7;
-        }
-        .container {
-            max-width: 1100px;
-            margin: 0 auto;
-            background: white;
-            border-radius: 15px;
-            box-shadow: 0 8px 30px rgba(0,0,0,0.12);
-            overflow: hidden;
-        }
-        .header {
-            background: #4a5568;
-            color: white;
-            padding: 30px;
-            text-align: center;
-        }
-        .header h1 {
-            font-size: 1.8rem;
-            font-weight: 700;
-            letter-spacing: 0.5px;
-        }
-        .section {
-            padding: 30px;
-            border-bottom: 1px solid #e2e8f0;
-        }
-        h2 {
-            color: #2d3748;
-            margin: 25px 0 15px;
-            padding-bottom: 8px;
-            border-bottom: 3px solid #4299e1;
-            font-size: 1.5rem;
-        }
-        h3 {
-            color: #2b6cb0;
-            margin: 20px 0 10px;
-            font-size: 1.25rem;
-        }
-        ol, ul {
-            margin-left: 25px;
-            margin-bottom: 15px;
-        }
-        li {
-            margin-bottom: 8px;
-        }
-        .question {
-            background: #f7fafc;
-            padding: 15px;
-            border-left: 4px solid #4299e1;
-            margin: 15px 0;
-            border-radius: 0 8px 8px 0;
-        }
-        .lkpd-form {
-            background: #f0fff4;
-            padding: 25px;
-            border-radius: 12px;
-            border: 2px solid #9ae6b4;
-            margin: 20px 0;
-        }
-        .lkpd-row {
-            margin-bottom: 15px;
-        }
-        .lkpd-label {
-            display: block;
-            font-weight: 600;
-            color: #276749;
-            margin-bottom: 5px;
-        }
-        .lkpd-input {
-            width: 100%;
-            padding: 10px;
-            border: 1px solid #a0aec0;
-            border-radius: 6px;
-            background: white;
-            min-height: 60px;
-            font-family: inherit;
-        }
-        table {
-            width: 100%;
-            border-collapse: collapse;
-            margin: 25px 0;
-            font-size: 0.95rem;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
-            border-radius: 8px;
-            overflow: hidden;
-        }
-        th, td {
-            padding: 14px 12px;
-            text-align: left;
-            border: 1px solid #e2e8f0;
-        }
-        th {
-            background-color: #3182ce;
-            color: white;
-            font-weight: 600;
-        }
-        tr:nth-child(even) {
-            background-color: #f7fafc;
-        }
-        .score-4 { background-color: #c6f6d5; }
-        .score-3 { background-color: #fefcbf; }
-        .score-2 { background-color: #fed7d7; }
-        .score-1 { background-color: #feb2b2; }
-
-        /* Upload Area */
-        .upload-area {
-            border: 2px dashed #9ae6b4;
-            padding: 20px;
-            text-align: center;
-            border-radius: 8px;
-            background: #f0fff4;
-            margin: 15px 0;
-            cursor: pointer;
-        }
-        .upload-area:hover {
-            background: #e6fffa;
-        }
-        .image-preview {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 10px;
-            margin-top: 15px;
-        }
-        .image-preview img {
-            max-width: 150px;
-            height: auto;
-            border-radius: 8px;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-        }
-
-        /* Download Button */
-        .download-btn {
-            display: block;
-            width: 100%;
-            padding: 15px;
-            background: #3182ce;
-            color: white;
-            font-weight: 700;
-            font-size: 1.1rem;
-            border: none;
-            border-radius: 8px;
-            cursor: pointer;
-            margin: 30px 0;
-            transition: background 0.3s;
-        }
-        .download-btn:hover {
-            background: #2b6cb0;
-        }
-
-        /* Print / PDF Optimized */
-        @media print {
-            body {
-                background: white;
-                padding: 0;
-            }
-            .container {
-                box-shadow: none;
-                border-radius: 0;
-            }
-            .download-btn, .upload-area {
-                display: none !important;
-            }
-        }
-
-        /* RESPONSIVE */
-        @media (max-width: 768px) {
-            .header h1 {
-                font-size: 1.5rem;
-            }
-            th, td {
-                padding: 10px 8px;
-                font-size: 0.9rem;
-            }
-            .section {
-                padding: 20px;
-            }
-        }
-
-        /* A4 PAGE SIZE FOR PDF */
-        #pdf-content {
-            width: 210mm;
-            min-height: 297mm;
-            padding: 15mm;
-            margin: 0 auto;
-            background: white;
-        }
-    </style>
+  <meta charset="UTF-8">
+  <title>📑 Lampiran 2 – Instrumen Asesmen</title>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+  <style>
+    body { font-family: Arial, sans-serif; padding:20px; background:#f0f4f8; }
+    .container { background:white; padding:20px; border-radius:10px; box-shadow:0 4px 10px rgba(0,0,0,0.15); }
+    .header { text-align:center; background:#2d3748; color:white; padding:20px; border-radius:8px; }
+    .section { margin:25px 0; }
+    h2 { border-bottom:3px solid #4299e1; padding-bottom:5px; }
+    .lkpd-input, textarea { width:100%; padding:10px; margin-top:5px; border:1px solid #ccc; border-radius:6px; }
+    .upload-area { border:2px dashed #4299e1; padding:15px; text-align:center; margin-top:10px; cursor:pointer; }
+    .image-preview img { max-width:120px; margin:5px; border-radius:6px; }
+    .download-btn { display:block; width:100%; padding:15px; margin-top:25px; background:#3182ce; color:white; font-weight:bold; border:none; border-radius:6px; cursor:pointer; }
+    .download-btn:hover { background:#2b6cb0; }
+    .filled-input { background:#edf2f7; padding:8px; border-radius:4px; margin:6px 0; }
+    table { width:100%; border-collapse:collapse; margin-top:15px; }
+    th, td { border:1px solid #ccc; padding:10px; }
+    th { background:#3182ce; color:white; }
+  </style>
 </head>
 <body>
+<div class="container">
+  <div class="header">
+    <h1>📑 Lampiran 2 – Instrumen Asesmen</h1>
+  </div>
 
-    <div class="container">
+  <div class="section">
+    <h2>👤 Identitas</h2>
+    <input type="text" id="userName" class="lkpd-input" placeholder="Nama Anda untuk nama file PDF">
+  </div>
 
-        <div class="header">
-            <h1>📑 Lampiran 2 – Instrumen Asesmen</h1>
-        </div>
+  <div class="section">
+    <h2>A. Contoh Soal</h2>
+    <ol>
+      <li>Sebutkan bentuk umum fungsi kuadrat!</li>
+      <li>Apa yang dimaksud parabola terbuka ke atas/bawah?</li>
+    </ol>
+  </div>
 
-        <!-- User Input Section -->
-        <div class="section">
-            <h2>👤 Identitas Pengguna</h2>
-            <div class="lkpd-row">
-                <label class="lkpd-label">Masukkan Nama Anda (untuk nama file PDF):</label>
-                <input type="text" id="userName" class="lkpd-input" placeholder="Contoh: Budi Santoso" />
-            </div>
-        </div>
-
-        <!-- Bagian A -->
-        <div class="section">
-            <h2>A. Contoh Soal Asesmen Diagnostik (Quiz Awal)</h2>
-            <p><strong>Tujuan:</strong> Mengetahui pemahaman awal siswa tentang konsep fungsi kuadrat.</p>
-            <ol>
-                <li class="question">Tentukan bentuk umum fungsi kuadrat!</li>
-                <li class="question">Apa yang dimaksud dengan grafik parabola terbuka ke atas dan ke bawah?</li>
-                <li class="question">Jika f(x)=x2−6x+8, tentukan akar-akarnya.</li>
-                <li class="question">Bagaimana menentukan titik puncak dari fungsi kuadrat?</li>
-                <li class="question">Berikan satu contoh penerapan parabola dalam kehidupan sehari-hari!</li>
-            </ol>
-        </div>
-
-        <!-- Bagian B -->
-        <div class="section">
-            <h2>B. Lembar Kerja Siswa (LKPD) untuk Diskusi Kelompok</h2>
-            <p><strong>Topik:</strong> Penerapan fungsi kuadrat dalam kehidupan nyata.</p>
-            <p><strong>Instruksi:</strong></p>
-            <ol>
-                <li>Bentuk kelompok (3–4 orang).</li>
-                <li>Diskusikan contoh nyata parabola di sekitar kalian (minimal 2 contoh).</li>
-                <li>Gambarkan sketsa parabola dari contoh tersebut.</li>
-                <li>Tentukan elemen penting (sumbu simetri, puncak, titik potong).</li>
-                <li>Presentasikan hasil diskusi di depan kelas.</li>
-            </ol>
-
-            <div class="lkpd-form">
-                <div class="lkpd-row">
-                    <span class="lkpd-label">• Nama Kelompok</span>
-                    <textarea class="lkpd-input" id="groupName" placeholder="Isi nama kelompok di sini..."></textarea>
-                </div>
-                <div class="lkpd-row">
-                    <span class="lkpd-label">• Anggota</span>
-                    <textarea class="lkpd-input" id="members" placeholder="Tulis nama anggota kelompok..."></textarea>
-                </div>
-                <div class="lkpd-row">
-                    <span class="lkpd-label">• Contoh parabola</span>
-                    <textarea class="lkpd-input" id="parabolaExample" placeholder="Deskripsikan contoh parabola yang kalian temukan..."></textarea>
-                </div>
-                <div class="lkpd-row">
-                    <span class="lkpd-label">• Sketsa grafik (Upload Gambar)</span>
-                    <div class="upload-area" id="uploadArea">
-                        📷 Klik atau drag gambar ke sini untuk upload
-                        <input type="file" id="imageUpload" accept="image/*" multiple style="display:none" />
-                    </div>
-                    <div class="image-preview" id="imagePreview"></div>
-                </div>
-                <div class="lkpd-row">
-                    <span class="lkpd-label">• Analisis matematis</span>
-                    <textarea class="lkpd-input" id="mathAnalysis" placeholder="Tuliskan analisis: sumbu simetri, puncak, titik potong..."></textarea>
-                </div>
-                <div class="lkpd-row">
-                    <span class="lkpd-label">• Kesimpulan</span>
-                    <textarea class="lkpd-input" id="conclusion" placeholder="Tuliskan kesimpulan diskusi kelompok..."></textarea>
-                </div>
-            </div>
-        </div>
-
-        <!-- Bagian C -->
-        <div class="section">
-            <h2>C. Rubrik Penilaian Formatif</h2>
-            <p><strong>Format:</strong> Observasi, produk (peta konsep), dan refleksi.</p>
-            <table>
-                <tr>
-                    <th>Aspek Dinilai</th>
-                    <th class="score-4">Skor 4 (Sangat Baik)</th>
-                    <th class="score-3">Skor 3 (Baik)</th>
-                    <th class="score-2">Skor 2 (Cukup)</th>
-                    <th class="score-1">Skor 1 (Kurang)</th>
-                </tr>
-                <tr>
-                    <td><strong>Partisipasi</strong></td>
-                    <td class="score-4">Aktif berdiskusi dan memberi ide konstruktif</td>
-                    <td class="score-3">Terlibat sebagian dalam diskusi</td>
-                    <td class="score-2">Hanya sesekali berkontribusi</td>
-                    <td class="score-1">Pasif/tidak terlibat</td>
-                </tr>
-                <tr>
-                    <td><strong>Peta Konsep</strong></td>
-                    <td class="score-4">Lengkap, sistematis, kreatif</td>
-                    <td class="score-3">Lengkap tapi kurang sistematis</td>
-                    <td class="score-2">Ada bagian penting yang terlewat</td>
-                    <td class="score-1">Tidak sesuai atau sangat kurang</td>
-                </tr>
-                <tr>
-                    <td><strong>Refleksi</strong></td>
-                    <td class="score-4">Menunjukkan pemahaman mendalam dan rencana perbaikan</td>
-                    <td class="score-3">Menunjukkan pemahaman dasar</td>
-                    <td class="score-2">Refleksi singkat tanpa kedalaman</td>
-                    <td class="score-1">Tidak ada refleksi</td>
-                </tr>
-            </table>
-        </div>
-
-        <!-- Bagian D -->
-        <div class="section">
-            <h2>D. Rubrik Penilaian Sumatif (Proyek)</h2>
-            <p><strong>Format:</strong> Analisis isu, kreativitas, kolaborasi, penjiwaan nilai Pancasila.</p>
-            <table>
-                <tr>
-                    <th>Aspek Dinilai</th>
-                    <th class="score-4">Skor 4 (Sangat Baik)</th>
-                    <th class="score-3">Skor 3 (Baik)</th>
-                    <th class="score-2">Skor 2 (Cukup)</th>
-                    <th class="score-1">Skor 1 (Kurang)</th>
-                </tr>
-                <tr>
-                    <td><strong>Analisis</strong></td>
-                    <td class="score-4">Analisis mendalam, jelas, logis</td>
-                    <td class="score-3">Analisis cukup jelas</td>
-                    <td class="score-2">Analisis dangkal</td>
-                    <td class="score-1">Tidak ada analisis</td>
-                </tr>
-                <tr>
-                    <td><strong>Kreativitas</strong></td>
-                    <td class="score-4">Solusi unik, inovatif, menarik</td>
-                    <td class="score-3">Solusi cukup kreatif</td>
-                    <td class="score-2">Solusi standar</td>
-                    <td class="score-1">Tidak ada kreativitas</td>
-                </tr>
-                <tr>
-                    <td><strong>Kolaborasi</strong></td>
-                    <td class="score-4">Kerja sama sangat baik, semua berkontribusi</td>
-                    <td class="score-3">Kerja sama baik tapi tidak merata</td>
-                    <td class="score-2">Hanya sebagian yang aktif</td>
-                    <td class="score-1">Tidak ada kerja sama</td>
-                </tr>
-                <tr>
-                    <td><strong>Nilai Pancasila</strong></td>
-                    <td class="score-4">Menunjukkan sikap gotong royong, toleransi, dan tanggung jawab</td>
-                    <td class="score-3">Menunjukkan sebagian nilai</td>
-                    <td class="score-2">Nilai kurang tampak</td>
-                    <td class="score-1">Tidak menunjukkan nilai sama sekali</td>
-                </tr>
-            </table>
-        </div>
-
-        <!-- DOWNLOAD BUTTON -->
-        <div class="section" style="text-align: center;">
-            <button class="download-btn" id="downloadPdf">📥 Download sebagai PDF (Format A4)</button>
-        </div>
-
+  <div class="section">
+    <h2>B. LKPD</h2>
+    <textarea id="groupName" placeholder="Nama kelompok"></textarea>
+    <textarea id="members" placeholder="Anggota"></textarea>
+    <textarea id="parabolaExample" placeholder="Contoh parabola"></textarea>
+    <div class="upload-area" id="uploadArea">📷 Klik/drag gambar ke sini
+      <input type="file" id="imageUpload" accept="image/*" multiple style="display:none">
     </div>
+    <div class="image-preview" id="imagePreview"></div>
+  </div>
 
-    <!-- PDF CONTENT WRAPPER (hidden for UI, used for generation) -->
-    <div id="pdf-content" style="display:none;">
-        <div id="pdf-header" style="text-align:center; padding:20px; background:#4a5568; color:white; margin-bottom:30px;">
-            <h1>📑 Lampiran 2 – Instrumen Asesmen</h1>
-        </div>
-        <div id="pdf-body"></div>
-    </div>
+  <div class="section">
+    <h2>C. Rubrik Penilaian</h2>
+    <table>
+      <tr><th>Aspek</th><th>Skor 4</th><th>Skor 3</th></tr>
+      <tr><td>Partisipasi</td><td>Aktif penuh</td><td>Cukup aktif</td></tr>
+    </table>
+  </div>
 
-    <script>
-        // Image Upload Handler
-        const uploadArea = document.getElementById('uploadArea');
-        const imageUpload = document.getElementById('imageUpload');
-        const imagePreview = document.getElementById('imagePreview');
+  <button class="download-btn" id="downloadPdf">📥 Unduh sebagai PDF</button>
+</div>
 
-        uploadArea.addEventListener('click', () => imageUpload.click());
-        uploadArea.addEventListener('dragover', (e) => {
-            e.preventDefault();
-            uploadArea.style.backgroundColor = '#d0f5e6';
-        });
-        uploadArea.addEventListener('dragleave', () => {
-            uploadArea.style.backgroundColor = '';
-        });
-        uploadArea.addEventListener('drop', (e) => {
-            e.preventDefault();
-            uploadArea.style.backgroundColor = '';
-            if (e.dataTransfer.files.length) {
-                imageUpload.files = e.dataTransfer.files;
-                displayImages(e.dataTransfer.files);
-            }
-        });
+<script>
+const uploadArea = document.getElementById("uploadArea");
+const imageUpload = document.getElementById("imageUpload");
+const imagePreview = document.getElementById("imagePreview");
+let uploadedImages = [];
 
-        imageUpload.addEventListener('change', () => {
-            displayImages(imageUpload.files);
-        });
+uploadArea.addEventListener("click", () => imageUpload.click());
+imageUpload.addEventListener("change", () => handleFiles(imageUpload.files));
 
-        function displayImages(files) {
-            imagePreview.innerHTML = '';
-            Array.from(files).forEach(file => {
-                if (!file.type.match('image.*')) return;
+function handleFiles(files) {
+  imagePreview.innerHTML = "";
+  uploadedImages = [];
+  Array.from(files).forEach(file=>{
+    if(!file.type.match("image.*")) return;
+    const reader=new FileReader();
+    reader.onload=(e)=>{
+      const img=document.createElement("img");
+      img.src=e.target.result;
+      imagePreview.appendChild(img);
+      uploadedImages.push(e.target.result);
+    };
+    reader.readAsDataURL(file);
+  });
+}
 
-                const reader = new FileReader();
-                reader.onload = function(e) {
-                    const img = document.createElement('img');
-                    img.src = e.target.result;
-                    imagePreview.appendChild(img);
-                };
-                reader.readAsDataURL(file);
-            });
-        }
+document.getElementById("downloadPdf").addEventListener("click", ()=>{
+  const pdfContent=document.createElement("div");
+  pdfContent.innerHTML=document.querySelector(".container").innerHTML;
 
-        // PDF Download Handler
-        document.getElementById('downloadPdf').addEventListener('click', () => {
-            const userName = document.getElementById('userName').value.trim() || 'user';
-            const content = document.querySelector('.container').cloneNode(true);
+  // Ganti semua input/textarea dengan div berisi value
+  pdfContent.querySelectorAll("input,textarea").forEach(el=>{
+    const div=document.createElement("div");
+    div.className="filled-input";
+    div.innerText=el.value || "-";
+    el.parentNode.replaceChild(div, el);
+  });
 
-            // Remove download button & upload area from PDF
-            const buttonsToRemove = content.querySelectorAll('.download-btn, .upload-area');
-            buttonsToRemove.forEach(el => el.remove());
+  // Ganti preview gambar dengan salinan base64
+  const clonedPreview=pdfContent.querySelector("#imagePreview");
+  if(clonedPreview){
+    clonedPreview.innerHTML="";
+    uploadedImages.forEach(src=>{
+      const img=document.createElement("img");
+      img.src=src;
+      clonedPreview.appendChild(img);
+    });
+  }
 
-            // Inject content into hidden A4 wrapper
-            const pdfBody = document.getElementById('pdf-body');
-            pdfBody.innerHTML = '';
-            pdfBody.appendChild(content);
+  // Hapus tombol unduh di PDF
+  const btn=pdfContent.querySelector("#downloadPdf");
+  if(btn) btn.remove();
 
-            // Generate PDF
-            const element = document.getElementById('pdf-content');
-            const opt = {
-                margin: 10,
-                filename: `Instrumen_Asesmen_${userName}.pdf`,
-                image: { type: 'jpeg', quality: 0.98 },
-                html2canvas: { scale: 2 },
-                jsPDF: { unit: 'mm', format: 'a4', orientation: 'portrait' }
-            };
+  const userName=document.getElementById("userName").value.trim()||"siswa";
+  const opt={
+    margin:10,
+    filename:`Instrumen_Asesmen_${userName}.pdf`,
+    image:{type:"jpeg",quality:0.98},
+    html2canvas:{scale:2,useCORS:true},
+    jsPDF:{unit:"mm",format:"a4",orientation:"portrait"}
+  };
 
-            html2pdf().set(opt).from(element).save();
-        });
-    </script>
-
+  html2pdf().set(opt).from(pdfContent).save();
+});
+</script>
 </body>
 </html>
