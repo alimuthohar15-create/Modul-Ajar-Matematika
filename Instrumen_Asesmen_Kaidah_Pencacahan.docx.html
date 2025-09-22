@@ -1,130 +1,745 @@
 <!DOCTYPE html>
 <html lang="id">
 <head>
-  <meta charset="UTF-8">
-  <title>📑 Lampiran 2 – Instrumen Asesmen</title>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
-  <style>
-    body { font-family: Arial, sans-serif; padding:20px; background:#f0f4f8; }
-    .container { background:white; padding:20px; border-radius:10px; box-shadow:0 4px 10px rgba(0,0,0,0.15); }
-    .header { text-align:center; background:#2d3748; color:white; padding:20px; border-radius:8px; }
-    .section { margin:25px 0; }
-    h2 { border-bottom:3px solid #4299e1; padding-bottom:5px; }
-    .lkpd-input, textarea { width:100%; padding:10px; margin-top:5px; border:1px solid #ccc; border-radius:6px; }
-    .upload-area { border:2px dashed #4299e1; padding:15px; text-align:center; margin-top:10px; cursor:pointer; }
-    .image-preview img { max-width:120px; margin:5px; border-radius:6px; }
-    .download-btn { display:block; width:100%; padding:15px; margin-top:25px; background:#3182ce; color:white; font-weight:bold; border:none; border-radius:6px; cursor:pointer; }
-    .download-btn:hover { background:#2b6cb0; }
-    .filled-input { background:#edf2f7; padding:8px; border-radius:4px; margin:6px 0; }
-    table { width:100%; border-collapse:collapse; margin-top:15px; }
-    th, td { border:1px solid #ccc; padding:10px; }
-    th { background:#3182ce; color:white; }
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>📑 Lampiran 2 – Instrumen Asesmen</title>
+    <!-- Library jsPDF dan AutoTable -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.5.25/jspdf.plugin.autotable.min.js"></script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #f5f7fa, #c3cfe2);
+            padding: 20px;
+            color: #2d3748;
+            line-height: 1.7;
+        }
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 8px 30px rgba(0,0,0,0.12);
+            overflow: hidden;
+        }
+        .header {
+            background: #4a5568;
+            color: white;
+            padding: 30px;
+            text-align: center;
+        }
+        .header h1 {
+            font-size: 1.8rem;
+            font-weight: 700;
+            letter-spacing: 0.5px;
+        }
+        .section {
+            padding: 30px;
+            border-bottom: 1px solid #e2e8f0;
+        }
+        h2 {
+            color: #2d3748;
+            margin: 25px 0 15px;
+            padding-bottom: 8px;
+            border-bottom: 3px solid #4299e1;
+            font-size: 1.5rem;
+        }
+        h3 {
+            color: #2b6cb0;
+            margin: 20px 0 10px;
+            font-size: 1.25rem;
+        }
+        ol, ul {
+            margin-left: 25px;
+            margin-bottom: 15px;
+        }
+        li {
+            margin-bottom: 8px;
+        }
+        .question {
+            background: #f7fafc;
+            padding: 15px;
+            border-left: 4px solid #4299e1;
+            margin: 15px 0;
+            border-radius: 0 8px 8px 0;
+        }
+        .lkpd-form {
+            background: #f0fff4;
+            padding: 25px;
+            border-radius: 12px;
+            border: 2px solid #9ae6b4;
+            margin: 20px 0;
+        }
+        .lkpd-row {
+            margin-bottom: 15px;
+        }
+        .lkpd-label {
+            display: block;
+            font-weight: 600;
+            color: #276749;
+            margin-bottom: 5px;
+        }
+        .lkpd-input {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #a0aec0;
+            border-radius: 6px;
+            background: white;
+            min-height: 60px;
+            font-family: inherit;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 25px 0;
+            font-size: 0.95rem;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+            border-radius: 8px;
+            overflow: hidden;
+        }
+        th, td {
+            padding: 14px 12px;
+            text-align: left;
+            border: 1px solid #e2e8f0;
+        }
+        th {
+            background-color: #3182ce;
+            color: white;
+            font-weight: 600;
+        }
+        tr:nth-child(even) {
+            background-color: #f7fafc;
+        }
+        .score-4 { background-color: #c6f6d5; }
+        .score-3 { background-color: #fefcbf; }
+        .score-2 { background-color: #fed7d7; }
+        .score-1 { background-color: #feb2b2; }
+
+        /* Area Unggah */
+        .upload-area {
+            border: 2px dashed #9ae6b4;
+            padding: 20px;
+            text-align: center;
+            border-radius: 8px;
+            background: #f0fff4;
+            margin: 15px 0;
+            cursor: pointer;
+        }
+        .upload-area:hover {
+            background: #e6fffa;
+        }
+        .image-preview {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-top: 15px;
+        }
+        .image-preview img {
+            max-width: 150px;
+            height: auto;
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+
+        /* Tombol Unduh */
+        .download-btn {
+            display: block;
+            width: 100%;
+            padding: 15px;
+            background: #3182ce;
+            color: white;
+            font-weight: 700;
+            font-size: 1.1rem;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            margin: 30px 0;
+            transition: background 0.3s;
+        }
+        .download-btn:hover {
+            background: #2b6cb0;
+        }
+
+        /* Penyesuaian untuk PDF */
+        @media print {
+            body {
+                background: white;
+                padding: 0;
+            }
+            .container {
+                box-shadow: none;
+                border-radius: 0;
+            }
+            .download-btn, .upload-area {
+                display: none !important;
+            }
+        }
+        
+        /* Loading indicator */
+        .loading {
+            display: none;
+            text-align: center;
+            padding: 20px;
+            color: #3182ce;
+            font-weight: bold;
+        }
+    </style>
 </head>
 <body>
-<div class="container">
-  <div class="header">
-    <h1>📑 Lampiran 2 – Instrumen Asesmen</h1>
-  </div>
 
-  <div class="section">
-    <h2>👤 Identitas</h2>
-    <input type="text" id="userName" class="lkpd-input" placeholder="Nama Anda untuk nama file PDF">
-  </div>
+    <div class="container">
+        <!-- Halaman 1 -->
+        <div class="page-content" id="page-1">
+            <div class="header">
+                <h1>📑 Lampiran 2 – Instrumen Asesmen</h1>
+            </div>
+            <div class="section">
+                <h2>👤 Identitas Pengguna</h2>
+                <div class="lkpd-row">
+                    <label class="lkpd-label">Masukkan Nama Anda (untuk nama file PDF):</label>
+                    <input type="text" id="userName" class="lkpd-input" placeholder="Contoh: Budi Santoso" />
+                </div>
+            </div>
+            <div class="section page-break-after">
+                <h2>A. Contoh Soal Asesmen Diagnostik (Quiz Awal)</h2>
+                <p><strong>Tujuan:</strong> Mengetahui pemahaman awal siswa tentang konsep fungsi kuadrat.</p>
+                <ol>
+                    <li class="question">Tentukan bentuk umum fungsi kuadrat!</li>
+                    <li class="question">Apa yang dimaksud dengan grafik parabola terbuka ke atas dan ke bawah?</li>
+                    <li class="question">Jika $f(x)=x^2-6x+8$, tentukan akar-akarnya.</li>
+                    <li class="question">Bagaimana menentukan titik puncak dari fungsi kuadrat?</li>
+                    <li class="question">Berikan satu contoh penerapan parabola dalam kehidupan sehari-hari!</li>
+                </ol>
+            </div>
+        </div>
 
-  <div class="section">
-    <h2>A. Contoh Soal</h2>
-    <ol>
-      <li>Sebutkan bentuk umum fungsi kuadrat!</li>
-      <li>Apa yang dimaksud parabola terbuka ke atas/bawah?</li>
-    </ol>
-  </div>
+        <!-- Halaman 2 -->
+        <div class="page-content" id="page-2">
+            <div class="section page-break-after">
+                <h2>B. Lembar Kerja Siswa (LKPD) untuk Diskusi Kelompok</h2>
+                <p><strong>Topik:</strong> Penerapan fungsi kuadrat dalam kehidupan nyata.</p>
+                <p><strong>Instruksi:</strong></p>
+                <ol>
+                    <li>Bentuk kelompok (3–4 orang).</li>
+                    <li>Diskusikan contoh nyata parabola di sekitar kalian (minimal 2 contoh).</li>
+                    <li>Gambarkan sketsa parabola dari contoh tersebut.</li>
+                    <li>Tentukan elemen penting (sumbu simetri, puncak, titik potong).</li>
+                    <li>Presentasikan hasil diskusi di depan kelas.</li>
+                </ol>
+                <div class="lkpd-form">
+                    <div class="lkpd-row">
+                        <span class="lkpd-label">• Nama Kelompok</span>
+                        <textarea class="lkpd-input" id="groupName" placeholder="Isi nama kelompok di sini..."></textarea>
+                    </div>
+                    <div class="lkpd-row">
+                        <span class="lkpd-label">• Anggota</span>
+                        <textarea class="lkpd-input" id="members" placeholder="Tulis nama anggota kelompok..."></textarea>
+                    </div>
+                    <div class="lkpd-row">
+                        <span class="lkpd-label">• Contoh parabola</span>
+                        <textarea class="lkpd-input" id="parabolaExample" placeholder="Deskripsikan contoh parabola yang kalian temukan..."></textarea>
+                    </div>
+                    <div class="lkpd-row">
+                        <span class="lkpd-label">• Sketsa grafik (Unggah Gambar)</span>
+                        <div class="upload-area" id="uploadArea">
+                            📷 Klik atau drag gambar ke sini untuk unggah
+                            <input type="file" id="imageUpload" accept="image/*" multiple style="display:none" />
+                        </div>
+                        <div class="image-preview" id="imagePreview"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
 
-  <div class="section">
-    <h2>B. LKPD</h2>
-    <textarea id="groupName" placeholder="Nama kelompok"></textarea>
-    <textarea id="members" placeholder="Anggota"></textarea>
-    <textarea id="parabolaExample" placeholder="Contoh parabola"></textarea>
-    <div class="upload-area" id="uploadArea">📷 Klik/drag gambar ke sini
-      <input type="file" id="imageUpload" accept="image/*" multiple style="display:none">
+        <!-- Halaman 3 -->
+        <div class="page-content" id="page-3">
+            <div class="section page-break-after">
+                <h2>Analisis matematis</h2>
+                <p>Isi analisis matematis yang mendalam di sini. Anda bisa menambahkan lebih banyak paragraf untuk mengisi halaman ini.</p>
+                <div class="lkpd-form">
+                    <textarea class="lkpd-input" id="mathAnalysis" placeholder="Tuliskan analisis: sumbu simetri, puncak, titik potong..."></textarea>
+                </div>
+            </div>
+        </div>
+
+        <!-- Halaman 4 -->
+        <div class="page-content" id="page-4">
+            <div class="section page-break-after">
+                <h2>Kesimpulan</h2>
+                <p>Tuliskan kesimpulan diskusi kelompok yang komprehensif di sini. Anda dapat menambahkan lebih banyak konten untuk mengisi halaman ini.</p>
+                <div class="lkpd-form">
+                    <textarea class="lkpd-input" id="conclusion" placeholder="Tuliskan kesimpulan diskusi kelompok..."></textarea>
+                </div>
+            </div>
+        </div>
+
+        <!-- Halaman 5 -->
+        <div class="page-content" id="page-5">
+            <div class="section">
+                <h2>C. Rubrik Penilaian Formatif</h2>
+                <p><strong>Format:</strong> Observasi, produk (peta konsep), dan refleksi.</p>
+                <table id="formativeTable">
+                    <tr>
+                        <th>Aspek Dinilai</th>
+                        <th class="score-4">Skor 4 (Sangat Baik)</th>
+                        <th class="score-3">Skor 3 (Baik)</th>
+                        <th class="score-2">Skor 2 (Cukup)</th>
+                        <th class="score-1">Skor 1 (Kurang)</th>
+                    </tr>
+                    <tr>
+                        <td><strong>Partisipasi</strong></td>
+                        <td class="score-4">Aktif berdiskusi dan memberi ide konstruktif</td>
+                        <td class="score-3">Terlibat sebagian dalam diskusi</td>
+                        <td class="score-2">Hanya sesekali berkontribusi</td>
+                        <td class="score-1">Pasif/tidak terlibat</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Peta Konsep</strong></td>
+                        <td class="score-4">Lengkap, sistematis, kreatif</td>
+                        <td class="score-3">Lengkap tapi kurang sistematis</td>
+                        <td class="score-2">Ada bagian penting yang terlewat</td>
+                        <td class="score-1">Tidak sesuai atau sangat kurang</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Refleksi</strong></td>
+                        <td class="score-4">Menunjukkan pemahaman mendalam dan rencana perbaikan</td>
+                        <td class="score-3">Menunjukkan pemahaman dasar</td>
+                        <td class="score-2">Refleksi singkat tanpa kedalaman</td>
+                        <td class="score-1">Tidak ada refleksi</td>
+                    </tr>
+                </table>
+            </div>
+            <div class="section">
+                <h2>D. Rubrik Penilaian Sumatif (Proyek)</h2>
+                <p><strong>Format:</strong> Analisis isu, kreativitas, kolaborasi, penjiwaan nilai Pancasila.</p>
+                <table id="summativeTable">
+                    <tr>
+                        <th>Aspek Dinilai</th>
+                        <th class="score-4">Skor 4 (Sangat Baik)</th>
+                        <th class="score-3">Skor 3 (Baik)</th>
+                        <th class="score-2">Skor 2 (Cukup)</th>
+                        <th class="score-1">Skor 1 (Kurang)</th>
+                    </tr>
+                    <tr>
+                        <td><strong>Analisis</strong></td>
+                        <td class="score-4">Analisis mendalam, jelas, logis</td>
+                        <td class="score-3">Analisis cukup jelas</td>
+                        <td class="score-2">Analisis dangkal</td>
+                        <td class="score-1">Tidak ada analisis</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Kreativitas</strong></td>
+                        <td class="score-4">Solusi unik, inovatif, menarik</td>
+                        <td class="score-3">Solusi cukup kreatif</td>
+                        <td class="score-2">Solusi standar</td>
+                        <td class="score-1">Tidak ada kreativitas</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Kolaborasi</strong></td>
+                        <td class="score-4">Kerja sama sangat baik, semua berkontribusi</td>
+                        <td class="score-3">Kerja sama baik tapi tidak merata</td>
+                        <td class="score-2">Hanya sebagian yang aktif</td>
+                        <td class="score-1">Tidak ada kerja sama</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Nilai Pancasila</strong></td>
+                        <td class="score-4">Menunjukkan sikap gotong royong, toleransi, dan tanggung jawab</td>
+                        <td class="score-3">Menunjukkan sebagian nilai</td>
+                        <td class="score-2">Nilai kurang tampak</td>
+                        <td class="score-1">Tidak menunjukkan nilai sama sekali</td>
+                    </tr>
+                </table>
+            </div>
+            <!-- TOMBOL UNDUH -->
+            <div class="section" style="text-align: center;">
+                <div class="loading" id="loadingIndicator">Membuat PDF, harap tunggu...</div>
+                <button class="download-btn" id="downloadPdf">📥 Unduh sebagai PDF</button>
+            </div>
+        </div>
     </div>
-    <div class="image-preview" id="imagePreview"></div>
-  </div>
 
-  <div class="section">
-    <h2>C. Rubrik Penilaian</h2>
-    <table>
-      <tr><th>Aspek</th><th>Skor 4</th><th>Skor 3</th></tr>
-      <tr><td>Partisipasi</td><td>Aktif penuh</td><td>Cukup aktif</td></tr>
-    </table>
-  </div>
+    <script>
+        // Penanganan Unggah Gambar
+        const uploadArea = document.getElementById('uploadArea');
+        const imageUpload = document.getElementById('imageUpload');
+        const imagePreview = document.getElementById('imagePreview');
+        let uploadedImages = []; // Array untuk menyimpan data URL gambar
 
-  <button class="download-btn" id="downloadPdf">📥 Unduh sebagai PDF</button>
-</div>
+        uploadArea.addEventListener('click', () => imageUpload.click());
+        uploadArea.addEventListener('dragover', (e) => {
+            e.preventDefault();
+            uploadArea.style.backgroundColor = '#d0f5e6';
+        });
+        uploadArea.addEventListener('dragleave', () => {
+            uploadArea.style.backgroundColor = '';
+        });
+        uploadArea.addEventListener('drop', (e) => {
+            e.preventDefault();
+            uploadArea.style.backgroundColor = '';
+            if (e.dataTransfer.files.length) {
+                imageUpload.files = e.dataTransfer.files;
+                displayAndStoreImages(imageUpload.files);
+            }
+        });
 
-<script>
-const uploadArea = document.getElementById("uploadArea");
-const imageUpload = document.getElementById("imageUpload");
-const imagePreview = document.getElementById("imagePreview");
-let uploadedImages = [];
+        imageUpload.addEventListener('change', () => {
+            displayAndStoreImages(imageUpload.files);
+        });
 
-uploadArea.addEventListener("click", () => imageUpload.click());
-imageUpload.addEventListener("change", () => handleFiles(imageUpload.files));
+        function displayAndStoreImages(files) {
+            imagePreview.innerHTML = '';
+            uploadedImages = [];
+            Array.from(files).forEach(file => {
+                if (!file.type.match('image.*')) return;
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    const img = document.createElement('img');
+                    img.src = e.target.result;
+                    imagePreview.appendChild(img);
+                    uploadedImages.push(e.target.result);
+                };
+                reader.readAsDataURL(file);
+            });
+        }
 
-function handleFiles(files) {
-  imagePreview.innerHTML = "";
-  uploadedImages = [];
-  Array.from(files).forEach(file=>{
-    if(!file.type.match("image.*")) return;
-    const reader=new FileReader();
-    reader.onload=(e)=>{
-      const img=document.createElement("img");
-      img.src=e.target.result;
-      imagePreview.appendChild(img);
-      uploadedImages.push(e.target.result);
-    };
-    reader.readAsDataURL(file);
-  });
-}
+        // Fungsi untuk memuat gambar dan mengembalikan promise
+        function loadImage(src) {
+            return new Promise((resolve, reject) => {
+                const img = new Image();
+                img.onload = () => resolve(img);
+                img.onerror = reject;
+                img.src = src;
+            });
+        }
 
-document.getElementById("downloadPdf").addEventListener("click", ()=>{
-  const pdfContent=document.createElement("div");
-  pdfContent.innerHTML=document.querySelector(".container").innerHTML;
+        // Penanganan Unduh PDF dengan jsPDF dan AutoTable
+        document.getElementById('downloadPdf').addEventListener('click', async () => {
+            const downloadBtn = document.getElementById('downloadPdf');
+            const loadingIndicator = document.getElementById('loadingIndicator');
+            
+            downloadBtn.style.display = 'none';
+            loadingIndicator.style.display = 'block';
 
-  // Ganti semua input/textarea dengan div berisi value
-  pdfContent.querySelectorAll("input,textarea").forEach(el=>{
-    const div=document.createElement("div");
-    div.className="filled-input";
-    div.innerText=el.value || "-";
-    el.parentNode.replaceChild(div, el);
-  });
-
-  // Ganti preview gambar dengan salinan base64
-  const clonedPreview=pdfContent.querySelector("#imagePreview");
-  if(clonedPreview){
-    clonedPreview.innerHTML="";
-    uploadedImages.forEach(src=>{
-      const img=document.createElement("img");
-      img.src=src;
-      clonedPreview.appendChild(img);
-    });
-  }
-
-  // Hapus tombol unduh di PDF
-  const btn=pdfContent.querySelector("#downloadPdf");
-  if(btn) btn.remove();
-
-  const userName=document.getElementById("userName").value.trim()||"siswa";
-  const opt={
-    margin:10,
-    filename:`Instrumen_Asesmen_${userName}.pdf`,
-    image:{type:"jpeg",quality:0.98},
-    html2canvas:{scale:2,useCORS:true},
-    jsPDF:{unit:"mm",format:"a4",orientation:"portrait"}
-  };
-
-  html2pdf().set(opt).from(pdfContent).save();
-});
-</script>
+            const userName = document.getElementById('userName').value.trim() || 'siswa';
+            
+            try {
+                // Gunakan jsPDF
+                const { jsPDF } = window.jspdf;
+                const doc = new jsPDF('p', 'mm', 'a4');
+                
+                // Set margin
+                const margin = 15;
+                let yPos = margin;
+                const pageWidth = doc.internal.pageSize.getWidth();
+                const pageHeight = doc.internal.pageSize.getHeight();
+                
+                // Font settings - gunakan font standar untuk menghindari karakter aneh
+                doc.setFont('helvetica');
+                doc.setFontSize(16);
+                
+                // Header
+                doc.setFillColor(74, 85, 104);
+                doc.rect(0, 0, pageWidth, 30, 'F');
+                doc.setTextColor(255, 255, 255);
+                doc.text('Lampiran 2 - Instrumen Asesmen', pageWidth/2, 20, { align: 'center' });
+                
+                yPos = 40;
+                
+                // Identitas Pengguna
+                doc.setTextColor(0, 0, 0);
+                doc.setFontSize(14);
+                doc.text('Identitas Pengguna', margin, yPos);
+                yPos += 10;
+                
+                doc.setFontSize(12);
+                doc.text(`Nama: ${userName}`, margin, yPos);
+                yPos += 20;
+                
+                // Halaman 1: Soal Diagnostik
+                if (yPos > pageHeight - margin - 50) {
+                    doc.addPage();
+                    yPos = margin;
+                }
+                
+                doc.setFontSize(14);
+                doc.text('A. Contoh Soal Asesmen Diagnostik (Quiz Awal)', margin, yPos);
+                yPos += 10;
+                
+                doc.setFontSize(12);
+                const diagnosticText = [
+                    'Tujuan: Mengetahui pemahaman awal siswa tentang konsep fungsi kuadrat.',
+                    '',
+                    '1. Tentukan bentuk umum fungsi kuadrat!',
+                    '2. Apa yang dimaksud dengan grafik parabola terbuka ke atas dan ke bawah?',
+                    '3. Jika f(x)=x²-6x+8, tentukan akar-akarnya.',
+                    '4. Bagaimana menentukan titik puncak dari fungsi kuadrat?',
+                    '5. Berikan satu contoh penerapan parabola dalam kehidupan sehari-hari!'
+                ];
+                
+                diagnosticText.forEach(line => {
+                    if (yPos > pageHeight - margin) {
+                        doc.addPage();
+                        yPos = margin;
+                    }
+                    doc.text(line, margin, yPos);
+                    yPos += 7;
+                });
+                
+                yPos += 10;
+                
+                // Halaman 2: LKPD
+                if (yPos > pageHeight - margin) {
+                    doc.addPage();
+                    yPos = margin;
+                }
+                
+                doc.setFontSize(14);
+                doc.text('B. Lembar Kerja Siswa (LKPD) untuk Diskusi Kelompok', margin, yPos);
+                yPos += 10;
+                
+                doc.setFontSize(12);
+                const lkpdText = [
+                    'Topik: Penerapan fungsi kuadrat dalam kehidupan nyata.',
+                    'Instruksi:',
+                    '1. Bentuk kelompok (3-4 orang).',
+                    '2. Diskusikan contoh nyata parabola di sekitar kalian (minimal 2 contoh).',
+                    '3. Gambarkan sketsa parabola dari contoh tersebut.',
+                    '4. Tentukan elemen penting (sumbu simetri, puncak, titik potong).',
+                    '5. Presentasikan hasil diskusi di depan kelas.'
+                ];
+                
+                lkpdText.forEach(line => {
+                    if (yPos > pageHeight - margin) {
+                        doc.addPage();
+                        yPos = margin;
+                    }
+                    doc.text(line, margin, yPos);
+                    yPos += 7;
+                });
+                
+                yPos += 10;
+                
+                // Data LKPD dari form
+                const groupName = document.getElementById('groupName').value || '-';
+                const members = document.getElementById('members').value || '-';
+                const parabolaExample = document.getElementById('parabolaExample').value || '-';
+                
+                if (yPos > pageHeight - margin - 40) {
+                    doc.addPage();
+                    yPos = margin;
+                }
+                
+                doc.text(`Nama Kelompok: ${groupName}`, margin, yPos);
+                yPos += 7;
+                doc.text(`Anggota: ${members}`, margin, yPos);
+                yPos += 7;
+                doc.text(`Contoh parabola: ${parabolaExample}`, margin, yPos);
+                yPos += 15;
+                
+                // Gambar yang diunggah
+                if (uploadedImages.length > 0) {
+                    doc.text('Sketsa grafik:', margin, yPos);
+                    yPos += 7;
+                    
+                    // Muat semua gambar terlebih dahulu
+                    const imagePromises = uploadedImages.map(src => loadImage(src));
+                    const images = await Promise.all(imagePromises);
+                    
+                    // Tambahkan gambar ke PDF
+                    for (const img of images) {
+                        if (yPos > pageHeight - 100) {
+                            doc.addPage();
+                            yPos = margin;
+                        }
+                        
+                        // Hitung ukuran gambar yang sesuai
+                        const maxWidth = pageWidth - 2 * margin;
+                        const maxHeight = 80;
+                        let imgWidth = img.width;
+                        let imgHeight = img.height;
+                        
+                        // Sesuaikan ukuran gambar jika terlalu besar
+                        if (imgWidth > maxWidth) {
+                            const ratio = maxWidth / imgWidth;
+                            imgWidth = maxWidth;
+                            imgHeight = imgHeight * ratio;
+                        }
+                        
+                        if (imgHeight > maxHeight) {
+                            const ratio = maxHeight / imgHeight;
+                            imgHeight = maxHeight;
+                            imgWidth = imgWidth * ratio;
+                        }
+                        
+                        // Tambahkan gambar ke PDF
+                        doc.addImage(img, 'JPEG', margin, yPos, imgWidth, imgHeight);
+                        yPos += imgHeight + 10;
+                    }
+                }
+                
+                // Halaman 3: Analisis Matematis
+                if (yPos > pageHeight - margin) {
+                    doc.addPage();
+                    yPos = margin;
+                }
+                
+                doc.setFontSize(14);
+                doc.text('Analisis matematis', margin, yPos);
+                yPos += 10;
+                
+                doc.setFontSize(12);
+                const mathAnalysis = document.getElementById('mathAnalysis').value || 'Tidak ada analisis yang diisi.';
+                const analysisLines = doc.splitTextToSize(mathAnalysis, pageWidth - 2*margin);
+                
+                analysisLines.forEach(line => {
+                    if (yPos > pageHeight - margin) {
+                        doc.addPage();
+                        yPos = margin;
+                    }
+                    doc.text(line, margin, yPos);
+                    yPos += 7;
+                });
+                
+                yPos += 10;
+                
+                // Halaman 4: Kesimpulan
+                if (yPos > pageHeight - margin) {
+                    doc.addPage();
+                    yPos = margin;
+                }
+                
+                doc.setFontSize(14);
+                doc.text('Kesimpulan', margin, yPos);
+                yPos += 10;
+                
+                doc.setFontSize(12);
+                const conclusion = document.getElementById('conclusion').value || 'Tidak ada kesimpulan yang diisi.';
+                const conclusionLines = doc.splitTextToSize(conclusion, pageWidth - 2*margin);
+                
+                conclusionLines.forEach(line => {
+                    if (yPos > pageHeight - margin) {
+                        doc.addPage();
+                        yPos = margin;
+                    }
+                    doc.text(line, margin, yPos);
+                    yPos += 7;
+                });
+                
+                // Halaman 5: Tabel Penilaian dengan AutoTable
+                doc.addPage();
+                yPos = margin;
+                
+                // Tabel Formatif
+                doc.setFontSize(14);
+                doc.text('C. Rubrik Penilaian Formatif', margin, yPos);
+                yPos += 10;
+                
+                doc.setFontSize(12);
+                doc.text('Format: Observasi, produk (peta konsep), dan refleksi.', margin, yPos);
+                yPos += 15;
+                
+                // Ekstrak data dari tabel formatif
+                const formativeTable = document.getElementById('formativeTable');
+                const formativeData = [];
+                const formativeRows = formativeTable.querySelectorAll('tr');
+                
+                formativeRows.forEach(row => {
+                    const rowData = [];
+                    row.querySelectorAll('th, td').forEach(cell => {
+                        // Bersihkan teks dari karakter khusus
+                        let text = cell.textContent.trim();
+                        // Ganti karakter khusus dengan karakter standar
+                        text = text.replace(/[^\x00-\x7F]/g, '');
+                        rowData.push(text);
+                    });
+                    formativeData.push(rowData);
+                });
+                
+                // Buat tabel dengan AutoTable
+                doc.autoTable({
+                    startY: yPos,
+                    head: [formativeData[0]],
+                    body: formativeData.slice(1),
+                    theme: 'grid',
+                    styles: { 
+                        fontSize: 9, 
+                        cellPadding: 3,
+                        font: 'helvetica'
+                    },
+                    headStyles: { 
+                        fillColor: [49, 130, 206],
+                        fontStyle: 'bold'
+                    },
+                    alternateRowStyles: { fillColor: [247, 250, 252] },
+                    margin: { left: margin, right: margin }
+                });
+                
+                // Tabel Sumatif
+                doc.addPage();
+                yPos = margin;
+                
+                doc.setFontSize(14);
+                doc.text('D. Rubrik Penilaian Sumatif (Proyek)', margin, yPos);
+                yPos += 10;
+                
+                doc.setFontSize(12);
+                doc.text('Format: Analisis isu, kreativitas, kolaborasi, penjiwaan nilai Pancasila.', margin, yPos);
+                yPos += 15;
+                
+                // Ekstrak data dari tabel sumatif
+                const summativeTable = document.getElementById('summativeTable');
+                const summativeData = [];
+                const summativeRows = summativeTable.querySelectorAll('tr');
+                
+                summativeRows.forEach(row => {
+                    const rowData = [];
+                    row.querySelectorAll('th, td').forEach(cell => {
+                        // Bersihkan teks dari karakter khusus
+                        let text = cell.textContent.trim();
+                        // Ganti karakter khusus dengan karakter standar
+                        text = text.replace(/[^\x00-\x7F]/g, '');
+                        rowData.push(text);
+                    });
+                    summativeData.push(rowData);
+                });
+                
+                // Buat tabel dengan AutoTable
+                doc.autoTable({
+                    startY: yPos,
+                    head: [summativeData[0]],
+                    body: summativeData.slice(1),
+                    theme: 'grid',
+                    styles: { 
+                        fontSize: 9, 
+                        cellPadding: 3,
+                        font: 'helvetica'
+                    },
+                    headStyles: { 
+                        fillColor: [49, 130, 206],
+                        fontStyle: 'bold'
+                    },
+                    alternateRowStyles: { fillColor: [247, 250, 252] },
+                    margin: { left: margin, right: margin }
+                });
+                
+                // Simpan PDF
+                doc.save(`Instrumen_Asesmen_${userName}.pdf`);
+                
+            } catch (error) {
+                console.error('Error generating PDF:', error);
+                alert('Terjadi kesalahan saat membuat PDF. Silakan coba lagi.');
+            } finally {
+                // Reset tombol
+                downloadBtn.style.display = 'block';
+                loadingIndicator.style.display = 'none';
+            }
+        });
+    </script>
 </body>
 </html>
