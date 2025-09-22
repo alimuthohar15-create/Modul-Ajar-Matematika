@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>📑 Lampiran 2 – Instrumen Asesmen</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
     <style>
         * {
             margin: 0;
@@ -89,6 +90,7 @@
             border-radius: 6px;
             background: white;
             min-height: 60px;
+            font-family: inherit;
         }
         table {
             width: 100%;
@@ -117,6 +119,66 @@
         .score-2 { background-color: #fed7d7; }
         .score-1 { background-color: #feb2b2; }
 
+        /* Upload Area */
+        .upload-area {
+            border: 2px dashed #9ae6b4;
+            padding: 20px;
+            text-align: center;
+            border-radius: 8px;
+            background: #f0fff4;
+            margin: 15px 0;
+            cursor: pointer;
+        }
+        .upload-area:hover {
+            background: #e6fffa;
+        }
+        .image-preview {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-top: 15px;
+        }
+        .image-preview img {
+            max-width: 150px;
+            height: auto;
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+
+        /* Download Button */
+        .download-btn {
+            display: block;
+            width: 100%;
+            padding: 15px;
+            background: #3182ce;
+            color: white;
+            font-weight: 700;
+            font-size: 1.1rem;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            margin: 30px 0;
+            transition: background 0.3s;
+        }
+        .download-btn:hover {
+            background: #2b6cb0;
+        }
+
+        /* Print / PDF Optimized */
+        @media print {
+            body {
+                background: white;
+                padding: 0;
+            }
+            .container {
+                box-shadow: none;
+                border-radius: 0;
+            }
+            .download-btn, .upload-area {
+                display: none !important;
+            }
+        }
+
         /* RESPONSIVE */
         @media (max-width: 768px) {
             .header h1 {
@@ -130,6 +192,15 @@
                 padding: 20px;
             }
         }
+
+        /* A4 PAGE SIZE FOR PDF */
+        #pdf-content {
+            width: 210mm;
+            min-height: 297mm;
+            padding: 15mm;
+            margin: 0 auto;
+            background: white;
+        }
     </style>
 </head>
 <body>
@@ -138,6 +209,15 @@
 
         <div class="header">
             <h1>📑 Lampiran 2 – Instrumen Asesmen</h1>
+        </div>
+
+        <!-- User Input Section -->
+        <div class="section">
+            <h2>👤 Identitas Pengguna</h2>
+            <div class="lkpd-row">
+                <label class="lkpd-label">Masukkan Nama Anda (untuk nama file PDF):</label>
+                <input type="text" id="userName" class="lkpd-input" placeholder="Contoh: Budi Santoso" />
+            </div>
         </div>
 
         <!-- Bagian A -->
@@ -169,27 +249,31 @@
             <div class="lkpd-form">
                 <div class="lkpd-row">
                     <span class="lkpd-label">• Nama Kelompok</span>
-                    <textarea class="lkpd-input" placeholder="Isi nama kelompok di sini..."></textarea>
+                    <textarea class="lkpd-input" id="groupName" placeholder="Isi nama kelompok di sini..."></textarea>
                 </div>
                 <div class="lkpd-row">
                     <span class="lkpd-label">• Anggota</span>
-                    <textarea class="lkpd-input" placeholder="Tulis nama anggota kelompok..."></textarea>
+                    <textarea class="lkpd-input" id="members" placeholder="Tulis nama anggota kelompok..."></textarea>
                 </div>
                 <div class="lkpd-row">
                     <span class="lkpd-label">• Contoh parabola</span>
-                    <textarea class="lkpd-input" placeholder="Deskripsikan contoh parabola yang kalian temukan..."></textarea>
+                    <textarea class="lkpd-input" id="parabolaExample" placeholder="Deskripsikan contoh parabola yang kalian temukan..."></textarea>
                 </div>
                 <div class="lkpd-row">
-                    <span class="lkpd-label">• Sketsa grafik</span>
-                    <textarea class="lkpd-input" placeholder="Gambarkan atau jelaskan sketsa grafik di sini..."></textarea>
+                    <span class="lkpd-label">• Sketsa grafik (Upload Gambar)</span>
+                    <div class="upload-area" id="uploadArea">
+                        📷 Klik atau drag gambar ke sini untuk upload
+                        <input type="file" id="imageUpload" accept="image/*" multiple style="display:none" />
+                    </div>
+                    <div class="image-preview" id="imagePreview"></div>
                 </div>
                 <div class="lkpd-row">
                     <span class="lkpd-label">• Analisis matematis</span>
-                    <textarea class="lkpd-input" placeholder="Tuliskan analisis: sumbu simetri, puncak, titik potong..."></textarea>
+                    <textarea class="lkpd-input" id="mathAnalysis" placeholder="Tuliskan analisis: sumbu simetri, puncak, titik potong..."></textarea>
                 </div>
                 <div class="lkpd-row">
                     <span class="lkpd-label">• Kesimpulan</span>
-                    <textarea class="lkpd-input" placeholder="Tuliskan kesimpulan diskusi kelompok..."></textarea>
+                    <textarea class="lkpd-input" id="conclusion" placeholder="Tuliskan kesimpulan diskusi kelompok..."></textarea>
                 </div>
             </div>
         </div>
@@ -273,7 +357,90 @@
             </table>
         </div>
 
+        <!-- DOWNLOAD BUTTON -->
+        <div class="section" style="text-align: center;">
+            <button class="download-btn" id="downloadPdf">📥 Download sebagai PDF (Format A4)</button>
+        </div>
+
     </div>
+
+    <!-- PDF CONTENT WRAPPER (hidden for UI, used for generation) -->
+    <div id="pdf-content" style="display:none;">
+        <div id="pdf-header" style="text-align:center; padding:20px; background:#4a5568; color:white; margin-bottom:30px;">
+            <h1>📑 Lampiran 2 – Instrumen Asesmen</h1>
+        </div>
+        <div id="pdf-body"></div>
+    </div>
+
+    <script>
+        // Image Upload Handler
+        const uploadArea = document.getElementById('uploadArea');
+        const imageUpload = document.getElementById('imageUpload');
+        const imagePreview = document.getElementById('imagePreview');
+
+        uploadArea.addEventListener('click', () => imageUpload.click());
+        uploadArea.addEventListener('dragover', (e) => {
+            e.preventDefault();
+            uploadArea.style.backgroundColor = '#d0f5e6';
+        });
+        uploadArea.addEventListener('dragleave', () => {
+            uploadArea.style.backgroundColor = '';
+        });
+        uploadArea.addEventListener('drop', (e) => {
+            e.preventDefault();
+            uploadArea.style.backgroundColor = '';
+            if (e.dataTransfer.files.length) {
+                imageUpload.files = e.dataTransfer.files;
+                displayImages(e.dataTransfer.files);
+            }
+        });
+
+        imageUpload.addEventListener('change', () => {
+            displayImages(imageUpload.files);
+        });
+
+        function displayImages(files) {
+            imagePreview.innerHTML = '';
+            Array.from(files).forEach(file => {
+                if (!file.type.match('image.*')) return;
+
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    const img = document.createElement('img');
+                    img.src = e.target.result;
+                    imagePreview.appendChild(img);
+                };
+                reader.readAsDataURL(file);
+            });
+        }
+
+        // PDF Download Handler
+        document.getElementById('downloadPdf').addEventListener('click', () => {
+            const userName = document.getElementById('userName').value.trim() || 'user';
+            const content = document.querySelector('.container').cloneNode(true);
+
+            // Remove download button & upload area from PDF
+            const buttonsToRemove = content.querySelectorAll('.download-btn, .upload-area');
+            buttonsToRemove.forEach(el => el.remove());
+
+            // Inject content into hidden A4 wrapper
+            const pdfBody = document.getElementById('pdf-body');
+            pdfBody.innerHTML = '';
+            pdfBody.appendChild(content);
+
+            // Generate PDF
+            const element = document.getElementById('pdf-content');
+            const opt = {
+                margin: 10,
+                filename: `Instrumen_Asesmen_${userName}.pdf`,
+                image: { type: 'jpeg', quality: 0.98 },
+                html2canvas: { scale: 2 },
+                jsPDF: { unit: 'mm', format: 'a4', orientation: 'portrait' }
+            };
+
+            html2pdf().set(opt).from(element).save();
+        });
+    </script>
 
 </body>
 </html>
