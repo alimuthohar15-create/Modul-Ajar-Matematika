@@ -1,0 +1,537 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>📘 MODUL AJAR DEEP LEARNING - MATEMATIKA - KAIDAH PENCACAHAN</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            padding: 20px;
+            color: #333;
+            line-height: 1.7;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+            overflow: hidden;
+        }
+        .header {
+            background: #2c3e50;
+            color: white;
+            padding: 25px;
+            text-align: center;
+        }
+        .header h1 {
+            font-size: 1.8rem;
+            margin-bottom: 5px;
+        }
+        .header p {
+            font-size: 1.1rem;
+            opacity: 0.9;
+        }
+        .tabs {
+            display: flex;
+            background: #f8f9fa;
+            border-bottom: 3px solid #6c757d;
+        }
+        .tab-btn {
+            flex: 1;
+            padding: 15px 20px;
+            background: none;
+            border: none;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            color: #495057;
+            position: relative;
+        }
+        .tab-btn:hover {
+            background: #e9ecef;
+        }
+        .tab-btn.active {
+            color: #007bff;
+            background: white;
+            border-bottom: 3px solid #007bff;
+        }
+        .tab-content {
+            display: none;
+            padding: 30px;
+            animation: fadeIn 0.5s ease;
+        }
+        .tab-content.active {
+            display: block;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        h2 {
+            color: #2c3e50;
+            margin: 25px 0 15px;
+            padding-bottom: 8px;
+            border-bottom: 2px solid #3498db;
+        }
+        h3 {
+            color: #2980b9;
+            margin: 20px 0 10px;
+        }
+        ul, ol {
+            margin-left: 25px;
+            margin-bottom: 15px;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+            border-radius: 8px;
+            overflow: hidden;
+        }
+        th, td {
+            padding: 12px 15px;
+            text-align: left;
+            border: 1px solid #dee2e6;
+        }
+        th {
+            background-color: #3498db;
+            color: white;
+            font-weight: 600;
+        }
+        tr:nth-child(even) {
+            background-color: #f8f9fa;
+        }
+        .download-section {
+            padding: 30px;
+            background: #f8f9fa;
+            text-align: center;
+            border-top: 2px dashed #6c757d;
+        }
+        .download-section h2 {
+            border: none;
+            margin-bottom: 25px;
+        }
+        .file-card {
+            display: inline-block;
+            background: white;
+            padding: 20px;
+            margin: 10px;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            width: 250px;
+            transition: transform 0.3s ease;
+        }
+        .file-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+        }
+        .file-icon {
+            font-size: 3rem;
+            color: #e74c3c;
+            margin-bottom: 10px;
+        }
+        .file-name {
+            font-weight: 600;
+            color: #2c3e50;
+            margin-bottom: 8px;
+        }
+        .file-desc {
+            font-size: 0.9rem;
+            color: #7f8c8d;
+        }
+        .btn-download {
+            display: inline-block;
+            background: #27ae60;
+            color: white;
+            padding: 8px 20px;
+            border-radius: 25px;
+            text-decoration: none;
+            margin-top: 10px;
+            font-weight: 600;
+            transition: background 0.3s;
+        }
+        .btn-download:hover {
+            background: #2ecc71;
+        }
+
+        /* RESPONSIVE */
+        @media (max-width: 768px) {
+            .tabs {
+                flex-direction: column;
+            }
+            .tab-btn {
+                padding: 12px;
+                font-size: 0.95rem;
+            }
+            .file-card {
+                width: 90%;
+                margin: 15px auto;
+            }
+            .header h1 {
+                font-size: 1.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+
+        <div class="header">
+            <h1>📘 MODUL AJAR DEEP LEARNING</h1>
+            <p><strong>MATA PELAJARAN :</strong> MATEMATIKA</p>
+            <p><strong>BAB :</strong> KAIDAH PENCACAHAN</p>
+        </div>
+
+        <div class="tabs">
+            <button class="tab-btn active" onclick="openTab('tab1')">Bagian A–C</button>
+            <button class="tab-btn" onclick="openTab('tab2')">Bagian D–F</button>
+        </div>
+
+        <!-- TAB 1: A–C -->
+        <div id="tab1" class="tab-content active">
+            <div class="section">
+                <h2>A. IDENTITAS MODUL</h2>
+                <ul>
+                    <li><strong>Nama Sekolah</strong>		: SMAN 1 Cluring</li>
+                    <li><strong>Nama Penyusun</strong>	: Ali Muthohar,S.Pd</li>
+                    <li><strong>Mata Pelajaran</strong>	: Matematika</li>
+                    <li><strong>Kelas/Fase/Semester</strong>	: XI1/F/Ganjil</li>
+                    <li><strong>Pertemuan Ke</strong>		: 1 </li>
+                    <li><strong>Alokasi Waktu</strong>		: … JP (4 × 45 menit)</li>
+                    <li><strong>Tahun Pelajaran</strong>	: 2025/2026</li>
+                </ul>
+            </div>
+
+            <div class="section">
+                <h2>B. INFORMASI UMUM</h2>
+                <ol>
+                    <li><strong>Identifikasi Kesiapan Peserta Didik</strong><br>
+                        Peserta didik sudah memiliki pengalaman dasar dalam menghitung operasi aljabar dan logika dasar matematika. Namun, pemahaman tentang aturan penjumlahan, perkalian, permutasi, dan kombinasi masih beragam.<br>
+                        •	Minat: Siswa tertarik jika materi dikaitkan dengan kehidupan nyata (jadwal, password, tim olahraga, dll).<br>
+                        •	Kebutuhan belajar: Latihan soal kontekstual dan aktivitas kelompok.<br>
+                        •	Kesiapan: Perlu pendampingan dalam menghubungkan teori dengan aplikasi nyata.
+                    </li>
+                    <li><strong>Karakteristik Materi</strong><br>
+                        Kaidah Pencacahan adalah materi dasar yang penting dalam topik peluang. Konsep ini relevan dengan kehidupan sehari-hari karena digunakan untuk menghitung banyak cara dalam pemilihan, penyusunan, atau pengaturan. Signifikansinya:<br>
+                        •	Membekali siswa dengan keterampilan logis dan sistematis.<br>
+                        •	Menjadi dasar untuk memahami materi peluang, statistik, dan kombinatorika tingkat lanjut.<br>
+                        •	Membantu siswa mengembangkan keterampilan berpikir kritis, kreatif, kolaboratif, dan komunikatif melalui pendekatan deep learning.
+                    </li>
+                    <li><strong>Dimensi Profil Lulusan Pembelajaran</strong><br>
+                        <table>
+                            <tr>
+                                <th>Dimensi</th>
+                                <th>Relevansi dengan Materi</th>
+                            </tr>
+                            <tr>
+                                <td>Keimanan dan Ketakwaan</td>
+                                <td>Menyadari kebesaran Tuhan YME melalui keteraturan dan keindahan matematika.</td>
+                            </tr>
+                            <tr>
+                                <td>Kewargaan</td>
+                                <td>Menghargai kerja sama dalam kelompok saat menyelesaikan permasalahan pencacahan.</td>
+                            </tr>
+                            <tr>
+                                <td>Penalaran Kritis</td>
+                                <td>Menggunakan logika untuk membedakan aturan penjumlahan, perkalian, permutasi, dan kombinasi.</td>
+                            </tr>
+                            <tr>
+                                <td>Kreativitas</td>
+                                <td>Membuat soal cerita baru terkait kaidah pencacahan.</td>
+                            </tr>
+                            <tr>
+                                <td>Kolaborasi</td>
+                                <td>Diskusi kelompok untuk menyusun strategi pemecahan masalah.</td>
+                            </tr>
+                            <tr>
+                                <td>Mandiri</td>
+                                <td>Mengerjakan latihan soal secara individu dengan percaya diri.</td>
+                            </tr>
+                            <tr>
+                                <td>Kesehatan</td>
+                                <td>Mengelola waktu belajar dengan baik untuk menghindari stres akademik.</td>
+                            </tr>
+                            <tr>
+                                <td>Komunikasi</td>
+                                <td>Menyajikan hasil diskusi secara jelas dan mudah dipahami teman lain.</td>
+                            </tr>
+                        </table>
+                    </li>
+                </ol>
+            </div>
+
+            <div class="section">
+                <h2>C. DESAIN PEMBELAJARAN</h2>
+                <ol>
+                    <li><strong>Capaian Pembelajaran (CP)</strong><br>
+                        <table>
+                            <tr>
+                                <th>Pertemuan</th>
+                                <th>Elemen</th>
+                                <th>Capaian Pembelajaran</th>
+                            </tr>
+                            <tr>
+                                <td>Pertemuan 1</td>
+                                <td>Pemahaman Kaidah Pencacahan</td>
+                                <td>Peserta didik mampu menjelaskan konsep aturan penjumlahan dan perkalian serta menerapkannya dalam menyelesaikan masalah sederhana.</td>
+                            </tr>
+                        </table>
+                    </li>
+                    <li><strong>Lintas Disiplin Ilmu</strong><br>
+                        •	Informatika → penerapan kaidah pencacahan dalam pembuatan password atau sistem keamanan digital.<br>
+                        •	Ekonomi → penggunaan kombinasi/permutasi dalam perhitungan peluang pasar atau strategi tim.<br>
+                        •	Statistika → dasar dalam menentukan peluang suatu peristiwa.
+                    </li>
+                    <li><strong>Tujuan Pembelajaran</strong><br>
+                        Rumuskan secara SMART (Specific, Measurable, Achievable, Relevant, Time Bound).<br>
+                        <table>
+                            <tr>
+                                <th>Pertemuan</th>
+                                <th>Topik/BAB</th>
+                                <th>Tujuan Pembelajaran</th>
+                                <th>Aktivitas Pembelajaran (Deep Learning)</th>
+                                <th>Penilaian & Umpan Balik Guru</th>
+                            </tr>
+                            <tr>
+                                <td>Pertemuan 1</td>
+                                <td>Kaidah Pencacahan: Aturan Penjumlahan & Perkalian</td>
+                                <td>- Specific: Siswa memahami perbedaan aturan penjumlahan & perkalian. - Measurable: Siswa dapat menyelesaikan minimal 3 soal latihan dengan benar. - Achievable: Dengan bimbingan, siswa mampu menganalisis contoh kontekstual. - Relevant: Materi berkaitan dengan kehidupan sehari-hari (jadwal, password). - Time Bound: Dicapai dalam 1 × 45 menit.</td>
+                                <td>1. Collaboration: Diskusi kelompok tentang jumlah cara memilih menu makan (aturan penjumlahan & perkalian). 2. Critical Thinking: Bedakan kapan menggunakan penjumlahan dan kapan perkalian. 3. Creativity: Buat soal cerita sederhana terkait aturan pencacahan. 4. Communication: Presentasi hasil diskusi kelompok.</td>
+                                <td>- Formatif: Lembar kerja diskusi dan latihan soal. - Umpan balik guru: • Menyebut bagian jawaban yang benar/salah (spesifik). • Menghubungkan dengan tujuan pembelajaran (penjumlahan vs perkalian). • Fokus pada usaha siswa meski jawabannya belum tepat. • Memberi ruang tanya jawab untuk refleksi & perbaikan.</td>
+                            </tr>
+                        </table>
+                    </li>
+                    <li><strong>Topik Pembelajaran Kontekstual</strong><br>
+                        •	Penyusunan jadwal kegiatan sekolah (contoh: memilih ekskul dan jadwal piket).<br>
+                        •	Pemilihan menu makanan/minuman (aturan penjumlahan).<br>
+                        •	Pembuatan password sederhana (aturan perkalian).<br>
+                        •	Permainan sehari-hari seperti mengatur tempat duduk atau tim olahraga.
+                    </li>
+                    <li><strong>Kerangka Pembelajaran</strong><br>
+                        <table>
+                            <tr>
+                                <th>Aspek</th>
+                                <th>Pertemuan 1</th>
+                            </tr>
+                            <tr>
+                                <td><strong>Praktik Pedagogik</strong></td>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <td>Model</td>
+                                <td>Problem Based Learning (PBL) berbasis kontekstual Matematika</td>
+                            </tr>
+                            <tr>
+                                <td>Strategi</td>
+                                <td>Diskusi kelompok, presentasi, refleksi kritis, latihan soal kontekstual</td>
+                            </tr>
+                            <tr>
+                                <td>Mindful Learning</td>
+                                <td>Siswa diajak menyadari manfaat konsep fungsi kuadrat dalam kehidupan sehari-hari</td>
+                            </tr>
+                            <tr>
+                                <td>Meaningful Learning</td>
+                                <td>Mengaitkan materi dengan kasus nyata (misalnya perhitungan parabola pada desain bangunan atau olahraga)</td>
+                            </tr>
+                            <tr>
+                                <td>Joyful Learning</td>
+                                <td>Aktivitas permainan matematika (Math Games) untuk penguatan konsep</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Kemitraan Pembelajaran</strong></td>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <td>Lingkungan Sekolah</td>
+                                <td>Kolaborasi dengan guru Fisika untuk penerapan fungsi kuadrat pada lintasan benda</td>
+                            </tr>
+                            <tr>
+                                <td>Lingkungan Luar Sekolah</td>
+                                <td>Menghubungkan materi dengan konteks budaya lokal (misalnya bentuk gapura, atap rumah adat)</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Lingkungan Belajar</strong></td>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <td>Ruang Fisik</td>
+                                <td>Kelas dengan papan tulis interaktif dan media presentasi</td>
+                            </tr>
+                            <tr>
+                                <td>Ruang Virtual</td>
+                                <td>Google Classroom/WhatsApp Group untuk berbagi materi dan tugas</td>
+                            </tr>
+                            <tr>
+                                <td>Budaya Belajar</td>
+                                <td>Saling menghargai, gotong royong dalam diskusi, disiplin mengumpulkan tugas</td>
+                            </tr>
+                            <tr>
+                                <td>Pemanfaatan Digital</td>
+                                <td>GeoGebra, kalkulator digital, dan platform interaktif online (HTML)</td>
+                            </tr>
+                        </table>
+                    </li>
+                </ol>
+            </div>
+        </div>
+
+        <!-- TAB 2: D–F -->
+        <div id="tab2" class="tab-content">
+            <div class="section">
+                <h2>D. RENCANA PELAKSANAAN PEMBELAJARAN</h2>
+                <table>
+                    <tr>
+                        <th>Pertemuan</th>
+                        <th>Kegiatan Pembelajaran</th>
+                        <th>Deskripsi</th>
+                        <th>Menit</th>
+                    </tr>
+                    <tr>
+                        <td rowspan="3">1</td>
+                        <td>Pendahuluan</td>
+                        <td>- Guru membuka pelajaran dengan salam, doa, dan presensi. - Apersepsi: mengaitkan fungsi kuadrat dengan fenomena sehari-hari (misalnya lintasan bola). - Menyampaikan tujuan pembelajaran. - Mindful: menyadari manfaat fungsi kuadrat. - Meaningful: dikaitkan dengan konteks budaya lokal/ilmu lain. - Joyful: ice breaking singkat dengan kuis ringan.</td>
+                        <td>10</td>
+                    </tr>
+                    <tr>
+                        <td>Inti</td>
+                        <td>- Understanding: siswa mengamati contoh grafik fungsi kuadrat menggunakan GeoGebra. - Applying: siswa mengerjakan soal kontekstual dalam kelompok (misal perhitungan parabola pada arsitektur gapura/atap rumah adat). - Reflecting: tiap kelompok mempresentasikan hasil diskusi, guru dan siswa lain memberi tanggapan.</td>
+                        <td>70</td>
+                    </tr>
+                    <tr>
+                        <td>Penutup</td>
+                        <td>- Guru memberikan umpan balik terhadap hasil presentasi siswa. - Siswa bersama guru menyimpulkan materi. - Refleksi individu: apa manfaat mempelajari fungsi kuadrat. - Guru menutup pembelajaran dengan doa dan salam.</td>
+                        <td>10</td>
+                    </tr>
+                </table>
+            </div>
+
+            <div class="section">
+                <h2>E. ASESMEN PEMBELAJARAN</h2>
+                <ol>
+                    <li><strong>Asesmen Awal (Diagnostik):</strong><br>
+                        <table>
+                            <tr>
+                                <th>Pertemuan</th>
+                                <th>Format Asesmen</th>
+                                <th>Tujuan</th>
+                                <th>Instrumen</th>
+                            </tr>
+                            <tr>
+                                <td>1</td>
+                                <td>Tes singkat (quiz) + diskusi</td>
+                                <td>Mengetahui pemahaman awal siswa tentang fungsi kuadrat dan relevansi dalam kehidupan nyata</td>
+                                <td>5 soal pilihan ganda sederhana + pertanyaan reflektif “Pernahkah kalian melihat bentuk parabola di sekitar kalian?”</td>
+                            </tr>
+                        </table>
+                    </li>
+                    <li><strong>Asesmen Proses (Formatif):</strong><br>
+                        <table>
+                            <tr>
+                                <th>Pertemuan</th>
+                                <th>Format Asesmen</th>
+                                <th>Tujuan</th>
+                                <th>Instrumen</th>
+                            </tr>
+                            <tr>
+                                <td>1</td>
+                                <td>Observasi + Produk kelompok</td>
+                                <td>Mengukur keterlibatan, kolaborasi, serta kemampuan menghubungkan konsep dengan konteks</td>
+                                <td>Lembar observasi sikap + produk peta konsep fungsi kuadrat berbasis kasus</td>
+                            </tr>
+                        </table>
+                    </li>
+                    <li><strong>Asesmen Akhir (Sumatif):</strong><br>
+                        <table>
+                            <tr>
+                                <th>Pertemuan</th>
+                                <th>Format Sumatif</th>
+                                <th>Tujuan</th>
+                                <th>Instrumen Rubrik</th>
+                            </tr>
+                            <tr>
+                                <td>1</td>
+                                <td>Penilaian proyek (kelompok)</td>
+                                <td>Menilai kemampuan analisis isu kontekstual, solusi, kreativitas, kolaborasi, dan penjiwaan nilai Pancasila</td>
+                                <td>Rubrik: (1) Analisis konteks (25%), (2) Ketepatan konsep matematika (25%), (3) Kreativitas solusi (20%), (4) Kolaborasi (15%), (5) Nilai Pancasila (15%)</td>
+                            </tr>
+                        </table>
+                    </li>
+                </ol>
+            </div>
+
+            <div class="section">
+                <h2>F. RENCANA TINDAK LANJUT PENGAYAAN & REMEDIAL</h2>
+                <table>
+                    <tr>
+                        <th>Pertemuan</th>
+                        <th>Tindak Lanjut Remedial</th>
+                        <th>Tindak Lanjut Pengayaan</th>
+                    </tr>
+                    <tr>
+                        <td>1</td>
+                        <td>- Siswa yang kesulitan diberikan penjelasan ulang dengan contoh lebih sederhana. - Latihan soal dasar fungsi kuadrat (menentukan puncak, sumbu simetri, dan bentuk grafik sederhana). - Pendampingan dalam kelompok kecil untuk memastikan pemahaman konsep.</td>
+                        <td>- Siswa yang sudah tuntas diberi tantangan soal kontekstual lebih kompleks (misalnya parabola dalam desain jembatan, antena parabola). - Proyek mini: membuat infografis “Fungsi Kuadrat dalam Kehidupan Nyata” dengan pemanfaatan aplikasi digital (Canva/GeoGebra).</td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+
+        <!-- DOWNLOAD SECTION -->
+        <div class="download-section">
+            <h2><i class="fas fa-download"></i> DOWNLOAD BAHAN PEMBELAJARAN</h2>
+
+            <div class="file-card">
+                <div class="file-icon"><i class="fas fa-book"></i></div>
+                <div class="file-name">Bahan Ajar</div>
+                <div class="file-desc">Modul lengkap Kaidah Pencacahan</div>
+                <a href="#" class="btn-download" download>Unduh PDF</a>
+            </div>
+
+            <div class="file-card">
+                <div class="file-icon"><i class="fas fa-clipboard-list"></i></div>
+                <div class="file-name">Instrumen Asesmen</div>
+                <div class="file-desc">Soal, rubrik, lembar observasi</div>
+                <a href="#" class="btn-download" download>Unduh DOCX</a>
+            </div>
+
+            <div class="file-card">
+                <div class="file-icon"><i class="fas fa-tools"></i></div>
+                <div class="file-name">Bahan Remedial & Pengayaan</div>
+                <div class="file-desc">Latihan tambahan & proyek kreatif</div>
+                <a href="#" class="btn-download" download>Unduh ZIP</a>
+            </div>
+        </div>
+
+    </div>
+
+    <script>
+        function openTab(tabName) {
+            const tabs = document.getElementsByClassName("tab-content");
+            const buttons = document.getElementsByClassName("tab-btn");
+
+            for (let i = 0; i < tabs.length; i++) {
+                tabs[i].classList.remove("active");
+            }
+            for (let i = 0; i < buttons.length; i++) {
+                buttons[i].classList.remove("active");
+            }
+
+            document.getElementById(tabName).classList.add("active");
+            event.currentTarget.classList.add("active");
+        }
+    </script>
+
+</body>
+</html>
