@@ -2,7 +2,7 @@
 <html lang="id">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes">
     <title>Matematika Kelas XII - SMA Negeri Cluring</title>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
@@ -18,42 +18,53 @@
             --hover-shadow: 0 10px 25px rgba(0,0,0,0.15);
             --doc-color: #ef4444;
             --pdf-color: #3b82f6;
+            --font-size-h1: clamp(1.7rem, 5vw, 2.8rem);
+            --font-size-h2: clamp(1.3rem, 4vw, 1.8rem);
+            --font-size-quote: clamp(1rem, 3.5vw, 1.3rem);
+            --font-size-section: clamp(1.6rem, 5vw, 2.2rem);
+            --border-radius: 16px;
+            --spacing-sm: clamp(10px, 2vw, 20px);
+            --spacing-md: clamp(20px, 5vw, 45px);
+            --spacing-lg: clamp(40px, 8vw, 80px);
         }
-        
+
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
+            scroll-behavior: smooth;
         }
-        
+
         body {
             font-family: 'Poppins', sans-serif;
             line-height: 1.7;
             color: #333;
             background-color: #f9fafb;
             background-image: url('image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 100 100"><rect fill="%23f0f7ff" width="100" height="100"/><path d="M0,0 L100,100" stroke="%23e6f0ff" stroke-width="1"/></svg>');
-            padding-bottom: 60px;
+            padding-bottom: env(safe-area-inset-bottom);
+            padding-top: env(safe-area-inset-top);
+            padding-left: env(safe-area-inset-left);
+            padding-right: env(safe-area-inset-right);
+            transition: background-color 0.3s ease;
         }
-        
+
         .container {
             max-width: 1200px;
             margin: 0 auto;
-            padding: 0 20px;
+            padding: 0 clamp(1rem, 3vw, 2rem);
         }
-        
+
         /* Header Styles */
         header {
             background: linear-gradient(135deg, var(--primary) 0%, #0d47a1 100%);
             color: white;
-            padding: 30px 0;
+            padding: clamp(20px, 5vw, 40px) 0;
             position: relative;
             overflow: hidden;
             border-bottom: 5px solid var(--secondary);
             box-shadow: var(--soft-shadow);
-            display: flex;
-            align-items: center;
         }
-        
+
         .header-pattern {
             position: absolute;
             top: 0;
@@ -63,11 +74,21 @@
             background-image: url('image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="60" height="60" viewBox="0 0 60 60"><path d="M0,0 L60,60" stroke="%23ffffff" stroke-width="0.5" opacity="0.2"/></svg>');
             opacity: 0.3;
         }
-        
+
+        .header-content {
+            display: flex;
+            align-items: center;
+            justify-content: flex-start;
+            gap: 25px;
+        }
+
+        .logo-wrapper {
+            flex-shrink: 0;
+        }
+
         .school-logo {
-            width: 80px;
+            width: clamp(65px, 12vw, 80px);
             height: auto;
-            margin-right: 20px;
             border-radius: 8px;
             box-shadow: 0 4px 8px rgba(0,0,0,0.2);
             transition: transform 0.3s ease;
@@ -76,23 +97,24 @@
         .school-logo:hover {
             transform: scale(1.05);
         }
-        
+
         .school-info {
             text-align: left;
             position: relative;
             z-index: 1;
             flex: 1;
         }
-        
+
         .school-info h1 {
-            font-size: 2.8rem;
+            font-size: var(--font-size-h1);
             margin-bottom: 10px;
             text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
             letter-spacing: -0.5px;
+            line-height: 1.2;
         }
-        
+
         .school-info p {
-            font-size: 1.2rem;
+            font-size: clamp(1rem, 3vw, 1.2rem);
             margin-bottom: 5px;
             opacity: 0.9;
         }
@@ -100,22 +122,26 @@
         /* Submission Buttons */
         .submission-buttons {
             display: flex;
-            gap: 15px;
+            gap: clamp(10px, 3vw, 15px);
             justify-content: center;
-            margin: 20px 0;
+            margin: var(--spacing-md) 0;
             flex-wrap: wrap;
         }
 
         .btn-submission {
-            display: inline-block;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
             padding: 12px 24px;
             border-radius: 50px;
             text-decoration: none;
             font-weight: 600;
-            transition: all 0.3s ease;
-            font-size: 0.95rem;
+            transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            font-size: clamp(0.85rem, 2.5vw, 0.95rem);
             text-align: center;
             box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+            min-width: 200px;
         }
 
         .btn-submit {
@@ -125,7 +151,7 @@
 
         .btn-submit:hover {
             background: linear-gradient(to right, #dc2626, #b91c1c);
-            transform: translateY(-2px);
+            transform: translateY(-2px) scale(1.02);
             box-shadow: 0 6px 15px rgba(239,68,68,0.3);
         }
 
@@ -136,26 +162,26 @@
 
         .btn-view:hover {
             background: linear-gradient(to right, #1d4ed8, #1e40af);
-            transform: translateY(-2px);
+            transform: translateY(-2px) scale(1.02);
             box-shadow: 0 6px 15px rgba(59,130,246,0.3);
         }
 
         /* Foto Section */
         .featured-image {
             text-align: center;
-            margin: 30px 0;
+            margin: var(--spacing-md) 0;
         }
 
         .featured-image a {
             display: inline-block;
-            border-radius: 12px;
+            border-radius: var(--border-radius);
             overflow: hidden;
             box-shadow: var(--soft-shadow);
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            transition: transform 0.35s cubic-bezier(0.25, 0.46, 0.45, 0.94), box-shadow 0.35s ease;
         }
 
         .featured-image a:hover {
-            transform: scale(1.02);
+            transform: scale(1.03);
             box-shadow: var(--hover-shadow);
         }
 
@@ -163,65 +189,71 @@
             max-width: 100%;
             height: auto;
             display: block;
-            border-radius: 12px;
+            border-radius: var(--border-radius);
             transition: filter 0.3s ease;
         }
 
         .featured-image a:hover img {
             filter: brightness(1.05);
         }
-        
+
         /* Time Display */
         .time-display {
             background: linear-gradient(to right, #ffffff, #f0f7ff);
-            padding: 20px;
+            padding: clamp(15px, 4vw, 20px);
             text-align: center;
             box-shadow: var(--soft-shadow);
-            margin: 30px 0;
-            border-radius: 12px;
+            margin: var(--spacing-md) 0;
+            border-radius: var(--border-radius);
             font-weight: 500;
             color: var(--dark);
             display: flex;
             justify-content: center;
             align-items: center;
-            gap: 20px;
+            gap: clamp(10px, 3vw, 20px);
             border: 1px solid #e5e7eb;
+            flex-wrap: wrap;
         }
-        
+
         .time-display i {
             color: var(--primary);
-            font-size: 1.6rem;
+            font-size: clamp(1.2rem, 4vw, 1.6rem);
             transition: transform 0.3s ease;
         }
-        
+
         .time-display:hover i {
             transform: rotate(360deg);
         }
-        
+
+        .time-display span {
+            font-size: clamp(0.95rem, 3vw, 1rem);
+        }
+
         /* Teacher Info */
         .teacher-info {
             background: white;
-            padding: 30px;
-            border-radius: 15px;
+            padding: clamp(25px, 5vw, 35px);
+            border-radius: var(--border-radius);
             box-shadow: var(--soft-shadow);
-            margin: 30px 0;
+            margin: var(--spacing-md) 0;
             text-align: center;
             border-left: 6px solid var(--cultural);
-            transition: transform 0.3s ease;
+            transition: all 0.35s cubic-bezier(0.25, 0.46, 0.45, 0.94);
         }
-        
+
         .teacher-info:hover {
-            transform: translateY(-3px);
+            transform: translateY(-5px);
+            box-shadow: var(--hover-shadow);
         }
-        
+
         .teacher-info h2 {
             color: var(--primary);
             margin-bottom: 15px;
             position: relative;
             display: inline-block;
-            font-size: 1.8rem;
+            font-size: var(--font-size-h2);
         }
-        
+
         .teacher-info h2:after {
             content: '';
             position: absolute;
@@ -233,52 +265,55 @@
             background: linear-gradient(to right, var(--secondary), var(--accent));
             border-radius: 3px;
         }
-        
+
         .contact-details {
             display: flex;
             justify-content: center;
-            gap: 30px;
+            gap: clamp(15px, 3vw, 30px);
             margin-top: 25px;
             flex-wrap: wrap;
         }
-        
+
         .contact-item {
             display: flex;
             align-items: center;
             gap: 10px;
             background: #f8fafc;
-            padding: 12px 20px;
+            padding: clamp(8px, 2vw, 12px) clamp(15px, 3vw, 20px);
             border-radius: 50px;
-            transition: background 0.3s ease;
+            transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            font-size: clamp(0.85rem, 2.5vw, 1rem);
         }
-        
+
         .contact-item:hover {
             background: #eef2ff;
+            transform: translateY(-2px);
         }
-        
+
         .contact-item i {
             color: var(--primary);
             font-size: 1.2rem;
         }
-        
+
         /* Inspirational Quote */
         .inspiration {
             background: linear-gradient(45deg, var(--secondary), var(--accent));
-            padding: 35px;
-            border-radius: 15px;
+            padding: clamp(25px, 5vw, 45px);
+            border-radius: var(--border-radius);
             color: white;
             text-align: center;
-            margin: 45px 0;
+            margin: var(--spacing-md) 0;
             box-shadow: var(--soft-shadow);
             position: relative;
             overflow: hidden;
-            transition: transform 0.3s ease;
+            transition: all 0.35s cubic-bezier(0.25, 0.46, 0.45, 0.94);
         }
-        
+
         .inspiration:hover {
             transform: scale(1.01);
+            box-shadow: var(--hover-shadow);
         }
-        
+
         .inspiration:before {
             content: '"';
             position: absolute;
@@ -289,30 +324,31 @@
             font-family: Georgia, serif;
             line-height: 1;
         }
-        
+
         .inspiration p {
-            font-size: 1.3rem;
+            font-size: var(--font-size-quote);
             font-style: italic;
             position: relative;
             z-index: 1;
             max-width: 800px;
             margin: 0 auto;
+            line-height: 1.6;
         }
-        
+
         /* Module Cards */
         .modules-section {
-            margin: 60px 0;
+            margin: var(--spacing-lg) 0;
         }
-        
+
         .modules-section h2 {
             text-align: center;
             color: var(--primary);
-            margin-bottom: 40px;
+            margin-bottom: clamp(30px, 6vw, 50px);
             position: relative;
             padding-bottom: 15px;
-            font-size: 2.2rem;
+            font-size: var(--font-size-section);
         }
-        
+
         .modules-section h2:after {
             content: '';
             position: absolute;
@@ -324,32 +360,33 @@
             background: linear-gradient(to right, var(--cultural), var(--secondary));
             border-radius: 2px;
         }
-        
+
         .module-cards {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-            gap: 30px;
+            grid-template-columns: repeat(auto-fit, minmax(min(320px, 100%), 1fr));
+            gap: var(--spacing-sm);
+            margin-top: var(--spacing-sm);
         }
-        
+
         .module-card {
             background: white;
-            border-radius: 15px;
+            border-radius: var(--border-radius);
             overflow: hidden;
-            box-shadow: var(--soft-shadow);
-            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            border: 1px solid rgba(0,0,0,0.03);
+            transition: all 0.35s cubic-bezier(0.25, 0.46, 0.45, 0.94);
             position: relative;
-            border: 1px solid #e5e7eb;
         }
-        
+
         .module-card:hover {
-            transform: translateY(-8px);
-            box-shadow: var(--hover-shadow);
+            transform: translateY(-5px) scale(1.01);
+            box-shadow: 0 12px 30px rgba(0,0,0,0.08);
         }
-        
+
         .module-header {
             background: linear-gradient(135deg, var(--primary) 0%, #0d47a1 100%);
             color: white;
-            padding: 25px 20px;
+            padding: clamp(20px, 4vw, 25px);
             text-align: center;
             position: relative;
         }
@@ -361,39 +398,40 @@
         .module-header.pdf {
             background: linear-gradient(135deg, var(--pdf-color) 0%, #1d4ed8 100%);
         }
-        
+
         .module-header h3 {
-            font-size: 1.5rem;
+            font-size: clamp(1.2rem, 4vw, 1.5rem);
             letter-spacing: -0.5px;
             display: flex;
             align-items: center;
             justify-content: center;
             gap: 10px;
+            margin: 0;
         }
 
         .module-header h3 i {
             font-size: 1.3rem;
         }
-        
+
         .module-body {
-            padding: 25px;
+            padding: clamp(20px, 4vw, 25px);
             max-height: 320px;
             overflow-y: auto;
         }
-        
+
         .module-body ul {
             list-style-type: none;
             padding: 0;
         }
-        
+
         .module-body li {
             padding: 14px 0;
             border-bottom: 1px dashed #e5e7eb;
             display: flex;
             align-items: flex-start;
-            font-size: 0.95rem;
+            font-size: clamp(0.85rem, 2.5vw, 0.95rem);
         }
-        
+
         .module-body li:before {
             content: '✓';
             color: var(--accent);
@@ -401,36 +439,40 @@
             font-weight: bold;
             min-width: 16px;
         }
-        
+
         .module-body li:last-child {
             border-bottom: none;
         }
-        
+
         .module-footer {
             background-color: #f9fafb;
-            padding: 20px;
+            padding: clamp(15px, 3vw, 20px);
             text-align: center;
             border-top: 1px solid #eee;
             transition: background 0.3s ease;
         }
-        
+
         .module-card:hover .module-footer {
             background-color: #f0f5ff;
         }
-        
+
         .btn {
-            display: inline-block;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
             padding: 12px 28px;
             background: linear-gradient(to right, var(--primary), #0d47a1);
             color: white;
             border-radius: 50px;
             text-decoration: none;
             font-weight: 600;
-            transition: all 0.3s ease;
+            transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
             box-shadow: 0 4px 15px rgba(26, 86, 219, 0.3);
             border: none;
             cursor: pointer;
-            font-size: 1rem;
+            font-size: clamp(0.9rem, 2.8vw, 1rem);
+            min-width: 160px;
         }
 
         .btn.doc {
@@ -441,6 +483,7 @@
         .btn.doc:hover {
             background: linear-gradient(to right, #b91c1c, var(--doc-color));
             box-shadow: 0 6px 20px rgba(239, 68, 68, 0.4);
+            transform: translateY(-2px);
         }
 
         .btn.pdf {
@@ -451,14 +494,15 @@
         .btn.pdf:hover {
             background: linear-gradient(to right, #1d4ed8, var(--pdf-color));
             box-shadow: 0 6px 20px rgba(59, 130, 246, 0.4);
+            transform: translateY(-2px);
         }
-        
+
         .btn:hover {
             background: linear-gradient(to right, #0d47a1, #1a56db);
             transform: translateY(-2px);
             box-shadow: 0 6px 20px rgba(26, 86, 219, 0.4);
         }
-        
+
         /* Cultural Elements */
         .cultural-border {
             height: 12px;
@@ -469,108 +513,154 @@
                 var(--accent) 60%, 
                 var(--secondary) 80%, 
                 var(--cultural) 100%);
-            margin: 50px 0;
+            margin: var(--spacing-lg) 0;
             border-radius: 6px;
             box-shadow: 0 2px 8px rgba(0,0,0,0.1);
         }
-        
+
         .cultural-pattern {
             background-image: url('image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="80" height="80" viewBox="0 0 80 80"><path d="M0,0 L80,80" stroke="%23dc2626" stroke-width="1" opacity="0.2"/></svg>');
-            padding: 25px;
-            border-radius: 15px;
-            margin: 30px 0;
+            padding: clamp(20px, 4vw, 25px);
+            border-radius: var(--border-radius);
+            margin: var(--spacing-md) 0;
             background-color: #fff9f9;
             border: 1px solid #ffe0e0;
         }
-        
+
         /* Footer */
         footer {
             background: linear-gradient(to right, var(--dark), #111827);
             color: white;
-            padding: 40px 0 30px;
+            padding: clamp(30px, 6vw, 50px) 0 clamp(25px, 5vw, 40px);
             text-align: center;
-            margin-top: 60px;
+            margin-top: var(--spacing-lg);
             box-shadow: 0 -5px 15px rgba(0,0,0,0.1);
         }
-        
+
         .footer-content {
             display: flex;
             flex-direction: column;
             gap: 15px;
         }
-        
+
         .footer-content p {
             opacity: 0.85;
-            font-size: 0.95rem;
+            font-size: clamp(0.85rem, 2.5vw, 0.95rem);
         }
-        
+
         /* Responsive Design */
-        @media (max-width: 1024px) {
+        @media (max-width: 992px) {
             .school-info h1 {
-                font-size: 2.3rem;
+                font-size: 2.1rem;
             }
-        }
-
-        @media (max-width: 768px) {
-            .school-info h1 {
-                font-size: 2rem;
-            }
-            
-            .module-cards {
-                grid-template-columns: 1fr;
-                gap: 25px;
-            }
-            
-            .contact-details {
-                flex-direction: column;
-                gap: 15px;
-            }
-            
-            .time-display {
-                flex-direction: column;
-                gap: 12px;
-                padding: 25px 15px;
-            }
-            
-            .modules-section h2 {
-                font-size: 1.8rem;
-            }
-            
-            .btn {
-                padding: 12px 24px;
-                font-size: 0.95rem;
-            }
-
             .submission-buttons {
                 flex-direction: column;
                 align-items: center;
             }
         }
 
-        @media (max-width: 480px) {
-            .school-info h1 {
-                font-size: 1.7rem;
+        @media (max-width: 768px) {
+            .header-content {
+                flex-direction: column;
+                text-align: center;
+                gap: 15px;
             }
-            
-            .teacher-info h2 {
-                font-size: 1.5rem;
+            .school-info {
+                text-align: center;
             }
-            
-            .inspiration p {
-                font-size: 1.1rem;
-                padding: 0 10px;
+            .module-cards {
+                grid-template-columns: 1fr;
             }
-            
-            .module-header h3 {
-                font-size: 1.3rem;
+            .contact-details {
+                flex-direction: column;
+                gap: 15px;
             }
+            .time-display {
+                flex-direction: column;
+                gap: 12px;
+            }
+        }
 
-            .featured-image {
-                margin: 20px 0;
-            }
-
+        @media (max-width: 600px) {
             .school-logo {
-                width: 70px;
+                width: 65px;
+            }
+            .teacher-info h2 {
+                font-size: 1.4rem;
+            }
+            .contact-item {
+                padding: 8px 15px;
+                font-size: 0.9rem;
+            }
+        }
+
+        @media (max-width: 375px) {
+            .school-info h1 {
+                font-size: 1.5rem;
+                line-height: 1.3;
+            }
+            .school-info p {
+                font-size: 1rem;
+            }
+            .time-display {
+                padding: 15px 10px;
+                gap: 8px;
+            }
+            .time-display span {
+                font-size: 0.9rem;
+            }
+            .btn {
+                padding: 10px 20px;
+                font-size: 0.85rem;
+            }
+            .module-header h3 {
+                font-size: 1.2rem;
+            }
+            .inspiration p {
+                padding: 0 5px;
+            }
+        }
+
+        /* Dark Mode Support */
+        @media (prefers-color-scheme: dark) {
+            body {
+                background-color: #121212;
+                color: #e0e0e0;
+                background-image: none;
+            }
+            .teacher-info, .module-card, .time-display, .cultural-pattern {
+                background: #1e1e1e;
+                border-color: #333;
+            }
+            .module-body li {
+                border-bottom-color: #333;
+            }
+            .module-footer {
+                background: #252525;
+            }
+            .module-card:hover .module-footer {
+                background: #2a2a2a;
+            }
+            .contact-item {
+                background: #2a2a2a;
+            }
+            .contact-item:hover {
+                background: #333;
+            }
+        }
+
+        /* Print Friendly */
+        @media print {
+            .btn, .submission-buttons, .time-display, footer {
+                display: none;
+            }
+            body {
+                background: white;
+                color: black;
+            }
+            .module-card, .teacher-info, .inspiration {
+                box-shadow: none;
+                border: 1px solid #ccc;
             }
         }
     </style>
@@ -578,14 +668,16 @@
 <body>
     <header>
         <div class="header-pattern"></div>
-        <div class="container" style="display: flex; align-items: center;">
-            <a href="https://ibb.co.com/4gW7L78B" target="_blank" rel="noopener noreferrer">
-                <img src="https://i.ibb.co.com/4gW7L78B/SMAN1-Cluring-emblem.png" alt="Logo SMAN1 Cluring" class="school-logo" loading="lazy">
-            </a>
-            <div class="school-info">
-                <h1>MATEMATIKA KELAS XII</h1>
-                <p>SMA Negeri Cluring</p>
-                <p>JL: Huzaini-Benculuk-Cluring, Banyuwangi</p>
+        <div class="container">
+            <div class="header-content">
+                <a href="https://ibb.co.com/4gW7L78B" target="_blank" rel="noopener noreferrer" class="logo-wrapper">
+                    <img src="https://i.ibb.co.com/4gW7L78B/SMAN1-Cluring-emblem.png" alt="Logo SMAN1 Cluring" class="school-logo" loading="lazy">
+                </a>
+                <div class="school-info">
+                    <h1>MATEMATIKA KELAS XII</h1>
+                    <p>SMA Negeri Cluring</p>
+                    <p>JL: Huzaini-Benculuk-Cluring, Banyuwangi</p>
+                </div>
             </div>
         </div>
     </header>
