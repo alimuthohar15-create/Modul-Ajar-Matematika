@@ -2,7 +2,7 @@
 <html lang="id">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Matematika Kelas XII - SMA Negeri Cluring</title>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
@@ -18,53 +18,52 @@
             --hover-shadow: 0 10px 25px rgba(0,0,0,0.15);
             --doc-color: #ef4444;
             --pdf-color: #3b82f6;
-            --font-size-h1: clamp(1.7rem, 5vw, 2.8rem);
-            --font-size-h2: clamp(1.3rem, 4vw, 1.8rem);
-            --font-size-quote: clamp(1rem, 3.5vw, 1.3rem);
-            --font-size-section: clamp(1.6rem, 5vw, 2.2rem);
-            --border-radius: 16px;
-            --spacing-sm: clamp(10px, 2vw, 20px);
-            --spacing-md: clamp(20px, 5vw, 45px);
-            --spacing-lg: clamp(40px, 8vw, 80px);
+            --assignment-color: #8b5cf6;
+            --results-color: #06b6d4;
+            --card1: #3b82f6;
+            --card2: #10b981;
+            --card3: #f59e0b;
+            --card4: #ef4444;
+            --card5: #8b5cf6;
+            --card6: #06b6d4;
+            --card7: #84cc16;
+            --card8: #f97316;
+            --card9: #ec4899;
+            --card10: #6366f1;
         }
-
+        
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            scroll-behavior: smooth;
         }
-
+        
         body {
             font-family: 'Poppins', sans-serif;
             line-height: 1.7;
             color: #333;
             background-color: #f9fafb;
             background-image: url('image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 100 100"><rect fill="%23f0f7ff" width="100" height="100"/><path d="M0,0 L100,100" stroke="%23e6f0ff" stroke-width="1"/></svg>');
-            padding-bottom: env(safe-area-inset-bottom);
-            padding-top: env(safe-area-inset-top);
-            padding-left: env(safe-area-inset-left);
-            padding-right: env(safe-area-inset-right);
-            transition: background-color 0.3s ease;
+            padding-bottom: 60px;
         }
-
+        
         .container {
             max-width: 1200px;
             margin: 0 auto;
-            padding: 0 clamp(1rem, 3vw, 2rem);
+            padding: 0 20px;
         }
-
+        
         /* Header Styles */
         header {
             background: linear-gradient(135deg, var(--primary) 0%, #0d47a1 100%);
             color: white;
-            padding: clamp(20px, 5vw, 40px) 0;
+            padding: 30px 0;
             position: relative;
             overflow: hidden;
             border-bottom: 5px solid var(--secondary);
             box-shadow: var(--soft-shadow);
         }
-
+        
         .header-pattern {
             position: absolute;
             top: 0;
@@ -74,117 +73,61 @@
             background-image: url('image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="60" height="60" viewBox="0 0 60 60"><path d="M0,0 L60,60" stroke="%23ffffff" stroke-width="0.5" opacity="0.2"/></svg>');
             opacity: 0.3;
         }
-
-        .header-content {
-            display: flex;
-            align-items: center;
-            justify-content: flex-start;
-            gap: 25px;
-            flex-wrap: wrap;
-        }
-
-        .logo-wrapper {
-            flex-shrink: 0;
-        }
-
-        .school-logo {
-            width: clamp(65px, 12vw, 80px);
-            height: auto;
-            border-radius: 8px;
-            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
-            transition: transform 0.3s ease;
-        }
-
-        .school-logo:hover {
-            transform: scale(1.05);
-        }
-
+        
         .school-info {
-            text-align: left;
+            text-align: center;
             position: relative;
             z-index: 1;
-            max-width: calc(100% - 120px);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
         }
-
+        
+        .school-logo {
+            width: 120px;
+            height: 120px;
+            margin-bottom: 15px;
+            border-radius: 50%;
+            overflow: hidden;
+            border: 4px solid white;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+        }
+        
+        .school-logo img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        
         .school-info h1 {
-            font-size: var(--font-size-h1);
+            font-size: 2.8rem;
             margin-bottom: 10px;
             text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
             letter-spacing: -0.5px;
-            line-height: 1.2;
-            text-align: left;
         }
-
+        
         .school-info p {
-            font-size: clamp(1rem, 3vw, 1.2rem);
+            font-size: 1.2rem;
             margin-bottom: 5px;
             opacity: 0.9;
-            text-align: left;
-        }
-
-        /* Submission Buttons */
-        .submission-buttons {
-            display: flex;
-            gap: clamp(10px, 3vw, 15px);
-            justify-content: center;
-            margin: var(--spacing-md) 0;
-            flex-wrap: wrap;
-        }
-
-        .btn-submission {
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            gap: 8px;
-            padding: 12px 24px;
-            border-radius: 50px;
-            text-decoration: none;
-            font-weight: 600;
-            transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-            font-size: clamp(0.85rem, 2.5vw, 0.95rem);
-            text-align: center;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
-            min-width: 200px;
-        }
-
-        .btn-submit {
-            background: linear-gradient(to right, #ef4444, #dc2626);
-            color: white;
-        }
-
-        .btn-submit:hover {
-            background: linear-gradient(to right, #dc2626, #b91c1c);
-            transform: translateY(-2px) scale(1.02);
-            box-shadow: 0 6px 15px rgba(239,68,68,0.3);
-        }
-
-        .btn-view {
-            background: linear-gradient(to right, #3b82f6, #1d4ed8);
-            color: white;
-        }
-
-        .btn-view:hover {
-            background: linear-gradient(to right, #1d4ed8, #1e40af);
-            transform: translateY(-2px) scale(1.02);
-            box-shadow: 0 6px 15px rgba(59,130,246,0.3);
         }
 
         /* Foto Section */
         .featured-image {
             text-align: center;
-            margin: var(--spacing-md) 0;
+            margin: 30px 0;
         }
 
         .featured-image a {
             display: inline-block;
-            border-radius: var(--border-radius);
+            border-radius: 12px;
             overflow: hidden;
             box-shadow: var(--soft-shadow);
-            transition: transform 0.35s cubic-bezier(0.25, 0.46, 0.45, 0.94), box-shadow 0.35s ease;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
         }
 
         .featured-image a:hover {
-            transform: scale(1.03);
+            transform: scale(1.02);
             box-shadow: var(--hover-shadow);
         }
 
@@ -192,71 +135,65 @@
             max-width: 100%;
             height: auto;
             display: block;
-            border-radius: var(--border-radius);
+            border-radius: 12px;
             transition: filter 0.3s ease;
         }
 
         .featured-image a:hover img {
             filter: brightness(1.05);
         }
-
+        
         /* Time Display */
         .time-display {
             background: linear-gradient(to right, #ffffff, #f0f7ff);
-            padding: clamp(15px, 4vw, 20px);
+            padding: 20px;
             text-align: center;
             box-shadow: var(--soft-shadow);
-            margin: var(--spacing-md) 0;
-            border-radius: var(--border-radius);
+            margin: 30px 0;
+            border-radius: 12px;
             font-weight: 500;
             color: var(--dark);
             display: flex;
             justify-content: center;
             align-items: center;
-            gap: clamp(10px, 3vw, 20px);
+            gap: 20px;
             border: 1px solid #e5e7eb;
-            flex-wrap: wrap;
         }
-
+        
         .time-display i {
             color: var(--primary);
-            font-size: clamp(1.2rem, 4vw, 1.6rem);
+            font-size: 1.6rem;
             transition: transform 0.3s ease;
         }
-
+        
         .time-display:hover i {
             transform: rotate(360deg);
         }
-
-        .time-display span {
-            font-size: clamp(0.95rem, 3vw, 1rem);
-        }
-
+        
         /* Teacher Info */
         .teacher-info {
             background: white;
-            padding: clamp(25px, 5vw, 35px);
-            border-radius: var(--border-radius);
+            padding: 30px;
+            border-radius: 15px;
             box-shadow: var(--soft-shadow);
-            margin: var(--spacing-md) 0;
+            margin: 30px 0;
             text-align: center;
             border-left: 6px solid var(--cultural);
-            transition: all 0.35s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            transition: transform 0.3s ease;
         }
-
+        
         .teacher-info:hover {
-            transform: translateY(-5px);
-            box-shadow: var(--hover-shadow);
+            transform: translateY(-3px);
         }
-
+        
         .teacher-info h2 {
             color: var(--primary);
             margin-bottom: 15px;
             position: relative;
             display: inline-block;
-            font-size: var(--font-size-h2);
+            font-size: 1.8rem;
         }
-
+        
         .teacher-info h2:after {
             content: '';
             position: absolute;
@@ -268,55 +205,171 @@
             background: linear-gradient(to right, var(--secondary), var(--accent));
             border-radius: 3px;
         }
-
+        
         .contact-details {
             display: flex;
             justify-content: center;
-            gap: clamp(15px, 3vw, 30px);
+            gap: 30px;
             margin-top: 25px;
             flex-wrap: wrap;
         }
-
+        
         .contact-item {
             display: flex;
             align-items: center;
             gap: 10px;
             background: #f8fafc;
-            padding: clamp(8px, 2vw, 12px) clamp(15px, 3vw, 20px);
+            padding: 12px 20px;
             border-radius: 50px;
-            transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-            font-size: clamp(0.85rem, 2.5vw, 1rem);
+            transition: background 0.3s ease;
         }
-
+        
         .contact-item:hover {
             background: #eef2ff;
-            transform: translateY(-2px);
         }
-
+        
         .contact-item i {
             color: var(--primary);
             font-size: 1.2rem;
         }
-
+        
+        /* Assignment Buttons Section */
+        .assignment-section {
+            margin: 40px 0;
+            text-align: center;
+        }
+        
+        .assignment-section h2 {
+            color: var(--primary);
+            margin-bottom: 30px;
+            position: relative;
+            padding-bottom: 15px;
+            font-size: 2.2rem;
+        }
+        
+        .assignment-section h2:after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 120px;
+            height: 4px;
+            background: linear-gradient(to right, var(--assignment-color), var(--results-color));
+            border-radius: 2px;
+        }
+        
+        .assignment-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            flex-wrap: wrap;
+            margin-bottom: 40px;
+        }
+        
+        .big-btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 15px;
+            padding: 20px 40px;
+            border-radius: 15px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1.2rem;
+            transition: all 0.3s ease;
+            box-shadow: 0 6px 20px rgba(0,0,0,0.15);
+            min-width: 280px;
+            text-align: center;
+        }
+        
+        .big-btn.assignment {
+            background: linear-gradient(135deg, var(--assignment-color) 0%, #7c3aed 100%);
+            color: white;
+        }
+        
+        .big-btn:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+        }
+        
+        .big-btn i {
+            font-size: 1.5rem;
+        }
+        
+        /* Results Section */
+        .results-section {
+            margin: 40px 0;
+        }
+        
+        .results-section h2 {
+            text-align: center;
+            color: var(--primary);
+            margin-bottom: 30px;
+            position: relative;
+            padding-bottom: 15px;
+            font-size: 2.2rem;
+        }
+        
+        .results-section h2:after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 120px;
+            height: 4px;
+            background: linear-gradient(to right, var(--results-color), var(--assignment-color));
+            border-radius: 2px;
+        }
+        
+        .results-container {
+            background: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: var(--soft-shadow);
+            border: 1px solid #e5e7eb;
+        }
+        
+        .results-header {
+            background: linear-gradient(135deg, var(--results-color) 0%, #0e7490 100%);
+            color: white;
+            padding: 20px;
+            text-align: center;
+        }
+        
+        .results-header h3 {
+            font-size: 1.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+        }
+        
+        .results-frame {
+            width: 100%;
+            height: 600px;
+            border: none;
+        }
+        
         /* Inspirational Quote */
         .inspiration {
             background: linear-gradient(45deg, var(--secondary), var(--accent));
-            padding: clamp(25px, 5vw, 45px);
-            border-radius: var(--border-radius);
+            padding: 35px;
+            border-radius: 15px;
             color: white;
             text-align: center;
-            margin: var(--spacing-md) 0;
+            margin: 45px 0;
             box-shadow: var(--soft-shadow);
             position: relative;
             overflow: hidden;
-            transition: all 0.35s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            transition: transform 0.3s ease;
         }
-
+        
         .inspiration:hover {
             transform: scale(1.01);
-            box-shadow: var(--hover-shadow);
         }
-
+        
         .inspiration:before {
             content: '"';
             position: absolute;
@@ -327,31 +380,30 @@
             font-family: Georgia, serif;
             line-height: 1;
         }
-
+        
         .inspiration p {
-            font-size: var(--font-size-quote);
+            font-size: 1.3rem;
             font-style: italic;
             position: relative;
             z-index: 1;
             max-width: 800px;
             margin: 0 auto;
-            line-height: 1.6;
         }
-
+        
         /* Module Cards */
         .modules-section {
-            margin: var(--spacing-lg) 0;
+            margin: 60px 0;
         }
-
+        
         .modules-section h2 {
             text-align: center;
             color: var(--primary);
-            margin-bottom: clamp(30px, 6vw, 50px);
+            margin-bottom: 40px;
             position: relative;
             padding-bottom: 15px;
-            font-size: var(--font-size-section);
+            font-size: 2.2rem;
         }
-
+        
         .modules-section h2:after {
             content: '';
             position: absolute;
@@ -363,78 +415,108 @@
             background: linear-gradient(to right, var(--cultural), var(--secondary));
             border-radius: 2px;
         }
-
+        
         .module-cards {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(min(320px, 100%), 1fr));
-            gap: var(--spacing-sm);
-            margin-top: var(--spacing-sm);
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 30px;
         }
-
+        
         .module-card {
             background: white;
-            border-radius: var(--border-radius);
+            border-radius: 15px;
             overflow: hidden;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
-            border: 1px solid rgba(0,0,0,0.03);
-            transition: all 0.35s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            box-shadow: var(--soft-shadow);
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
             position: relative;
+            border: 1px solid #e5e7eb;
         }
-
+        
         .module-card:hover {
-            transform: translateY(-5px) scale(1.01);
-            box-shadow: 0 12px 30px rgba(0,0,0,0.08);
+            transform: translateY(-8px);
+            box-shadow: var(--hover-shadow);
         }
-
+        
         .module-header {
             background: linear-gradient(135deg, var(--primary) 0%, #0d47a1 100%);
             color: white;
-            padding: clamp(20px, 4vw, 25px);
+            padding: 25px 20px;
             text-align: center;
             position: relative;
         }
 
-        .module-header.doc {
-            background: linear-gradient(135deg, var(--doc-color) 0%, #b91c1c 100%);
+        .module-card:nth-child(1) .module-header {
+            background: linear-gradient(135deg, var(--card1) 0%, #1d4ed8 100%);
         }
-
-        .module-header.pdf {
-            background: linear-gradient(135deg, var(--pdf-color) 0%, #1d4ed8 100%);
+        
+        .module-card:nth-child(2) .module-header {
+            background: linear-gradient(135deg, var(--card2) 0%, #047857 100%);
         }
-
+        
+        .module-card:nth-child(3) .module-header {
+            background: linear-gradient(135deg, var(--card3) 0%, #d97706 100%);
+        }
+        
+        .module-card:nth-child(4) .module-header {
+            background: linear-gradient(135deg, var(--card4) 0%, #b91c1c 100%);
+        }
+        
+        .module-card:nth-child(5) .module-header {
+            background: linear-gradient(135deg, var(--card5) 0%, #7c3aed 100%);
+        }
+        
+        .module-card:nth-child(6) .module-header {
+            background: linear-gradient(135deg, var(--card6) 0%, #0e7490 100%);
+        }
+        
+        .module-card:nth-child(7) .module-header {
+            background: linear-gradient(135deg, var(--card7) 0%, #4d7c0f 100%);
+        }
+        
+        .module-card:nth-child(8) .module-header {
+            background: linear-gradient(135deg, var(--card8) 0%, #ea580c 100%);
+        }
+        
+        .module-card:nth-child(9) .module-header {
+            background: linear-gradient(135deg, var(--card9) 0%, #be185d 100%);
+        }
+        
+        .module-card:nth-child(10) .module-header {
+            background: linear-gradient(135deg, var(--card10) 0%, #4338ca 100%);
+        }
+        
         .module-header h3 {
-            font-size: clamp(1.2rem, 4vw, 1.5rem);
+            font-size: 1.5rem;
             letter-spacing: -0.5px;
             display: flex;
             align-items: center;
             justify-content: center;
             gap: 10px;
-            margin: 0;
         }
 
         .module-header h3 i {
             font-size: 1.3rem;
         }
-
+        
         .module-body {
-            padding: clamp(20px, 4vw, 25px);
+            padding: 25px;
             max-height: 320px;
             overflow-y: auto;
         }
-
+        
         .module-body ul {
             list-style-type: none;
             padding: 0;
         }
-
+        
         .module-body li {
             padding: 14px 0;
             border-bottom: 1px dashed #e5e7eb;
             display: flex;
             align-items: flex-start;
-            font-size: clamp(0.85rem, 2.5vw, 0.95rem);
+            font-size: 0.95rem;
         }
-
+        
         .module-body li:before {
             content: '✓';
             color: var(--accent);
@@ -442,70 +524,93 @@
             font-weight: bold;
             min-width: 16px;
         }
-
+        
         .module-body li:last-child {
             border-bottom: none;
         }
-
+        
         .module-footer {
             background-color: #f9fafb;
-            padding: clamp(15px, 3vw, 20px);
+            padding: 20px;
             text-align: center;
             border-top: 1px solid #eee;
             transition: background 0.3s ease;
         }
-
+        
         .module-card:hover .module-footer {
             background-color: #f0f5ff;
         }
-
+        
         .btn {
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            gap: 8px;
+            display: inline-block;
             padding: 12px 28px;
             background: linear-gradient(to right, var(--primary), #0d47a1);
             color: white;
             border-radius: 50px;
             text-decoration: none;
             font-weight: 600;
-            transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            transition: all 0.3s ease;
             box-shadow: 0 4px 15px rgba(26, 86, 219, 0.3);
             border: none;
             cursor: pointer;
-            font-size: clamp(0.9rem, 2.8vw, 1rem);
-            min-width: 160px;
+            font-size: 1rem;
         }
 
-        .btn.doc {
-            background: linear-gradient(to right, var(--doc-color), #b91c1c);
-            box-shadow: 0 4px 15px rgba(239, 68, 68, 0.3);
-        }
-
-        .btn.doc:hover {
-            background: linear-gradient(to right, #b91c1c, var(--doc-color));
-            box-shadow: 0 6px 20px rgba(239, 68, 68, 0.4);
-            transform: translateY(-2px);
-        }
-
-        .btn.pdf {
-            background: linear-gradient(to right, var(--pdf-color), #1d4ed8);
+        .module-card:nth-child(1) .btn {
+            background: linear-gradient(to right, var(--card1), #1d4ed8);
             box-shadow: 0 4px 15px rgba(59, 130, 246, 0.3);
         }
-
-        .btn.pdf:hover {
-            background: linear-gradient(to right, #1d4ed8, var(--pdf-color));
-            box-shadow: 0 6px 20px rgba(59, 130, 246, 0.4);
-            transform: translateY(-2px);
+        
+        .module-card:nth-child(2) .btn {
+            background: linear-gradient(to right, var(--card2), #047857);
+            box-shadow: 0 4px 15px rgba(16, 185, 129, 0.3);
         }
-
+        
+        .module-card:nth-child(3) .btn {
+            background: linear-gradient(to right, var(--card3), #d97706);
+            box-shadow: 0 4px 15px rgba(245, 158, 11, 0.3);
+        }
+        
+        .module-card:nth-child(4) .btn {
+            background: linear-gradient(to right, var(--card4), #b91c1c);
+            box-shadow: 0 4px 15px rgba(239, 68, 68, 0.3);
+        }
+        
+        .module-card:nth-child(5) .btn {
+            background: linear-gradient(to right, var(--card5), #7c3aed);
+            box-shadow: 0 4px 15px rgba(139, 92, 246, 0.3);
+        }
+        
+        .module-card:nth-child(6) .btn {
+            background: linear-gradient(to right, var(--card6), #0e7490);
+            box-shadow: 0 4px 15px rgba(6, 182, 212, 0.3);
+        }
+        
+        .module-card:nth-child(7) .btn {
+            background: linear-gradient(to right, var(--card7), #4d7c0f);
+            box-shadow: 0 4px 15px rgba(132, 204, 22, 0.3);
+        }
+        
+        .module-card:nth-child(8) .btn {
+            background: linear-gradient(to right, var(--card8), #ea580c);
+            box-shadow: 0 4px 15px rgba(249, 115, 22, 0.3);
+        }
+        
+        .module-card:nth-child(9) .btn {
+            background: linear-gradient(to right, var(--card9), #be185d);
+            box-shadow: 0 4px 15px rgba(236, 72, 153, 0.3);
+        }
+        
+        .module-card:nth-child(10) .btn {
+            background: linear-gradient(to right, var(--card10), #4338ca);
+            box-shadow: 0 4px 15px rgba(99, 102, 241, 0.3);
+        }
+        
         .btn:hover {
-            background: linear-gradient(to right, #0d47a1, #1a56db);
             transform: translateY(-2px);
-            box-shadow: 0 6px 20px rgba(26, 86, 219, 0.4);
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2);
         }
-
+        
         /* Cultural Elements */
         .cultural-border {
             height: 12px;
@@ -516,160 +621,128 @@
                 var(--accent) 60%, 
                 var(--secondary) 80%, 
                 var(--cultural) 100%);
-            margin: var(--spacing-lg) 0;
+            margin: 50px 0;
             border-radius: 6px;
             box-shadow: 0 2px 8px rgba(0,0,0,0.1);
         }
-
+        
         .cultural-pattern {
             background-image: url('image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="80" height="80" viewBox="0 0 80 80"><path d="M0,0 L80,80" stroke="%23dc2626" stroke-width="1" opacity="0.2"/></svg>');
-            padding: clamp(20px, 4vw, 25px);
-            border-radius: var(--border-radius);
-            margin: var(--spacing-md) 0;
+            padding: 25px;
+            border-radius: 15px;
+            margin: 30px 0;
             background-color: #fff9f9;
             border: 1px solid #ffe0e0;
         }
-
+        
         /* Footer */
         footer {
             background: linear-gradient(to right, var(--dark), #111827);
             color: white;
-            padding: clamp(30px, 6vw, 50px) 0 clamp(25px, 5vw, 40px);
+            padding: 40px 0 30px;
             text-align: center;
-            margin-top: var(--spacing-lg);
+            margin-top: 60px;
             box-shadow: 0 -5px 15px rgba(0,0,0,0.1);
         }
-
+        
         .footer-content {
             display: flex;
             flex-direction: column;
             gap: 15px;
         }
-
+        
         .footer-content p {
             opacity: 0.85;
-            font-size: clamp(0.85rem, 2.5vw, 0.95rem);
+            font-size: 0.95rem;
         }
-
+        
         /* Responsive Design */
-        @media (max-width: 992px) {
+        @media (max-width: 1024px) {
             .school-info h1 {
-                font-size: 2.1rem;
-            }
-            .submission-buttons {
-                flex-direction: column;
-                align-items: center;
+                font-size: 2.3rem;
             }
         }
 
         @media (max-width: 768px) {
-            .header-content {
-                flex-direction: column;
-                align-items: center;
-                text-align: center;
-                gap: 15px;
+            .school-info h1 {
+                font-size: 2rem;
             }
-            .school-info {
-                text-align: center;
-                max-width: 100%;
-            }
-            .school-info h1,
-            .school-info p {
-                text-align: center;
-            }
+            
             .module-cards {
                 grid-template-columns: 1fr;
+                gap: 25px;
             }
+            
             .contact-details {
                 flex-direction: column;
                 gap: 15px;
             }
+            
             .time-display {
                 flex-direction: column;
                 gap: 12px;
+                padding: 25px 15px;
             }
-        }
-
-        @media (max-width: 600px) {
-            .school-logo {
-                width: 65px;
+            
+            .modules-section h2, .assignment-section h2, .results-section h2 {
+                font-size: 1.8rem;
             }
-            .teacher-info h2 {
-                font-size: 1.4rem;
-            }
-            .contact-item {
-                padding: 8px 15px;
-                font-size: 0.9rem;
-            }
-        }
-
-        @media (max-width: 375px) {
-            .school-info h1 {
-                font-size: 1.5rem;
-                line-height: 1.3;
-            }
-            .school-info p {
-                font-size: 1rem;
-            }
-            .time-display {
-                padding: 15px 10px;
-                gap: 8px;
-            }
-            .time-display span {
-                font-size: 0.9rem;
-            }
+            
             .btn {
-                padding: 10px 20px;
-                font-size: 0.85rem;
+                padding: 12px 24px;
+                font-size: 0.95rem;
             }
-            .module-header h3 {
-                font-size: 1.2rem;
+            
+            .big-btn {
+                padding: 18px 30px;
+                font-size: 1.1rem;
+                min-width: 240px;
             }
+            
+            .assignment-buttons {
+                gap: 20px;
+            }
+            
+            .results-frame {
+                height: 400px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .school-info h1 {
+                font-size: 1.7rem;
+            }
+            
+            .teacher-info h2 {
+                font-size: 1.5rem;
+            }
+            
             .inspiration p {
-                padding: 0 5px;
+                font-size: 1.1rem;
+                padding: 0 10px;
             }
-        }
+            
+            .module-header h3 {
+                font-size: 1.3rem;
+            }
 
-        /* Dark Mode Support */
-        @media (prefers-color-scheme: dark) {
-            body {
-                background-color: #121212;
-                color: #e0e0e0;
-                background-image: none;
+            .featured-image {
+                margin: 20px 0;
             }
-            .teacher-info, .module-card, .time-display, .cultural-pattern {
-                background: #1e1e1e;
-                border-color: #333;
+            
+            .big-btn {
+                padding: 16px 24px;
+                font-size: 1rem;
+                min-width: 200px;
             }
-            .module-body li {
-                border-bottom-color: #333;
+            
+            .assignment-buttons {
+                flex-direction: column;
+                align-items: center;
             }
-            .module-footer {
-                background: #252525;
-            }
-            .module-card:hover .module-footer {
-                background: #2a2a2a;
-            }
-            .contact-item {
-                background: #2a2a2a;
-            }
-            .contact-item:hover {
-                background: #333;
-            }
-        }
-
-        /* Print Friendly */
-        @media print {
-            .btn, .submission-buttons, .time-display, footer {
-                display: none;
-            }
-            body {
-                background: white;
-                color: black;
-            }
-            .module-card, .teacher-info, .inspiration {
-                box-shadow: none;
-                border: 1px solid #ccc;
+            
+            .results-frame {
+                height: 300px;
             }
         }
     </style>
@@ -678,24 +751,25 @@
     <header>
         <div class="header-pattern"></div>
         <div class="container">
-            <div class="header-content">
-                <a href="https://ibb.co.com/4gW7L78B" target="_blank" rel="noopener noreferrer" class="logo-wrapper">
-                    <img src="https://i.ibb.co.com/4gW7L78B/SMAN1-Cluring-emblem.png" alt="Logo SMAN1 Cluring" class="school-logo" loading="lazy">
-                </a>
-                <div class="school-info">
-                    <h1>MATEMATIKA KELAS XII</h1>
-                    <p>SMA Negeri Cluring</p>
-                    <p>JL: Huzaini-Benculuk-Cluring, Banyuwangi</p>
+            <div class="school-info">
+                <!-- Logo SMAN 1 Cluring -->
+                <div class="school-logo">
+                    <a href="https://ibb.co/4gW7L78B" target="_blank">
+                        <img src="https://i.ibb.co/4gW7L78B/SMAN1-Cluring-emblem.png" alt="Logo SMAN 1 Cluring">
+                    </a>
                 </div>
+                <h1>MATEMATIKA KELAS XII</h1>
+                <p>SMA Negeri Cluring</p>
+                <p>JL: Huzaini-Benculuk-Cluring, Banyuwangi</p>
             </div>
         </div>
     </header>
     
     <div class="container">
-        <!-- Foto -->
+        <!-- Foto Ali Muthohar, S.Pd -->
         <div class="featured-image">
-            <a href="https://ibb.co.com/nN5R3Hn8" target="_blank" rel="noopener noreferrer">
-                <img src="https://i.ibb.co.com/nN5R3Hn8/Whats-App-Image-2025-07-10-at-21-02-17.jpg" alt="Kegiatan Belajar Matematika Kelas XII" loading="lazy">
+            <a href="https://ibb.co/nN5R3Hn8" target="_blank" rel="noopener noreferrer">
+                <img src="https://i.ibb.co/nN5R3Hn8/Whats-App-Image-2025-07-10-at-21-02-17.jpg" alt="Ali Muthohar, S.Pd" loading="lazy">
             </a>
         </div>
 
@@ -724,175 +798,220 @@
                 </div>
             </div>
         </div>
-
-        <!-- Tombol Pengumpulan Tugas -->
-        <div class="submission-buttons">
-            <a href="https://forms.gle/N4NDtbKcT2cLVMx7A" target="_blank" class="btn-submission btn-submit">
-                <i class="fas fa-upload"></i> KUMPULKAN TUGAS
-            </a>
-            <a href="https://docs.google.com/spreadsheets/d/e/2PACX-1vRT6OzTF_PcKU7zv4_lgNloHxNWuDjx31C1hSX-4F8zi5lbW5OQDeKk6j9JpGItfwjb3E7KFgypOkAf/pubhtml?gid=1791354819&single=true" target="_blank" class="btn-submission btn-view">
-                <i class="fas fa-table"></i> LIHAT HASIL PENGUMPULAN
-            </a>
-        </div>
         
         <div class="inspiration">
             <p>"Matematika adalah bahasa alam semesta. Dengan memahaminya, kita dapat membaca karya agung Sang Pencipta."</p>
         </div>
         
+        <!-- Section Pengumpulan Tugas dengan Tombol Besar -->
+        <div class="assignment-section">
+            <h2>Pengumpulan Tugas</h2>
+            <div class="assignment-buttons">
+                <a href="https://forms.gle/N4NDtbKcT2cLVMx7A" class="big-btn assignment" target="_blank">
+                    <i class="fas fa-tasks"></i>
+                    <span>Pengumpulan Tugas</span>
+                </a>
+            </div>
+        </div>
+        
+        <!-- Section Hasil Pengumpulan Tugas dengan Iframe -->
+        <div class="results-section">
+            <h2>Hasil Pengumpulan Tugas</h2>
+            <div class="results-container">
+                <div class="results-header">
+                    <h3><i class="fas fa-chart-line"></i> Data Pengumpulan Tugas Matematika Kelas XII</h3>
+                </div>
+                <iframe 
+                    src="https://docs.google.com/spreadsheets/d/e/2PACX-1vRT6OzTF_PcKU7zv4_lgNloHxNWuDjx31C1hSX-4F8zi5lbW5OQDeKk6j9JpGItfwjb3E7KFgypOkAf/pubhtml?gid=1791354819&amp;single=true&amp;widget=true&amp;headers=false" 
+                    class="results-frame"
+                    title="Hasil Pengumpulan Tugas Matematika Kelas XII">
+                </iframe>
+            </div>
+        </div>
+        
         <div class="cultural-border"></div>
         
+        <!-- Section Modul Pembelajaran dengan 10 Kartu -->
         <div class="modules-section">
-            <h2>Modul & Instrumen Penilaian</h2>
+            <h2>Modul Pembelajaran Matematika Kelas XII</h2>
             <div class="module-cards">
-                <!-- Kartu 1: Instrumen Asesmen (DOCX) -->
+                <!-- Kartu 1: Statistika -->
                 <div class="module-card">
-                    <div class="module-header doc">
-                        <h3><i class="fas fa-file-word"></i> Instrumen Asesmen</h3>
+                    <div class="module-header">
+                        <h3><i class="fas fa-chart-bar"></i> Statistika</h3>
                     </div>
                     <div class="module-body">
                         <ul>
-                            <li>Soal evaluasi harian kaidah pencacahan</li>
-                            <li>Rubrik penilaian dan kunci jawaban</li>
-                            <li>Format penilaian sikap dan keterampilan</li>
-                            <li>Cocok untuk latihan ujian dan remedial</li>
+                            <li>Penyajian data dalam bentuk tabel, diagram, dan grafik</li>
+                            <li>Ukuran pemusatan data: mean, median, modus</li>
+                            <li>Ukuran penyebaran data: jangkauan, simpangan, variansi</li>
+                            <li>Distribusi normal dan penerapannya dalam kehidupan</li>
                         </ul>
                     </div>
                     <div class="module-footer">
-                        <a href="Instrumen_Asesmen_Kaidah_Pencacahan.docx.html" class="btn doc">Unduh/Preview</a>
+                        <a href="statistika.html" class="btn">Akses Modul</a>
                     </div>
                 </div>
 
-                <!-- Kartu 2: Modul Pembelajaran (PDF) -->
+                <!-- Kartu 2: Peluang -->
                 <div class="module-card">
-                    <div class="module-header pdf">
-                        <h3><i class="fas fa-file-pdf"></i> Modul Pembelajaran</h3>
+                    <div class="module-header">
+                        <h3><i class="fas fa-dice"></i> Peluang</h3>
                     </div>
                     <div class="module-body">
                         <ul>
-                            <li>Materi lengkap kaidah pencacahan (aturan, permutasi, kombinasi)</li>
-                            <li>Contoh soal dan pembahasan langkah demi langkah</li>
-                            <li>Latihan mandiri dan proyek mini</li>
-                            <li>Dirancang khusus oleh guru SMAN 1 Cluring</li>
+                            <li>Kaidah pencacahan: permutasi dan kombinasi</li>
+                            <li>Peluang kejadian tunggal dan majemuk</li>
+                            <li>Peluang kejadian saling lepas dan bebas</li>
+                            <li>Penerapan peluang dalam masalah kehidupan sehari-hari</li>
                         </ul>
                     </div>
                     <div class="module-footer">
-                        <a href="Modul_Kaidah_Pencacahan_SMAN1_Cluring.pdf.html" class="btn pdf">Buka Modul</a>
+                        <a href="peluang.html" class="btn">Akses Modul</a>
                     </div>
                 </div>
 
-                <!-- Modul KAIDAH PENCACAHAN -->
+                <!-- Kartu 3: Limit Fungsi -->
                 <div class="module-card">
                     <div class="module-header">
-                        <h3><i class="fas fa-calculator"></i> Kaidah Pencacahan</h3>
+                        <h3><i class="fas fa-infinity"></i> Limit Fungsi</h3>
                     </div>
                     <div class="module-body">
                         <ul>
-                            <li>Memahami prinsip dasar aturan perkalian dan penjumlahan</li>
-                            <li>Menyelesaikan masalah kontekstual menggunakan permutasi dan kombinasi</li>
-                            <li>Menganalisis perbedaan antara permutasi dan kombinasi dalam berbagai kasus</li>
-                            <li>Menerapkan konsep pencacahan dalam kehidupan sehari-hari dan soal olimpiade</li>
+                            <li>Konsep limit fungsi aljabar dan trigonometri</li>
+                            <li>Teknik penyelesaian limit dengan substitusi dan faktorisasi</li>
+                            <li>Limit tak hingga dan limit di tak hingga</li>
+                            <li>Penerapan limit dalam menentukan kontinuitas fungsi</li>
                         </ul>
                     </div>
                     <div class="module-footer">
-                        <a href="KAIDAH-PENCACAHAN.html" class="btn">Akses Modul Ajar</a>
+                        <a href="limit-fungsi.html" class="btn">Akses Modul</a>
                     </div>
                 </div>
 
-                <!-- Modul lainnya -->
+                <!-- Kartu 4: Turunan Fungsi -->
                 <div class="module-card">
                     <div class="module-header">
-                        <h3><i class="fas fa-chalkboard-teacher"></i> Pertemuan 1-4</h3>
+                        <h3><i class="fas fa-chart-line"></i> Turunan Fungsi</h3>
                     </div>
                     <div class="module-body">
                         <ul>
-                            <li>Mengidentifikasi dan menjelaskan bentuk translasi pada fungsi linear, kuadrat, dan eksponen</li>
-                            <li>Menganalisis hubungan antar-transformasi translasi pada fungsi linear, kuadrat, dan eksponen</li>
-                            <li>Menentukan dan mempresentasikan bentuk refleksi pada fungsi linear, kuadrat, dan eksponen</li>
-                            <li>Mengeksplorasi dan menyimpulkan hubungan antar-transformasi refleksi pada fungsi</li>
+                            <li>Konsep turunan sebagai limit perubahan</li>
+                            <li>Aturan rantai dan turunan fungsi komposisi</li>
+                            <li>Turunan fungsi trigonometri dan eksponensial</li>
+                            <li>Aplikasi turunan dalam optimisasi dan laju perubahan</li>
                         </ul>
                     </div>
                     <div class="module-footer">
-                        <a href="pertemuan1-4.html" class="btn">Akses Modul Ajar</a>
+                        <a href="turunan-fungsi.html" class="btn">Akses Modul</a>
                     </div>
                 </div>
-                
+
+                <!-- Kartu 5: Integral -->
                 <div class="module-card">
                     <div class="module-header">
-                        <h3><i class="fas fa-chalkboard-teacher"></i> Pertemuan 5-8</h3>
+                        <h3><i class="fas fa-calculator"></i> Integral</h3>
                     </div>
                     <div class="module-body">
                         <ul>
-                            <li>Mengidentifikasi dan menerapkan bentuk dilatasi pada fungsi linear, kuadrat, dan eksponen</li>
-                            <li>Menganalisis pola hubungan antar-transformasi dilatasi dan pengaruh parameter skala</li>
-                            <li>Menjelaskan dan mempraktikkan bentuk rotasi pada grafik fungsi linear, kuadrat, dan eksponen</li>
-                            <li>Menganalisis hubungan antar-transformasi rotasi dan menggabungkannya dengan transformasi lain</li>
+                            <li>Konsep integral sebagai kebalikan turunan</li>
+                            <li>Integral tak tentu dan integral tentu</li>
+                            <li>Teknik integrasi: substitusi dan parsial</li>
+                            <li>Aplikasi integral dalam menghitung luas dan volume</li>
                         </ul>
                     </div>
                     <div class="module-footer">
-                        <a href="pertemuan5-8.html" class="btn">Akses Modul Ajar</a>
+                        <a href="integral.html" class="btn">Akses Modul</a>
                     </div>
                 </div>
-                
+
+                <!-- Kartu 6: Matriks -->
                 <div class="module-card">
                     <div class="module-header">
-                        <h3><i class="fas fa-chalkboard-teacher"></i> Pertemuan 9-10</h3>
+                        <h3><i class="fas fa-th"></i> Matriks</h3>
                     </div>
                     <div class="module-body">
                         <ul>
-                            <li>Mengidentifikasi, menggambar, dan menjelaskan bentuk kombinasi transformasi pada fungsi</li>
-                            <li>Menganalisis dan mengeksplorasi hubungan antar-transformasi dalam kombinasi transformasi fungsi</li>
+                            <li>Pengertian dan jenis-jenis matriks</li>
+                            <li>Operasi aljabar pada matriks: penjumlahan, perkalian</li>
+                            <li>Determinan dan invers matriks</li>
+                            <li>Penerapan matriks dalam sistem persamaan linear</li>
                         </ul>
                     </div>
                     <div class="module-footer">
-                        <a href="pertemuan9-10.html" class="btn">Akses Modul Ajar</a>
+                        <a href="matriks.html" class="btn">Akses Modul</a>
                     </div>
                 </div>
-                
+
+                <!-- Kartu 7: Program Linear -->
                 <div class="module-card">
                     <div class="module-header">
-                        <h3><i class="fas fa-circle-notch"></i> Pertemuan 11-13</h3>
+                        <h3><i class="fas fa-project-diagram"></i> Program Linear</h3>
                     </div>
                     <div class="module-body">
                         <ul>
-                            <li>Mengidentifikasi elemen-elemen lingkaran (titik pusat, jari-jari, diameter, busur, juring, tembereng)</li>
-                            <li>Menganalisis hubungan antar elemen lingkaran melalui pemecahan masalah kontekstual</li>
-                            <li>Menentukan panjang busur berdasarkan sudut pusat pada masalah kontekstual</li>
+                            <li>Konsep pertidaksamaan linear dua variabel</li>
+                            <li>Menentukan daerah penyelesaian sistem pertidaksamaan</li>
+                            <li>Model matematika dan fungsi tujuan</li>
+                            <li>Metode simpleks dan penerapannya dalam optimisasi</li>
                         </ul>
                     </div>
                     <div class="module-footer">
-                        <a href="pertemuan11-13.html" class="btn">Akses Modul Ajar</a>
+                        <a href="program-linear.html" class="btn">Akses Modul</a>
                     </div>
                 </div>
-                
+
+                <!-- Kartu 8: Barisan dan Deret -->
                 <div class="module-card">
                     <div class="module-header">
-                        <h3><i class="fas fa-ruler-combined"></i> Pertemuan 14-16</h3>
+                        <h3><i class="fas fa-sort-numeric-down"></i> Barisan dan Deret</h3>
                     </div>
                     <div class="module-body">
                         <ul>
-                            <li>Menentukan rumus panjang busur lingkaran melalui eksplorasi hubungan sudut pusat dengan keliling</li>
-                            <li>Mengeksplorasi hubungan sudut pusat dengan luas juring melalui diskusi dan pemecahan soal</li>
-                            <li>Menentukan rumus luas juring lingkaran dan menerapkannya pada masalah sehari-hari</li>
+                            <li>Barisan dan deret aritmetika</li>
+                            <li>Barisan dan deret geometri</li>
+                            <li>Deret tak hingga dan aplikasinya</li>
+                            <li>Penerapan dalam masalah pertumbuhan dan peluruhan</li>
                         </ul>
                     </div>
                     <div class="module-footer">
-                        <a href="pertemuan14-16.html" class="btn">Akses Modul Ajar</a>
+                        <a href="barisan-deret.html" class="btn">Akses Modul</a>
                     </div>
                 </div>
-                
+
+                <!-- Kartu 9: Fungsi Eksponen dan Logaritma -->
                 <div class="module-card">
                     <div class="module-header">
-                        <h3><i class="fas fa-project-diagram"></i> Pertemuan 17-19</h3>
+                        <h3><i class="fas fa-chart-line"></i> Fungsi Eksponen & Logaritma</h3>
                     </div>
                     <div class="module-body">
                         <ul>
-                            <li>Mengidentifikasi dan memahami elemen-elemen lingkaran lanjutan terkait panjang busur & luas juring</li>
-                            <li>Menganalisis hubungan elemen lingkaran pada panjang busur & luas juring melalui penyelesaian masalah</li>
-                            <li>Mengeksplorasi hubungan sudut pusat, panjang busur, dan luas juring melalui proyek mini kontekstual</li>
+                            <li>Sifat-sifat eksponen dan logaritma</li>
+                            <li>Grafik fungsi eksponen dan logaritma</li>
+                            <li>Persamaan dan pertidaksamaan eksponen-logaritma</li>
+                            <li>Penerapan dalam masalah pertumbuhan dan peluruhan</li>
                         </ul>
                     </div>
                     <div class="module-footer">
-                        <a href="pertemuan17-19.html" class="btn">Akses Modul Ajar</a>
+                        <a href="eksponen-logaritma.html" class="btn">Akses Modul</a>
+                    </div>
+                </div>
+
+                <!-- Kartu 10: Transformasi Geometri -->
+                <div class="module-card">
+                    <div class="module-header">
+                        <h3><i class="fas fa-shapes"></i> Transformasi Geometri</h3>
+                    </div>
+                    <div class="module-body">
+                        <ul>
+                            <li>Translasi, refleksi, rotasi, dan dilatasi</li>
+                            <li>Komposisi transformasi geometri</li>
+                            <li>Matriks transformasi dan penerapannya</li>
+                            <li>Penerapan transformasi dalam pemecahan masalah</li>
+                        </ul>
+                    </div>
+                    <div class="module-footer">
+                        <a href="transformasi-geometri.html" class="btn">Akses Modul</a>
                     </div>
                 </div>
             </div>
