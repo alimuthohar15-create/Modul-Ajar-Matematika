@@ -50,6 +50,8 @@
             overflow: hidden;
             border-bottom: 5px solid var(--secondary);
             box-shadow: var(--soft-shadow);
+            display: flex;
+            align-items: center;
         }
         
         .header-pattern {
@@ -62,10 +64,24 @@
             opacity: 0.3;
         }
         
+        .school-logo {
+            width: 80px;
+            height: auto;
+            margin-right: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+            transition: transform 0.3s ease;
+        }
+
+        .school-logo:hover {
+            transform: scale(1.05);
+        }
+        
         .school-info {
-            text-align: center;
+            text-align: left;
             position: relative;
             z-index: 1;
+            flex: 1;
         }
         
         .school-info h1 {
@@ -79,6 +95,49 @@
             font-size: 1.2rem;
             margin-bottom: 5px;
             opacity: 0.9;
+        }
+
+        /* Submission Buttons */
+        .submission-buttons {
+            display: flex;
+            gap: 15px;
+            justify-content: center;
+            margin: 20px 0;
+            flex-wrap: wrap;
+        }
+
+        .btn-submission {
+            display: inline-block;
+            padding: 12px 24px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            font-size: 0.95rem;
+            text-align: center;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+        }
+
+        .btn-submit {
+            background: linear-gradient(to right, #ef4444, #dc2626);
+            color: white;
+        }
+
+        .btn-submit:hover {
+            background: linear-gradient(to right, #dc2626, #b91c1c);
+            transform: translateY(-2px);
+            box-shadow: 0 6px 15px rgba(239,68,68,0.3);
+        }
+
+        .btn-view {
+            background: linear-gradient(to right, #3b82f6, #1d4ed8);
+            color: white;
+        }
+
+        .btn-view:hover {
+            background: linear-gradient(to right, #1d4ed8, #1e40af);
+            transform: translateY(-2px);
+            box-shadow: 0 6px 15px rgba(59,130,246,0.3);
         }
 
         /* Foto Section */
@@ -481,6 +540,11 @@
                 padding: 12px 24px;
                 font-size: 0.95rem;
             }
+
+            .submission-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
         }
 
         @media (max-width: 480px) {
@@ -504,13 +568,20 @@
             .featured-image {
                 margin: 20px 0;
             }
+
+            .school-logo {
+                width: 70px;
+            }
         }
     </style>
 </head>
 <body>
     <header>
         <div class="header-pattern"></div>
-        <div class="container">
+        <div class="container" style="display: flex; align-items: center;">
+            <a href="https://ibb.co.com/4gW7L78B" target="_blank" rel="noopener noreferrer">
+                <img src="https://i.ibb.co.com/4gW7L78B/SMAN1-Cluring-emblem.png" alt="Logo SMAN1 Cluring" class="school-logo" loading="lazy">
+            </a>
             <div class="school-info">
                 <h1>MATEMATIKA KELAS XII</h1>
                 <p>SMA Negeri Cluring</p>
@@ -551,6 +622,16 @@
                     <span>Tahun Ajaran 2025/2026</span>
                 </div>
             </div>
+        </div>
+
+        <!-- Tombol Pengumpulan Tugas -->
+        <div class="submission-buttons">
+            <a href="https://forms.gle/N4NDtbKcT2cLVMx7A" target="_blank" class="btn-submission btn-submit">
+                <i class="fas fa-upload"></i> KUMPULKAN TUGAS
+            </a>
+            <a href="https://docs.google.com/spreadsheets/d/e/2PACX-1vRT6OzTF_PcKU7zv4_lgNloHxNWuDjx31C1hSX-4F8zi5lbW5OQDeKk6j9JpGItfwjb3E7KFgypOkAf/pubhtml?gid=1791354819&single=true" target="_blank" class="btn-submission btn-view">
+                <i class="fas fa-table"></i> LIHAT HASIL PENGUMPULAN
+            </a>
         </div>
         
         <div class="inspiration">
