@@ -8,12 +8,12 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         :root {
-            --itb-blue: #004b8d;
-            --itb-dark-blue: #002e5b;
-            --itb-accent-gold: #f3b201;
-            --itb-accent-green: #008000;
+            --primary: #0038A8; /* Biru Brawijaya */
+            --secondary: #FFD700; /* Emas Brawijaya */
+            --accent: #E63946; /* Merah aksen */
             --light: #f3f4f6;
             --dark: #1f2937;
+            --cultural: #0038A8;
             --soft-shadow: 0 4px 12px rgba(0,0,0,0.08);
             --hover-shadow: 0 10px 25px rgba(0,0,0,0.15);
             --doc-color: #ef4444;
@@ -54,14 +54,14 @@
             padding: 0 clamp(1rem, 3vw, 2rem);
         }
 
-        /* Header Styles - ITB Inspired */
+        /* Header Styles dengan nuansa UB */
         header {
-            background: linear-gradient(135deg, var(--itb-blue) 0%, var(--itb-dark-blue) 100%);
+            background: linear-gradient(135deg, var(--primary) 0%, #00257A 100%);
             color: white;
             padding: clamp(30px, 6vw, 60px) 0;
             position: relative;
             overflow: hidden;
-            border-bottom: 5px solid var(--itb-accent-gold);
+            border-bottom: 5px solid var(--secondary);
             box-shadow: var(--soft-shadow);
             text-align: center;
         }
@@ -72,8 +72,8 @@
             left: 0;
             right: 0;
             bottom: 0;
-            background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="60" height="60" viewBox="0 0 60 60"><path d="M30,0 L0,30 L30,60 L60,30 Z" fill="%23ffffff" fill-opacity="0.1"/><circle cx="30" cy="30" r="10" fill="%23ffffff" fill-opacity="0.1"/></svg>');
-            opacity: 0.8;
+            background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="60" height="60" viewBox="0 0 60 60"><path d="M0,0 L60,60" stroke="%23FFD700" stroke-width="0.5" opacity="0.3"/></svg>');
+            opacity: 0.3;
         }
 
         .header-logo {
@@ -84,6 +84,7 @@
             border-radius: 12px;
             box-shadow: 0 6px 15px rgba(0,0,0,0.2);
             transition: transform 0.3s ease;
+            border: 2px solid var(--secondary);
         }
 
         .header-logo:hover {
@@ -112,6 +113,18 @@
             opacity: 0.9;
         }
 
+        /* UB Banner */
+        .ub-banner {
+            background: linear-gradient(to right, var(--primary), var(--secondary));
+            color: white;
+            padding: 10px 0;
+            text-align: center;
+            font-weight: 600;
+            margin-bottom: var(--spacing-md);
+            border-radius: var(--border-radius);
+            box-shadow: var(--soft-shadow);
+        }
+
         /* Submission Buttons */
         .submission-buttons {
             display: flex;
@@ -138,25 +151,25 @@
         }
 
         .btn-submit {
-            background: linear-gradient(to right, var(--itb-accent-gold), #e0a300);
+            background: linear-gradient(to right, var(--accent), #c1121f);
             color: white;
         }
 
         .btn-submit:hover {
-            background: linear-gradient(to right, #e0a300, #cfa800);
+            background: linear-gradient(to right, #c1121f, var(--accent));
             transform: translateY(-2px) scale(1.02);
-            box-shadow: 0 6px 15px rgba(243,178,1,0.3);
+            box-shadow: 0 6px 15px rgba(230,57,70,0.3);
         }
 
         .btn-view {
-            background: linear-gradient(to right, var(--itb-blue), var(--itb-dark-blue));
+            background: linear-gradient(to right, var(--primary), #00257A);
             color: white;
         }
 
         .btn-view:hover {
-            background: linear-gradient(to right, var(--itb-dark-blue), var(--itb-blue));
+            background: linear-gradient(to right, #00257A, var(--primary));
             transform: translateY(-2px) scale(1.02);
-            box-shadow: 0 6px 15px rgba(0,75,141,0.3);
+            box-shadow: 0 6px 15px rgba(0,56,168,0.3);
         }
 
         /* Foto Section */
@@ -171,6 +184,7 @@
             overflow: hidden;
             box-shadow: var(--soft-shadow);
             transition: transform 0.35s cubic-bezier(0.25, 0.46, 0.45, 0.94), box-shadow 0.35s ease;
+            border: 3px solid var(--primary);
         }
 
         .featured-image a:hover {
@@ -209,7 +223,7 @@
         }
 
         .time-display i {
-            color: var(--itb-blue);
+            color: var(--primary);
             font-size: clamp(1.2rem, 4vw, 1.6rem);
             transition: transform 0.3s ease;
         }
@@ -230,7 +244,7 @@
             box-shadow: var(--soft-shadow);
             margin: var(--spacing-md) 0;
             text-align: center;
-            border-left: 6px solid var(--itb-accent-gold);
+            border-left: 6px solid var(--primary);
             transition: all 0.35s cubic-bezier(0.25, 0.46, 0.45, 0.94);
         }
 
@@ -240,7 +254,7 @@
         }
 
         .teacher-info h2 {
-            color: var(--itb-blue);
+            color: var(--primary);
             margin-bottom: 15px;
             position: relative;
             display: inline-block;
@@ -255,7 +269,7 @@
             transform: translateX(-50%);
             width: 60px;
             height: 3px;
-            background: linear-gradient(to right, var(--itb-accent-gold), var(--itb-accent-green));
+            background: linear-gradient(to right, var(--secondary), var(--accent));
             border-radius: 3px;
         }
 
@@ -276,21 +290,23 @@
             border-radius: 50px;
             transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
             font-size: clamp(0.85rem, 2.5vw, 1rem);
+            border: 1px solid #e5e7eb;
         }
 
         .contact-item:hover {
             background: #eef2ff;
             transform: translateY(-2px);
+            border-color: var(--primary);
         }
 
         .contact-item i {
-            color: var(--itb-blue);
+            color: var(--primary);
             font-size: 1.2rem;
         }
 
-        /* Inspirational Quote */
+        /* Inspirational Quote dengan nuansa UB */
         .inspiration {
-            background: linear-gradient(45deg, var(--itb-accent-gold), var(--itb-accent-green));
+            background: linear-gradient(45deg, var(--primary), var(--secondary));
             padding: clamp(25px, 5vw, 45px);
             border-radius: var(--border-radius);
             color: white;
@@ -327,50 +343,6 @@
             margin: 0 auto;
             line-height: 1.6;
         }
-        
-        /* New Styles for Cultural Elements */
-        .cultural-border {
-            height: 12px;
-            background: linear-gradient(90deg, #6b46c1, #805ad5, #c05621, #d69e2e, #6b46c1);
-            margin: var(--spacing-lg) 0;
-            border-radius: 6px;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
-        }
-        
-        .cultural-pattern {
-            background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="80" height="80" viewBox="0 0 80 80"><path d="M40,0 L0,40 L40,80 L80,40 Z" fill="%23f0f7ff" fill-opacity="0.5"/><path d="M0,0 L80,80" stroke="%23e6f0ff" stroke-width="2" opacity="0.6"/></svg>');
-            padding: clamp(20px, 4vw, 25px);
-            border-radius: var(--border-radius);
-            margin: var(--spacing-md) 0;
-            background-color: #fff;
-            border: 1px solid #e5e7eb;
-            box-shadow: var(--soft-shadow);
-        }
-
-
-        /* Academic Elements */
-        .academic-border {
-            height: 12px;
-            background: linear-gradient(90deg, 
-                var(--itb-blue) 0%, 
-                var(--itb-accent-gold) 20%, 
-                var(--itb-accent-green) 40%, 
-                var(--itb-dark-blue) 60%, 
-                var(--itb-accent-gold) 80%, 
-                var(--itb-blue) 100%);
-            margin: var(--spacing-lg) 0;
-            border-radius: 6px;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
-        }
-
-        .academic-pattern {
-            background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="80" height="80" viewBox="0 0 80 80"><path d="M0,0 L80,80" stroke="%23004b8d" stroke-width="1" opacity="0.2"/></svg>');
-            padding: clamp(20px, 4vw, 25px);
-            border-radius: var(--border-radius);
-            margin: var(--spacing-md) 0;
-            background-color: #fff9f9;
-            border: 1px solid #ffe0e0;
-        }
 
         /* Module Cards */
         .modules-section {
@@ -379,7 +351,7 @@
 
         .modules-section h2 {
             text-align: center;
-            color: var(--itb-blue);
+            color: var(--primary);
             margin-bottom: clamp(30px, 6vw, 50px);
             position: relative;
             padding-bottom: 15px;
@@ -394,7 +366,7 @@
             transform: translateX(-50%);
             width: 120px;
             height: 4px;
-            background: linear-gradient(to right, var(--itb-accent-gold), var(--itb-dark-blue));
+            background: linear-gradient(to right, var(--primary), var(--secondary));
             border-radius: 2px;
         }
 
@@ -421,7 +393,7 @@
         }
 
         .module-header {
-            background: linear-gradient(135deg, var(--itb-blue) 0%, var(--itb-dark-blue) 100%);
+            background: linear-gradient(135deg, var(--primary) 0%, #00257A 100%);
             color: white;
             padding: clamp(20px, 4vw, 25px);
             text-align: center;
@@ -471,7 +443,7 @@
 
         .module-body li:before {
             content: '✓';
-            color: var(--itb-accent-green);
+            color: var(--accent);
             margin-right: 12px;
             font-weight: bold;
             min-width: 16px;
@@ -499,13 +471,13 @@
             justify-content: center;
             gap: 8px;
             padding: 12px 28px;
-            background: linear-gradient(to right, var(--itb-blue), var(--itb-dark-blue));
+            background: linear-gradient(to right, var(--primary), #00257A);
             color: white;
             border-radius: 50px;
             text-decoration: none;
             font-weight: 600;
             transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-            box-shadow: 0 4px 15px rgba(0, 75, 141, 0.3);
+            box-shadow: 0 4px 15px rgba(0, 56, 168, 0.3);
             border: none;
             cursor: pointer;
             font-size: clamp(0.9rem, 2.8vw, 1rem);
@@ -535,14 +507,71 @@
         }
 
         .btn:hover {
-            background: linear-gradient(to right, var(--itb-dark-blue), var(--itb-blue));
+            background: linear-gradient(to right, #00257A, var(--primary));
             transform: translateY(-2px);
-            box-shadow: 0 6px 20px rgba(0, 75, 141, 0.4);
+            box-shadow: 0 6px 20px rgba(0, 56, 168, 0.4);
+        }
+
+        /* Cultural Elements dengan nuansa UB */
+        .cultural-border {
+            height: 12px;
+            background: linear-gradient(90deg, 
+                var(--primary) 0%, 
+                var(--secondary) 20%, 
+                var(--accent) 40%, 
+                var(--secondary) 60%, 
+                var(--primary) 80%, 
+                var(--accent) 100%);
+            margin: var(--spacing-lg) 0;
+            border-radius: 6px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
+
+        .cultural-pattern {
+            background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="80" height="80" viewBox="0 0 80 80"><path d="M0,0 L80,80" stroke="%230038A8" stroke-width="1" opacity="0.2"/></svg>');
+            padding: clamp(20px, 4vw, 25px);
+            border-radius: var(--border-radius);
+            margin: var(--spacing-md) 0;
+            background-color: #f0f7ff;
+            border: 1px solid #dbeafe;
+        }
+
+        /* UB Footer Section */
+        .ub-section {
+            background: linear-gradient(to right, #f8f9fa, #e9ecef);
+            padding: clamp(25px, 5vw, 40px);
+            border-radius: var(--border-radius);
+            margin: var(--spacing-md) 0;
+            text-align: center;
+            border: 2px dashed var(--primary);
+        }
+
+        .ub-section h3 {
+            color: var(--primary);
+            margin-bottom: 15px;
+            font-size: var(--font-size-h2);
+        }
+
+        .ub-section p {
+            color: var(--dark);
+            margin-bottom: 20px;
+        }
+
+        .ub-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            background: var(--primary);
+            color: white;
+            padding: 10px 20px;
+            border-radius: 50px;
+            font-weight: 600;
+            margin-top: 15px;
         }
 
         /* Footer */
         footer {
-            background: linear-gradient(to right, var(--itb-dark-blue), var(--itb-blue));
+            background: linear-gradient(to right, var(--dark), #111827);
             color: white;
             padding: clamp(30px, 6vw, 50px) 0 clamp(25px, 5vw, 40px);
             text-align: center;
@@ -614,7 +643,7 @@
                 color: #e0e0e0;
                 background-image: none;
             }
-            .teacher-info, .module-card, .time-display, .academic-pattern {
+            .teacher-info, .module-card, .time-display, .cultural-pattern, .ub-section {
                 background: #1e1e1e;
                 border-color: #333;
             }
@@ -633,11 +662,17 @@
             .contact-item:hover {
                 background: #333;
             }
+            .ub-section {
+                background: #2a2a2a;
+            }
+            .ub-section p {
+                color: #e0e0e0;
+            }
         }
 
         /* Print Friendly */
         @media print {
-            .btn, .submission-buttons, .time-display, footer {
+            .btn, .submission-buttons, .time-display, footer, .ub-banner, .ub-section {
                 display: none;
             }
             body {
@@ -655,6 +690,7 @@
     <header>
         <div class="header-pattern"></div>
         <div class="container">
+            <!-- Logo di atas teks, rata tengah -->
             <img src="https://i.ibb.co.com/4gW7L78B/SMAN1-Cluring-emblem.png" alt="Logo SMAN1 Cluring" class="header-logo" loading="lazy">
             <div class="school-info">
                 <h1>MATEMATIKA KELAS XII</h1>
@@ -665,6 +701,11 @@
     </header>
     
     <div class="container">
+        <!-- Banner UB -->
+        <div class="ub-banner">
+            <i class="fas fa-university"></i> Terinspirasi oleh Semangat Akademik Universitas Brawijaya Malang
+        </div>
+
         <!-- Foto -->
         <div class="featured-image">
             <a href="https://ibb.co.com/nN5R3Hn8" target="_blank" rel="noopener noreferrer">
@@ -712,7 +753,16 @@
             <p>"Matematika adalah bahasa alam semesta. Dengan memahaminya, kita dapat membaca karya agung Sang Pencipta."</p>
         </div>
         
-        <div class="academic-border"></div>
+        <!-- Section UB -->
+        <div class="ub-section">
+            <h3><i class="fas fa-graduation-cap"></i> Semangat Universitas Brawijaya</h3>
+            <p>Mengadopsi nilai-nilai akademik dan keunggulan dari Universitas Brawijaya Malang dalam proses pembelajaran matematika.</p>
+            <div class="ub-badge">
+                <i class="fas fa-star"></i> Building Up the Future Bravery
+            </div>
+        </div>
+        
+        <div class="cultural-border"></div>
         
         <div class="modules-section">
             <h2>Modul & Instrumen Penilaian</h2>
@@ -808,7 +858,7 @@
                 
                 <div class="module-card">
                     <div class="module-header">
-                        <h3><i class="fas fa-circle-notch"></i> Pertemuan 9-10</h3>
+                        <h3><i class="fas fa-chalkboard-teacher"></i> Pertemuan 9-10</h3>
                     </div>
                     <div class="module-body">
                         <ul>
@@ -836,8 +886,23 @@
                         <a href="pertemuan11-13.html" class="btn">Akses Modul Ajar</a>
                     </div>
                 </div>
-
-                <!-- Modul Baru: Pertemuan 17-19 -->
+                
+                <div class="module-card">
+                    <div class="module-header">
+                        <h3><i class="fas fa-ruler-combined"></i> Pertemuan 14-16</h3>
+                    </div>
+                    <div class="module-body">
+                        <ul>
+                            <li>Menentukan rumus panjang busur lingkaran melalui eksplorasi hubungan sudut pusat dengan keliling</li>
+                            <li>Mengeksplorasi hubungan sudut pusat dengan luas juring melalui diskusi dan pemecahan soal</li>
+                            <li>Menentukan rumus luas juring lingkaran dan menerapkannya pada masalah sehari-hari</li>
+                        </ul>
+                    </div>
+                    <div class="module-footer">
+                        <a href="pertemuan14-16.html" class="btn">Akses Modul Ajar</a>
+                    </div>
+                </div>
+                
                 <div class="module-card">
                     <div class="module-header">
                         <h3><i class="fas fa-project-diagram"></i> Pertemuan 17-19</h3>
@@ -872,8 +937,8 @@
     <footer>
         <div class="container">
             <div class="footer-content">
-                <p>&copy; 2025 SMA Negeri Cluring, Banyuwangi. All rights reserved.</p>
-                <p>Dibuat dengan ❤️ oleh Ali Muthohar, S.Pd</p>
+                <p>© 2025 SMA Negeri Cluring, Banyuwangi. All rights reserved.</p>
+                <p>Dibuat dengan ❤️ oleh Ali Muthohar, S.Pd | Terinspirasi oleh Universitas Brawijaya Malang</p>
             </div>
         </div>
     </footer>
