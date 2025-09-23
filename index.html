@@ -80,6 +80,7 @@
             align-items: center;
             justify-content: flex-start;
             gap: 25px;
+            flex-wrap: wrap;
         }
 
         .logo-wrapper {
@@ -102,7 +103,7 @@
             text-align: left;
             position: relative;
             z-index: 1;
-            flex: 1;
+            max-width: calc(100% - 120px);
         }
 
         .school-info h1 {
@@ -111,12 +112,14 @@
             text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
             letter-spacing: -0.5px;
             line-height: 1.2;
+            text-align: left;
         }
 
         .school-info p {
             font-size: clamp(1rem, 3vw, 1.2rem);
             margin-bottom: 5px;
             opacity: 0.9;
+            text-align: left;
         }
 
         /* Submission Buttons */
@@ -562,10 +565,16 @@
         @media (max-width: 768px) {
             .header-content {
                 flex-direction: column;
+                align-items: center;
                 text-align: center;
                 gap: 15px;
             }
             .school-info {
+                text-align: center;
+                max-width: 100%;
+            }
+            .school-info h1,
+            .school-info p {
                 text-align: center;
             }
             .module-cards {
