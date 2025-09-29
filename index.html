@@ -1131,6 +1131,30 @@
         // Panggil saat halaman dimuat dan saat discroll
         window.addEventListener('scroll', animateOnScroll);
         window.addEventListener('load', animateOnScroll);
+
+        // Perbaikan khusus untuk Pertemuan 9-10
+        document.addEventListener('DOMContentLoaded', function() {
+            const pertemuan910Link = document.querySelector('a[href="pertemuan9-10.html"]');
+            if (pertemuan910Link) {
+                // Tambahkan event listener untuk menangani klik
+                pertemuan910Link.addEventListener('click', function(e) {
+                    // Cek jika file tidak ada atau link rusak
+                    if (!this.getAttribute('href') || this.getAttribute('href') === '#') {
+                        e.preventDefault();
+                        alert('Modul Pertemuan 9-10 sedang dalam proses pengembangan. Mohon coba lagi nanti.');
+                    }
+                });
+                
+                // Tambahkan juga event listener untuk error jika gambar tidak bisa dimuat
+                const pertemuan910Image = document.querySelector('.module-card:nth-child(6) .module-image');
+                if (pertemuan910Image) {
+                    pertemuan910Image.addEventListener('error', function() {
+                        this.src = 'https://images.unsplash.com/photo-1559757148-5c350d0d3c56?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80';
+                        this.alt = 'Gambar placeholder untuk Pertemuan 9-10';
+                    });
+                }
+            }
+        });
     </script>
 </body>
 </html>
