@@ -2,280 +2,306 @@
 <html lang="id">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Matematika Kelas XII - SMA Negeri 1 Cluring</title>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         :root {
-            --itb-blue: #004b8d;
-            --itb-dark-blue: #002e5b;
-            --itb-accent-gold: #f3b201;
-            --itb-accent-green: #008000;
-            --light: #f3f4f6;
-            --dark: #1f2937;
-            --soft-shadow: 0 4px 12px rgba(0,0,0,0.08);
-            --hover-shadow: 0 10px 25px rgba(0,0,0,0.15);
-            --doc-color: #ef4444;
-            --pdf-color: #3b82f6;
-            --font-size-h1: clamp(1.7rem, 5vw, 2.8rem);
-            --font-size-h2: clamp(1.3rem, 4vw, 1.8rem);
-            --font-size-quote: clamp(1rem, 3.5vw, 1.3rem);
-            --font-size-section: clamp(1.6rem, 5vw, 2.2rem);
-            --border-radius: 16px;
-            --spacing-sm: clamp(10px, 2vw, 20px);
-            --spacing-md: clamp(20px, 5vw, 45px);
-            --spacing-lg: clamp(40px, 8vw, 80px);
-        }
-
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            scroll-behavior: smooth;
+            --primary: #004b8d;
+            --primary-dark: #002e5b;
+            --accent-gold: #f3b201;
+            --accent-green: #008000;
+            --doc: #ef4444;
+            --pdf: #3b82f6;
+            --light-bg: #f9fafb;
+            --dark-bg: #0f0f0f;
+            --light-text: #1f2937;
+            --dark-text: #e0e0e0;
+            --card-light: #ffffff;
+            --card-dark: #1a1a1a;
+            --radius: 16px;
+            --shadow: 0 6px 20px rgba(0,0,0,0.08);
+            --shadow-hover: 0 12px 30px rgba(0,0,0,0.15);
+            --transition: all 0.35s cubic-bezier(0.25, 0.46, 0.45, 0.94);
         }
 
         body {
             font-family: 'Poppins', sans-serif;
             line-height: 1.7;
-            color: #333;
-            background-color: #f9fafb;
-            background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 100 100"><rect fill="%23f0f7ff" width="100" height="100"/><path d="M0,0 L100,100" stroke="%23e6f0ff" stroke-width="1"/></svg>');
-            padding-bottom: env(safe-area-inset-bottom);
-            padding-top: env(safe-area-inset-top);
-            padding-left: env(safe-area-inset-left);
-            padding-right: env(safe-area-inset-right);
-            transition: background-color 0.3s ease;
+            color: var(--light-text);
+            background: var(--light-bg);
+            background-image: radial-gradient(circle at 10% 20%, rgba(0,75,141,0.03) 0%, transparent 20%),
+                              radial-gradient(circle at 90% 80%, rgba(243,178,1,0.03) 0%, transparent 20%);
+            margin: 0;
+            padding: 0;
+            transition: background-color 0.4s, color 0.4s;
+        }
+
+        body.dark-mode {
+            color: var(--dark-text);
+            background: var(--dark-bg);
+            background-image: none;
         }
 
         .container {
             max-width: 1200px;
             margin: 0 auto;
-            padding: 0 clamp(1rem, 3vw, 2rem);
+            padding: 0 1.5rem;
         }
 
-        /* Header Styles - ITB Inspired */
-        header {
-            background: linear-gradient(135deg, var(--itb-blue) 0%, var(--itb-dark-blue) 100%);
+        /* === THEME TOGGLE === */
+        .theme-toggle {
+            position: fixed;
+            top: 1.25rem;
+            right: 1.25rem;
+            background: white;
+            width: 48px;
+            height: 48px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+            cursor: pointer;
+            z-index: 1000;
+            transition: var(--transition);
+        }
+
+        body.dark-mode .theme-toggle {
+            background: #2d2d2d;
             color: white;
-            padding: clamp(30px, 6vw, 60px) 0;
-            position: relative;
-            overflow: hidden;
-            border-bottom: 5px solid var(--itb-accent-gold);
-            box-shadow: var(--soft-shadow);
+        }
+
+        .theme-toggle:hover {
+            transform: rotate(20deg) scale(1.1);
+        }
+
+        /* === FADE & ANIMATIONS === */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.6s ease, transform 0.6s ease;
+        }
+
+        .fade-in.appear {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* === SEARCH BAR === */
+        .search-box {
+            margin: 2rem 0;
             text-align: center;
         }
 
-        .header-pattern {
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="60" height="60" viewBox="0 0 60 60"><path d="M30,0 L0,30 L30,60 L60,30 Z" fill="%23ffffff" fill-opacity="0.1"/><circle cx="30" cy="30" r="10" fill="%23ffffff" fill-opacity="0.1"/></svg>');
-            opacity: 0.8;
+        #moduleSearch {
+            width: 100%;
+            max-width: 600px;
+            padding: 1rem 1.5rem;
+            border-radius: 50px;
+            border: 2px solid #e5e7eb;
+            font-size: 1rem;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+            transition: var(--transition);
+        }
+
+        body.dark-mode #moduleSearch {
+            background: #252525;
+            border-color: #444;
+            color: white;
+        }
+
+        #moduleSearch:focus {
+            outline: none;
+            border-color: var(--primary);
+            box-shadow: 0 0 0 3px rgba(0,75,141,0.2);
+        }
+
+        /* === SKELETON === */
+        .skeleton {
+            background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
+            background-size: 200% 100%;
+            animation: loading 1.5s infinite;
+            border-radius: var(--radius);
+            margin-bottom: 1.5rem;
+        }
+
+        @keyframes loading {
+            0% { background-position: 200% 0; }
+            100% { background-position: -200% 0; }
+        }
+
+        .skeleton-header { height: 60px; }
+        .skeleton-body { height: 160px; padding: 1.5rem; }
+        .skeleton-footer { height: 50px; }
+
+        .skeleton-item {
+            height: 20px;
+            margin: 8px 0;
+            border-radius: 4px;
+            max-width: 80%;
+        }
+
+        /* === HEADER === */
+        header {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+            color: white;
+            padding: 3rem 0;
+            position: relative;
+            text-align: center;
+            border-bottom: 4px solid var(--accent-gold);
+            box-shadow: var(--shadow);
         }
 
         .header-logo {
-            display: block;
-            width: clamp(80px, 15vw, 120px);
+            width: 100px;
             height: auto;
-            margin: 0 auto 20px;
+            margin: 0 auto 1.5rem;
             border-radius: 12px;
             box-shadow: 0 6px 15px rgba(0,0,0,0.2);
-            transition: transform 0.3s ease;
+            transition: var(--transition);
         }
 
         .header-logo:hover {
             transform: scale(1.05);
         }
 
-        .school-info {
-            text-align: center;
-            position: relative;
-            z-index: 1;
-            max-width: 100%;
-            margin: 0 auto;
-        }
-
         .school-info h1 {
-            font-size: var(--font-size-h1);
-            margin-bottom: 10px;
-            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+            font-size: clamp(1.8rem, 5vw, 2.5rem);
+            font-weight: 700;
+            margin-bottom: 0.5rem;
             letter-spacing: -0.5px;
-            line-height: 1.2;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.2);
         }
 
         .school-info p {
-            font-size: clamp(1rem, 3vw, 1.2rem);
-            margin-bottom: 5px;
-            opacity: 0.9;
+            font-size: clamp(1rem, 3vw, 1.15rem);
+            opacity: 0.95;
+            max-width: 600px;
+            margin: 0 auto 0.3rem;
         }
 
-        /* Submission Buttons */
-        .submission-buttons {
-            display: flex;
-            gap: clamp(10px, 3vw, 15px);
-            justify-content: center;
-            margin: var(--spacing-md) 0;
-            flex-wrap: wrap;
-        }
-
-        .btn-submission {
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            gap: 8px;
-            padding: 12px 24px;
-            border-radius: 50px;
-            text-decoration: none;
-            font-weight: 600;
-            transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-            font-size: clamp(0.85rem, 2.5vw, 0.95rem);
-            text-align: center;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
-            min-width: 200px;
-        }
-
-        .btn-submit {
-            background: linear-gradient(to right, var(--itb-accent-gold), #e0a300);
-            color: white;
-        }
-
-        .btn-submit:hover {
-            background: linear-gradient(to right, #e0a300, #cfa800);
-            transform: translateY(-2px) scale(1.02);
-            box-shadow: 0 6px 15px rgba(243,178,1,0.3);
-        }
-
-        .btn-view {
-            background: linear-gradient(to right, var(--itb-blue), var(--itb-dark-blue));
-            color: white;
-        }
-
-        .btn-view:hover {
-            background: linear-gradient(to right, var(--itb-dark-blue), var(--itb-blue));
-            transform: translateY(-2px) scale(1.02);
-            box-shadow: 0 6px 15px rgba(0,75,141,0.3);
-        }
-
-        /* Foto Section */
+        /* === FEATURED IMAGE === */
         .featured-image {
+            margin: 2.5rem 0;
             text-align: center;
-            margin: var(--spacing-md) 0;
-        }
-
-        .featured-image a {
-            display: inline-block;
-            border-radius: var(--border-radius);
-            overflow: hidden;
-            box-shadow: var(--soft-shadow);
-            transition: transform 0.35s cubic-bezier(0.25, 0.46, 0.45, 0.94), box-shadow 0.35s ease;
-        }
-
-        .featured-image a:hover {
-            transform: scale(1.03);
-            box-shadow: var(--hover-shadow);
         }
 
         .featured-image img {
             max-width: 100%;
             height: auto;
-            display: block;
-            border-radius: var(--border-radius);
-            transition: filter 0.3s ease;
+            border-radius: var(--radius);
+            box-shadow: var(--shadow);
+            transition: var(--transition);
         }
 
         .featured-image a:hover img {
-            filter: brightness(1.05);
+            transform: scale(1.02);
+            box-shadow: var(--shadow-hover);
         }
 
-        /* Time Display */
+        /* === TIME DISPLAY === */
         .time-display {
-            background: linear-gradient(to right, #ffffff, #f0f7ff);
-            padding: clamp(15px, 4vw, 20px);
-            text-align: center;
-            box-shadow: var(--soft-shadow);
-            margin: var(--spacing-md) 0;
-            border-radius: var(--border-radius);
-            font-weight: 500;
-            color: var(--dark);
+            background: var(--card-light);
+            padding: 1.25rem 2rem;
+            border-radius: var(--radius);
+            box-shadow: var(--shadow);
+            margin: 2rem 0;
             display: flex;
             justify-content: center;
             align-items: center;
-            gap: clamp(10px, 3vw, 20px);
-            border: 1px solid #e5e7eb;
+            gap: 1.25rem;
             flex-wrap: wrap;
+            border: 1px solid #e5e7eb;
+        }
+
+        body.dark-mode .time-display {
+            background: var(--card-dark);
+            border-color: #333;
         }
 
         .time-display i {
-            color: var(--itb-blue);
-            font-size: clamp(1.2rem, 4vw, 1.6rem);
-            transition: transform 0.3s ease;
+            color: var(--primary);
+            font-size: 1.4rem;
+            transition: transform 0.5s ease;
         }
 
         .time-display:hover i {
             transform: rotate(360deg);
         }
 
-        .time-display span {
-            font-size: clamp(0.95rem, 3vw, 1rem);
-        }
-
-        /* Teacher Info */
+        /* === TEACHER INFO === */
         .teacher-info {
-            background: white;
-            padding: clamp(25px, 5vw, 35px);
-            border-radius: var(--border-radius);
-            box-shadow: var(--soft-shadow);
-            margin: var(--spacing-md) 0;
+            background: var(--card-light);
+            padding: 2rem;
+            border-radius: var(--radius);
+            box-shadow: var(--shadow);
+            margin: 2.5rem 0;
             text-align: center;
-            border-left: 6px solid var(--itb-accent-gold);
-            transition: all 0.35s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            position: relative;
+            overflow: hidden;
         }
 
-        .teacher-info:hover {
-            transform: translateY(-5px);
-            box-shadow: var(--hover-shadow);
+        body.dark-mode .teacher-info {
+            background: var(--card-dark);
+        }
+
+        .teacher-info::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            height: 100%;
+            width: 6px;
+            background: linear-gradient(to bottom, var(--accent-gold), var(--accent-green));
         }
 
         .teacher-info h2 {
-            color: var(--itb-blue);
-            margin-bottom: 15px;
+            color: var(--primary);
+            margin-bottom: 1.5rem;
+            font-size: clamp(1.4rem, 4vw, 1.8rem);
             position: relative;
             display: inline-block;
-            font-size: var(--font-size-h2);
         }
 
-        .teacher-info h2:after {
+        .teacher-info h2::after {
             content: '';
             position: absolute;
-            bottom: -8px;
+            bottom: -10px;
             left: 50%;
             transform: translateX(-50%);
-            width: 60px;
+            width: 50px;
             height: 3px;
-            background: linear-gradient(to right, var(--itb-accent-gold), var(--itb-accent-green));
+            background: var(--accent-gold);
             border-radius: 3px;
         }
 
         .contact-details {
             display: flex;
             justify-content: center;
-            gap: clamp(15px, 3vw, 30px);
-            margin-top: 25px;
+            gap: 1.5rem;
             flex-wrap: wrap;
+            margin-top: 1.5rem;
         }
 
         .contact-item {
             display: flex;
             align-items: center;
-            gap: 10px;
+            gap: 0.6rem;
             background: #f8fafc;
-            padding: clamp(8px, 2vw, 12px) clamp(15px, 3vw, 20px);
+            padding: 0.75rem 1.25rem;
             border-radius: 50px;
-            transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-            font-size: clamp(0.85rem, 2.5vw, 1rem);
+            font-size: 0.95rem;
+            transition: var(--transition);
+        }
+
+        body.dark-mode .contact-item {
+            background: #252525;
+        }
+
+        body.dark-mode .contact-item:hover {
+            background: #303030;
         }
 
         .contact-item:hover {
@@ -284,392 +310,306 @@
         }
 
         .contact-item i {
-            color: var(--itb-blue);
-            font-size: 1.2rem;
+            color: var(--primary);
+            font-size: 1.1rem;
         }
 
-        /* Inspirational Quote */
+        /* === SUBMISSION BUTTONS === */
+        .submission-buttons {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            margin: 2.5rem 0;
+            flex-wrap: wrap;
+        }
+
+        .btn-submission {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.6rem;
+            padding: 0.9rem 1.8rem;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1rem;
+            color: white;
+            min-width: 200px;
+            text-align: center;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.12);
+            transition: var(--transition);
+        }
+
+        .btn-submit { background: linear-gradient(135deg, var(--accent-gold), #d99e00); }
+        .btn-view { background: linear-gradient(135deg, var(--primary), var(--primary-dark)); }
+
+        .btn-submit:hover {
+            background: linear-gradient(135deg, #d99e00, var(--accent-gold));
+            transform: translateY(-3px) scale(1.02);
+            box-shadow: 0 8px 20px rgba(243,178,1,0.4);
+        }
+
+        .btn-view:hover {
+            background: linear-gradient(135deg, var(--primary-dark), var(--primary));
+            transform: translateY(-3px) scale(1.02);
+            box-shadow: 0 8px 20px rgba(0,75,141,0.4);
+        }
+
+        /* === INSPIRATIONAL QUOTE === */
         .inspiration {
-            background: linear-gradient(45deg, var(--itb-accent-gold), var(--itb-accent-green));
-            padding: clamp(25px, 5vw, 45px);
-            border-radius: var(--border-radius);
+            background: linear-gradient(135deg, var(--accent-gold), var(--accent-green));
+            padding: 2.5rem;
+            border-radius: var(--radius);
             color: white;
             text-align: center;
-            margin: var(--spacing-md) 0;
-            box-shadow: var(--soft-shadow);
+            margin: 2.5rem 0;
+            box-shadow: var(--shadow);
             position: relative;
             overflow: hidden;
-            transition: all 0.35s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-        }
-
-        .inspiration:hover {
-            transform: scale(1.01);
-            box-shadow: var(--hover-shadow);
-        }
-
-        .inspiration:before {
-            content: '"';
-            position: absolute;
-            top: -20px;
-            left: 20px;
-            font-size: 120px;
-            opacity: 0.15;
-            font-family: Georgia, serif;
-            line-height: 1;
         }
 
         .inspiration p {
-            font-size: var(--font-size-quote);
+            font-size: clamp(1.1rem, 4vw, 1.4rem);
             font-style: italic;
-            position: relative;
-            z-index: 1;
+            line-height: 1.6;
             max-width: 800px;
             margin: 0 auto;
-            line-height: 1.6;
-        }
-        
-        /* New Styles for Cultural Elements */
-        .cultural-border {
-            height: 12px;
-            background: linear-gradient(90deg, #6b46c1, #805ad5, #c05621, #d69e2e, #6b46c1);
-            margin: var(--spacing-lg) 0;
-            border-radius: 6px;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
-        }
-        
-        .cultural-pattern {
-            background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="80" height="80" viewBox="0 0 80 80"><path d="M40,0 L0,40 L40,80 L80,40 Z" fill="%23f0f7ff" fill-opacity="0.5"/><path d="M0,0 L80,80" stroke="%23e6f0ff" stroke-width="2" opacity="0.6"/></svg>');
-            padding: clamp(20px, 4vw, 25px);
-            border-radius: var(--border-radius);
-            margin: var(--spacing-md) 0;
-            background-color: #fff;
-            border: 1px solid #e5e7eb;
-            box-shadow: var(--soft-shadow);
+            position: relative;
+            z-index: 2;
         }
 
-
-        /* Academic Elements */
-        .academic-border {
-            height: 12px;
-            background: linear-gradient(90deg, 
-                var(--itb-blue) 0%, 
-                var(--itb-accent-gold) 20%, 
-                var(--itb-accent-green) 40%, 
-                var(--itb-dark-blue) 60%, 
-                var(--itb-accent-gold) 80%, 
-                var(--itb-blue) 100%);
-            margin: var(--spacing-lg) 0;
-            border-radius: 6px;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        .inspiration::before {
+            content: '"';
+            position: absolute;
+            top: -30px;
+            left: 30px;
+            font-size: 140px;
+            opacity: 0.15;
+            font-family: Georgia, serif;
         }
 
-        .academic-pattern {
-            background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="80" height="80" viewBox="0 0 80 80"><path d="M0,0 L80,80" stroke="%23004b8d" stroke-width="1" opacity="0.2"/></svg>');
-            padding: clamp(20px, 4vw, 25px);
-            border-radius: var(--border-radius);
-            margin: var(--spacing-md) 0;
-            background-color: #fff9f9;
-            border: 1px solid #ffe0e0;
-        }
-
-        /* Module Cards */
+        /* === MODULES SECTION === */
         .modules-section {
-            margin: var(--spacing-lg) 0;
+            margin: 3.5rem 0;
         }
 
         .modules-section h2 {
             text-align: center;
-            color: var(--itb-blue);
-            margin-bottom: clamp(30px, 6vw, 50px);
+            color: var(--primary);
+            margin-bottom: 1.5rem;
+            font-size: clamp(1.8rem, 5vw, 2.4rem);
             position: relative;
-            padding-bottom: 15px;
-            font-size: var(--font-size-section);
+            padding-bottom: 1rem;
         }
 
-        .modules-section h2:after {
+        .modules-section h2::after {
             content: '';
             position: absolute;
             bottom: 0;
             left: 50%;
             transform: translateX(-50%);
-            width: 120px;
+            width: 100px;
             height: 4px;
-            background: linear-gradient(to right, var(--itb-accent-gold), var(--itb-dark-blue));
+            background: linear-gradient(to right, var(--accent-gold), var(--primary));
             border-radius: 2px;
         }
 
         .module-cards {
             display: grid;
-            gap: 20px; /* Jarak antar kartu */
-            margin-top: var(--spacing-sm);
+            gap: 1.5rem;
+            margin-top: 1rem;
         }
 
         .module-card {
-            background: white;
-            border-radius: var(--border-radius);
+            background: var(--card-light);
+            border-radius: var(--radius);
             overflow: hidden;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
-            border: 1px solid rgba(0,0,0,0.03);
-            transition: all 0.35s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-            position: relative;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+            display: flex;
+            flex-direction: column;
+            height: 100%;
+        }
+
+        body.dark-mode .module-card {
+            background: var(--card-dark);
         }
 
         .module-card:hover {
-            transform: translateY(-5px) scale(1.01);
-            box-shadow: 0 12px 30px rgba(0,0,0,0.08);
+            transform: translateY(-8px);
+            box-shadow: var(--shadow-hover);
         }
 
         .module-header {
-            background: linear-gradient(135deg, var(--itb-blue) 0%, var(--itb-dark-blue) 100%);
+            padding: 1.5rem;
             color: white;
-            padding: clamp(20px, 4vw, 25px);
             text-align: center;
             position: relative;
         }
 
-        .module-header.doc {
-            background: linear-gradient(135deg, var(--doc-color) 0%, #b91c1c 100%);
-        }
-
-        .module-header.pdf {
-            background: linear-gradient(135deg, var(--pdf-color) 0%, #1d4ed8 100%);
-        }
+        .module-header.doc { background: linear-gradient(135deg, var(--doc), #b91c1c); }
+        .module-header.pdf { background: linear-gradient(135deg, var(--pdf), #1d4ed8); }
+        .module-header.default { background: linear-gradient(135deg, var(--primary), var(--primary-dark)); }
 
         .module-header h3 {
-            font-size: clamp(1.2rem, 4vw, 1.5rem);
-            letter-spacing: -0.5px;
+            font-size: 1.25rem;
             display: flex;
             align-items: center;
             justify-content: center;
-            gap: 10px;
+            gap: 0.75rem;
             margin: 0;
         }
 
-        .module-header h3 i {
-            font-size: 1.3rem;
-        }
-
         .module-body {
-            padding: clamp(20px, 4vw, 25px);
-            max-height: 320px;
-            overflow-y: auto;
+            padding: 1.5rem;
+            flex-grow: 1;
         }
 
         .module-body ul {
-            list-style-type: none;
-            padding: 0;
+            list-style: none;
         }
 
         .module-body li {
-            padding: 14px 0;
-            border-bottom: 1px dashed #e5e7eb;
+            padding: 0.75rem 0;
+            border-bottom: 1px dashed #eee;
             display: flex;
             align-items: flex-start;
-            font-size: clamp(0.85rem, 2.5vw, 0.95rem);
+            font-size: 0.95rem;
         }
 
-        .module-body li:before {
-            content: '✓';
-            color: var(--itb-accent-green);
-            margin-right: 12px;
-            font-weight: bold;
-            min-width: 16px;
+        body.dark-mode .module-body li {
+            border-bottom-color: #333;
         }
 
         .module-body li:last-child {
             border-bottom: none;
         }
 
-        .module-footer {
-            background-color: #f9fafb;
-            padding: clamp(15px, 3vw, 20px);
-            text-align: center;
-            border-top: 1px solid #eee;
-            transition: background 0.3s ease;
+        .module-body li::before {
+            content: '✓';
+            color: var(--accent-green);
+            margin-right: 0.75rem;
+            font-weight: bold;
+            min-width: 16px;
         }
 
-        .module-card:hover .module-footer {
-            background-color: #f0f5ff;
+        .module-footer {
+            padding: 1.25rem;
+            text-align: center;
+            background: #fafbff;
+            border-top: 1px solid #f0f0f0;
+        }
+
+        body.dark-mode .module-footer {
+            background: #202020;
+            border-top-color: #333;
         }
 
         .btn {
             display: inline-flex;
             align-items: center;
             justify-content: center;
-            gap: 8px;
-            padding: 12px 28px;
-            background: linear-gradient(to right, var(--itb-blue), var(--itb-dark-blue));
-            color: white;
+            gap: 0.6rem;
+            padding: 0.85rem 1.75rem;
             border-radius: 50px;
             text-decoration: none;
             font-weight: 600;
-            transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-            box-shadow: 0 4px 15px rgba(0, 75, 141, 0.3);
-            border: none;
-            cursor: pointer;
-            font-size: clamp(0.9rem, 2.8vw, 1rem);
+            color: white;
+            font-size: 1rem;
             min-width: 160px;
+            transition: var(--transition);
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
         }
 
-        .btn.doc {
-            background: linear-gradient(to right, var(--doc-color), #b91c1c);
-            box-shadow: 0 4px 15px rgba(239, 68, 68, 0.3);
-        }
-
-        .btn.doc:hover {
-            background: linear-gradient(to right, #b91c1c, var(--doc-color));
-            box-shadow: 0 6px 20px rgba(239, 68, 68, 0.4);
-            transform: translateY(-2px);
-        }
-
-        .btn.pdf {
-            background: linear-gradient(to right, var(--pdf-color), #1d4ed8);
-            box-shadow: 0 4px 15px rgba(59, 130, 246, 0.3);
-        }
-
-        .btn.pdf:hover {
-            background: linear-gradient(to right, #1d4ed8, var(--pdf-color));
-            box-shadow: 0 6px 20px rgba(59, 130, 246, 0.4);
-            transform: translateY(-2px);
-        }
+        .btn.doc { background: linear-gradient(135deg, var(--doc), #b91c1c); }
+        .btn.pdf { background: linear-gradient(135deg, var(--pdf), #1d4ed8); }
+        .btn.default { background: linear-gradient(135deg, var(--primary), var(--primary-dark)); }
 
         .btn:hover {
-            background: linear-gradient(to right, var(--itb-dark-blue), var(--itb-blue));
-            transform: translateY(-2px);
-            box-shadow: 0 6px 20px rgba(0, 75, 141, 0.4);
+            transform: translateY(-3px);
+            box-shadow: 0 6px 18px rgba(0,0,0,0.15);
         }
 
-        /* Footer */
+        /* === FOOTER === */
         footer {
-            background: linear-gradient(to right, var(--itb-dark-blue), var(--itb-blue));
+            background: linear-gradient(135deg, var(--primary-dark), var(--primary));
             color: white;
-            padding: clamp(30px, 6vw, 50px) 0 clamp(25px, 5vw, 40px);
+            padding: 2.5rem 0 2rem;
             text-align: center;
-            margin-top: var(--spacing-lg);
+            margin-top: 3.5rem;
             box-shadow: 0 -5px 15px rgba(0,0,0,0.1);
         }
 
-        .footer-content {
+        .footer-links {
             display: flex;
-            flex-direction: column;
-            gap: 15px;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+
+        .footer-link {
+            color: rgba(255,255,255,0.9);
+            text-decoration: none;
+            font-size: 0.9rem;
+            padding: 0.4rem 0.8rem;
+            border-radius: 6px;
+            transition: background 0.3s;
+        }
+
+        .footer-link:hover {
+            background: rgba(255,255,255,0.15);
+            text-decoration: underline;
         }
 
         .footer-content p {
-            opacity: 0.85;
-            font-size: clamp(0.85rem, 2.5vw, 0.95rem);
+            opacity: 0.9;
+            margin: 0.4rem 0;
+            font-size: 0.95rem;
         }
 
-        /* Responsive Design */
-        @media (max-width: 992px) {
-            .submission-buttons {
+        /* === RESPONSIVE === */
+        @media (max-width: 768px) {
+            .contact-details, .submission-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+            .time-display {
+                flex-direction: column;
+                gap: 0.8rem;
+            }
+            .module-cards {
+                grid-template-columns: 1fr;
+            }
+            .theme-toggle {
+                top: 1rem;
+                right: 1rem;
+            }
+            .footer-links {
                 flex-direction: column;
                 align-items: center;
             }
         }
 
-        @media (max-width: 768px) {
-            .contact-details {
-                flex-direction: column;
-                gap: 15px;
-            }
-            .time-display {
-                flex-direction: column;
-                gap: 12px;
-            }
-        }
-
-        @media (max-width: 375px) {
-            .school-info h1 {
-                font-size: 1.5rem;
-                line-height: 1.3;
-            }
-            .school-info p {
-                font-size: 1rem;
-            }
-            .time-display {
-                padding: 15px 10px;
-                gap: 8px;
-            }
-            .time-display span {
-                font-size: 0.9rem;
-            }
-            .btn {
-                padding: 10px 20px;
-                font-size: 0.85rem;
-            }
-            .module-header h3 {
-                font-size: 1.2rem;
-            }
-            .inspiration p {
-                padding: 0 5px;
-            }
-        }
-
-        /* Perubahan untuk tata letak kartu responsif */
-        .module-cards {
-            grid-template-columns: 1fr; /* Tampilan default 1 kolom untuk handphone */
-        }
-
-        @media (min-width: 768px) {
+        @media (min-width: 769px) and (max-width: 1023px) {
             .module-cards {
-                grid-template-columns: repeat(2, 1fr); /* Tampilan 2 kolom untuk tablet */
+                grid-template-columns: repeat(2, 1fr);
             }
         }
 
         @media (min-width: 1024px) {
             .module-cards {
-                grid-template-columns: repeat(3, 1fr); /* Tampilan 3 kolom untuk desktop */
-            }
-        }
-
-        /* Dark Mode Support */
-        @media (prefers-color-scheme: dark) {
-            body {
-                background-color: #121212;
-                color: #e0e0e0;
-                background-image: none;
-            }
-            .teacher-info, .module-card, .time-display, .academic-pattern {
-                background: #1e1e1e;
-                border-color: #333;
-            }
-            .module-body li {
-                border-bottom-color: #333;
-            }
-            .module-footer {
-                background: #252525;
-            }
-            .module-card:hover .module-footer {
-                background: #2a2a2a;
-            }
-            .contact-item {
-                background: #2a2a2a;
-            }
-            .contact-item:hover {
-                background: #333;
-            }
-        }
-
-        /* Print Friendly */
-        @media print {
-            .btn, .submission-buttons, .time-display, footer {
-                display: none;
-            }
-            body {
-                background: white;
-                color: black;
-            }
-            .module-card, .teacher-info, .inspiration {
-                box-shadow: none;
-                border: 1px solid #ccc;
+                grid-template-columns: repeat(3, 1fr);
             }
         }
     </style>
 </head>
 <body>
-    <header>
-        <div class="header-pattern"></div>
+    <button class="theme-toggle" id="themeToggle" aria-label="Toggle dark mode">
+        <i class="fas fa-sun"></i>
+    </button>
+
+    <header class="fade-in">
         <div class="container">
             <img src="https://i.ibb.co.com/4gW7L78B/SMAN1-Cluring-emblem.png" alt="Logo SMAN1 Cluring" class="header-logo" loading="lazy">
             <div class="school-info">
@@ -679,24 +619,22 @@
             </div>
         </div>
     </header>
-    
+
     <div class="container">
-        <!-- Foto -->
-        <div class="featured-image">
+        <div class="featured-image fade-in">
             <a href="https://ibb.co.com/nN5R3Hn8" target="_blank" rel="noopener noreferrer">
                 <img src="https://i.ibb.co.com/nN5R3Hn8/Whats-App-Image-2025-07-10-at-21-02-17.jpg" alt="Kegiatan Belajar Matematika Kelas XII" loading="lazy">
             </a>
         </div>
 
-        <div class="time-display">
+        <div class="time-display fade-in">
             <i class="fas fa-calendar-alt"></i>
             <span id="current-date"></span>
             <i class="fas fa-clock"></i>
             <span id="current-time"></span>
         </div>
-        
-        <!-- Guru -->
-        <div class="teacher-info">
+
+        <div class="teacher-info fade-in">
             <h2>Ali Muthohar, S.Pd</h2>
             <div class="contact-details">
                 <div class="contact-item">
@@ -714,8 +652,7 @@
             </div>
         </div>
 
-        <!-- Tombol Pengumpulan Tugas -->
-        <div class="submission-buttons">
+        <div class="submission-buttons fade-in">
             <a href="https://forms.gle/N4NDtbKcT2cLVMx7A" target="_blank" class="btn-submission btn-submit">
                 <i class="fas fa-upload"></i> KUMPULKAN TUGAS
             </a>
@@ -723,219 +660,266 @@
                 <i class="fas fa-table"></i> LIHAT HASIL PENGUMPULAN
             </a>
         </div>
-        
-        <div class="inspiration">
+
+        <div class="inspiration fade-in">
             <p>"Matematika adalah bahasa alam semesta. Dengan memahaminya, kita dapat membaca karya agung Sang Pencipta."</p>
         </div>
-        
-        <div class="academic-border"></div>
-        
-        <div class="modules-section">
+
+        <!-- Search Box -->
+        <div class="search-box fade-in">
+            <input type="text" id="moduleSearch" placeholder="Cari modul (misal: 'pencacahan', 'transformasi', 'lingkaran')..." autocomplete="off">
+        </div>
+
+        <div class="modules-section fade-in">
             <h2>Modul & Instrumen Penilaian</h2>
-            <div class="module-cards">
-                <!-- Kartu 1: Instrumen Asesmen (DOCX) -->
-                <div class="module-card">
-                    <div class="module-header doc">
-                        <h3><i class="fas fa-file-word"></i> Instrumen Asesmen</h3>
-                    </div>
-                    <div class="module-body">
-                        <ul>
-                            <li>Soal evaluasi harian kaidah pencacahan</li>
-                            <li>Rubrik penilaian dan kunci jawaban</li>
-                            <li>Format penilaian sikap dan keterampilan</li>
-                            <li>Cocok untuk latihan ujian dan remedial</li>
-                        </ul>
-                    </div>
-                    <div class="module-footer">
-                        <a href="Instrumen_Asesmen_Kaidah_Pencacahan.docx.html" class="btn doc">Unduh/Preview</a>
-                    </div>
-                </div>
-
-                <!-- Kartu 2: Modul Pembelajaran (PDF) -->
-                <div class="module-card">
-                    <div class="module-header pdf">
-                        <h3><i class="fas fa-file-pdf"></i> Modul Pembelajaran</h3>
-                    </div>
-                    <div class="module-body">
-                        <ul>
-                            <li>Materi lengkap kaidah pencacahan (aturan, permutasi, kombinasi)</li>
-                            <li>Contoh soal dan pembahasan langkah demi langkah</li>
-                            <li>Latihan mandiri dan proyek mini</li>
-                            <li>Dirancang khusus oleh guru SMAN 1 Cluring</li>
-                        </ul>
-                    </div>
-                    <div class="module-footer">
-                        <a href="Modul_Kaidah_Pencacahan_SMAN1_Cluring.pdf.html" class="btn pdf">Buka Modul</a>
-                    </div>
-                </div>
-
-                <!-- Modul KAIDAH PENCACAHAN -->
-                <div class="module-card">
-                    <div class="module-header">
-                        <h3><i class="fas fa-calculator"></i> Kaidah Pencacahan</h3>
-                    </div>
-                    <div class="module-body">
-                        <ul>
-                            <li>Memahami prinsip dasar aturan perkalian dan penjumlahan</li>
-                            <li>Menyelesaikan masalah kontekstual menggunakan permutasi dan kombinasi</li>
-                            <li>Menganalisis perbedaan antara permutasi dan kombinasi dalam berbagai kasus</li>
-                            <li>Menerapkan konsep pencacahan dalam kehidupan sehari-hari dan soal olimpiade</li>
-                        </ul>
-                    </div>
-                    <div class="module-footer">
-                        <a href="KAIDAH-PENCACAHAN.html" class="btn">Akses Modul Ajar</a>
-                    </div>
-                </div>
-
-                <!-- Modul lainnya -->
-                <div class="module-card">
-                    <div class="module-header">
-                        <h3><i class="fas fa-chalkboard-teacher"></i> Pertemuan 1-4</h3>
-                    </div>
-                    <div class="module-body">
-                        <ul>
-                            <li>Mengidentifikasi dan menjelaskan bentuk translasi pada fungsi linear, kuadrat, dan eksponen</li>
-                            <li>Menganalisis hubungan antar-transformasi translasi pada fungsi linear, kuadrat, dan eksponen</li>
-                            <li>Menentukan dan mempresentasikan bentuk refleksi pada fungsi linear, kuadrat, dan eksponen</li>
-                            <li>Mengeksplorasi dan menyimpulkan hubungan antar-transformasi refleksi pada fungsi</li>
-                        </ul>
-                    </div>
-                    <div class="module-footer">
-                        <a href="pertemuan1-4.html" class="btn">Akses Modul Ajar</a>
-                    </div>
-                </div>
-                
-                <div class="module-card">
-                    <div class="module-header">
-                        <h3><i class="fas fa-chalkboard-teacher"></i> Pertemuan 5-8</h3>
-                    </div>
-                    <div class="module-body">
-                        <ul>
-                            <li>Mengidentifikasi dan menerapkan bentuk dilatasi pada fungsi linear, kuadrat, dan eksponen</li>
-                            <li>Menganalisis pola hubungan antar-transformasi dilatasi dan pengaruh parameter skala</li>
-                            <li>Menjelaskan dan mempraktikkan bentuk rotasi pada grafik fungsi linear, kuadrat, dan eksponen</li>
-                            <li>Menganalisis hubungan antar-transformasi rotasi dan menggabungkannya dengan transformasi lain</li>
-                        </ul>
-                    </div>
-                    <div class="module-footer">
-                        <a href="pertemuan5-8.html" class="btn">Akses Modul Ajar</a>
-                    </div>
-                </div>
-                
-                <div class="module-card">
-                    <div class="module-header">
-                        <h3><i class="fas fa-circle-notch"></i> Pertemuan 9-10</h3>
-                    </div>
-                    <div class="module-body">
-                        <ul>
-                            <li>Mengidentifikasi, menggambar, dan menjelaskan bentuk kombinasi transformasi pada fungsi</li>
-                            <li>Menganalisis dan mengeksplorasi hubungan antar-transformasi dalam kombinasi transformasi fungsi</li>
-                        </ul>
-                    </div>
-                    <div class="module-footer">
-                        <a href="pertemuan9-10.html" class="btn">Akses Modul Ajar</a>
-                    </div>
-                </div>
-                
-                <div class="module-card">
-                    <div class="module-header">
-                        <h3><i class="fas fa-circle-notch"></i> Pertemuan 11-13</h3>
-                    </div>
-                    <div class="module-body">
-                        <ul>
-                            <li>Mengidentifikasi elemen-elemen lingkaran (titik pusat, jari-jari, diameter, busur, juring, tembereng)</li>
-                            <li>Menganalisis hubungan antar elemen lingkaran melalui pemecahan masalah kontekstual</li>
-                            <li>Menentukan panjang busur berdasarkan sudut pusat pada masalah kontekstual</li>
-                        </ul>
-                    </div>
-                    <div class="module-footer">
-                        <a href="pertemuan11-13.html" class="btn">Akses Modul Ajar</a>
-                    </div>
-                </div>
-
-                <!-- Modul Baru: Pertemuan 14-16 -->
-                <div class="module-card">
-                    <div class="module-header">
-                        <h3><i class="fas fa-bezier-curve"></i> Pertemuan 14-16</h3>
-                    </div>
-                    <div class="module-body">
-                        <ul>
-                            <li>Menentukan rumus panjang busur lingkaran melalui eksplorasi hubungan sudut pusat dengan keliling</li>
-                            <li>Mengeksplorasi hubungan sudut pusat dengan luas juring melalui diskusi dan pemecahan soal</li>
-                            <li>Menentukan rumus luas juring lingkaran dan menerapkannya pada masalah sehari-hari</li>
-                        </ul>
-                    </div>
-                    <div class="module-footer">
-                        <a href="pertemuan14-16.html" class="btn">Akses Modul Ajar</a>
-                    </div>
-                </div>
-
-                <!-- Modul Baru: Pertemuan 17-19 -->
-                <div class="module-card">
-                    <div class="module-header">
-                        <h3><i class="fas fa-project-diagram"></i> Pertemuan 17-19</h3>
-                    </div>
-                    <div class="module-body">
-                        <ul>
-                            <li>Mengidentifikasi dan memahami elemen-elemen lingkaran lanjutan terkait panjang busur & luas juring</li>
-                            <li>Menganalisis hubungan elemen lingkaran pada panjang busur & luas juring melalui penyelesaian masalah</li>
-                            <li>Mengeksplorasi hubungan sudut pusat, panjang busur, dan luas juring melalui proyek mini kontekstual</li>
-                        </ul>
-                    </div>
-                    <div class="module-footer">
-                        <a href="pertemuan17-19.html" class="btn">Akses Modul Ajar</a>
-                    </div>
-                </div>
+            <div class="module-cards" id="moduleContainer">
+                <!-- Skeleton akan diisi di sini saat loading -->
             </div>
         </div>
-        
-        <div class="cultural-border"></div>
-        
-        <div class="inspiration">
-            <p>"Jangan pernah menyerah ketika mengalami kesulitan dalam matematika. Setiap masalah memiliki solusi, seperti setiap persamaan memiliki penyelesaian."</p>
-        </div>
-        
-        <div class="cultural-pattern">
-            <div class="inspiration">
-                <p>"Belajar matematika melatih ketekunan, ketelitian, dan kemampuan memecahkan masalah - keterampilan yang berharga dalam kehidupan."</p>
-            </div>
+
+        <div class="inspiration fade-in">
+            <p>"Jangan pernah menyerah ketika mengalami kesulitan dalam matematika. Setiap masalah memiliki solusi."</p>
         </div>
     </div>
-    
-    <footer>
+
+    <footer class="fade-in">
         <div class="container">
             <div class="footer-content">
                 <p>&copy; 2025 SMA Negeri 1 Cluring, Banyuwangi. All rights reserved.</p>
                 <p>Dibuat dengan ❤️ oleh Ali Muthohar, S.Pd</p>
+                <div class="footer-links">
+                    <a href="https://askarasaptaofficial-cmd.github.io/Kelas-XI.7-Askarasapta/" target="_blank" class="footer-link">Kelas XI.7 Askarasapta</a>
+                    <a href="https://alam21234.github.io/sosiologi-ekonomi/" target="_blank" class="footer-link">Sosiologi-Ekonomi</a>
+                    <a href="https://harsocakep0-art.github.io/modul-ajar-sosiologi/" target="_blank" class="footer-link">Modul Ajar Sosiologi</a>
+                    <a href="https://sumardami64-create.github.io/Modul_Ajar_Biologi_Kelas_XII/" target="_blank" class="footer-link">Biologi Kelas XII</a>
+                    <a href="https://suroso86-lab.github.io/Pendidikan-Agama-Islam/" target="_blank" class="footer-link">Pendidikan Agama Islam</a>
+                </div>
             </div>
         </div>
     </footer>
 
     <script>
-        // Fungsi untuk menampilkan tanggal dan waktu
+        // === DARK MODE ===
+        const themeToggle = document.getElementById('themeToggle');
+        const body = document.body;
+        const isDarkMode = localStorage.getItem('darkMode') === 'true' || 
+                          (!('darkMode' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches);
+        if (isDarkMode) {
+            body.classList.add('dark-mode');
+            themeToggle.innerHTML = '<i class="fas fa-moon"></i>';
+        }
+        themeToggle.addEventListener('click', () => {
+            body.classList.toggle('dark-mode');
+            const isDark = body.classList.contains('dark-mode');
+            localStorage.setItem('darkMode', isDark);
+            themeToggle.innerHTML = isDark ? '<i class="fas fa-moon"></i>' : '<i class="fas fa-sun"></i>';
+        });
+
+        // === FADE-IN OBSERVER ===
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) entry.target.classList.add('appear');
+            });
+        }, { threshold: 0.1 });
+        document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+
+        // === MODULE DATA ===
+        const modules = [
+            {
+                type: 'doc',
+                title: 'Instrumen Asesmen',
+                icon: 'fa-file-word',
+                items: [
+                    'Soal evaluasi harian kaidah pencacahan',
+                    'Rubrik penilaian dan kunci jawaban',
+                    'Format penilaian sikap dan keterampilan',
+                    'Cocok untuk latihan ujian dan remedial'
+                ],
+                link: 'Instrumen_Asesmen_Kaidah_Pencacahan.docx.html',
+                btnText: 'Unduh/Preview'
+            },
+            {
+                type: 'pdf',
+                title: 'Modul Pembelajaran',
+                icon: 'fa-file-pdf',
+                items: [
+                    'Materi lengkap kaidah pencacahan (aturan, permutasi, kombinasi)',
+                    'Contoh soal dan pembahasan langkah demi langkah',
+                    'Latihan mandiri dan proyek mini',
+                    'Dirancang khusus oleh guru SMAN 1 Cluring'
+                ],
+                link: 'Modul_Kaidah_Pencacahan_SMAN1_Cluring.pdf.html',
+                btnText: 'Buka Modul'
+            },
+            {
+                type: 'default',
+                title: 'Kaidah Pencacahan',
+                icon: 'fa-calculator',
+                items: [
+                    'Memahami prinsip dasar aturan perkalian dan penjumlahan',
+                    'Menyelesaikan masalah kontekstual menggunakan permutasi dan kombinasi',
+                    'Menganalisis perbedaan antara permutasi dan kombinasi dalam berbagai kasus',
+                    'Menerapkan konsep pencacahan dalam kehidupan sehari-hari dan soal olimpiade'
+                ],
+                link: 'KAIDAH-PENCACAHAN.html',
+                btnText: 'Akses Modul Ajar'
+            },
+            {
+                type: 'default',
+                title: 'Pertemuan 1-4',
+                icon: 'fa-chalkboard-teacher',
+                items: [
+                    'Mengidentifikasi dan menjelaskan bentuk translasi pada fungsi linear, kuadrat, dan eksponen',
+                    'Menganalisis hubungan antar-transformasi translasi pada fungsi linear, kuadrat, dan eksponen',
+                    'Menentukan dan mempresentasikan bentuk refleksi pada fungsi linear, kuadrat, dan eksponen',
+                    'Mengeksplorasi dan menyimpulkan hubungan antar-transformasi refleksi pada fungsi'
+                ],
+                link: 'pertemuan1-4.html',
+                btnText: 'Akses Modul Ajar'
+            },
+            {
+                type: 'default',
+                title: 'Pertemuan 5-8',
+                icon: 'fa-chalkboard-teacher',
+                items: [
+                    'Mengidentifikasi dan menerapkan bentuk dilatasi pada fungsi linear, kuadrat, dan eksponen',
+                    'Menganalisis pola hubungan antar-transformasi dilatasi dan pengaruh parameter skala',
+                    'Menjelaskan dan mempraktikkan bentuk rotasi pada grafik fungsi linear, kuadrat, dan eksponen',
+                    'Menganalisis hubungan antar-transformasi rotasi dan menggabungkannya dengan transformasi lain'
+                ],
+                link: 'pertemuan5-8.html',
+                btnText: 'Akses Modul Ajar'
+            },
+            {
+                type: 'default',
+                title: 'Pertemuan 9-10',
+                icon: 'fa-circle-notch',
+                items: [
+                    'Mengidentifikasi, menggambar, dan menjelaskan bentuk kombinasi transformasi pada fungsi',
+                    'Menganalisis dan mengeksplorasi hubungan antar-transformasi dalam kombinasi transformasi fungsi'
+                ],
+                link: 'pertemuan9-10.html',
+                btnText: 'Akses Modul Ajar'
+            },
+            {
+                type: 'default',
+                title: 'Pertemuan 11-13',
+                icon: 'fa-circle-notch',
+                items: [
+                    'Mengidentifikasi elemen-elemen lingkaran (titik pusat, jari-jari, diameter, busur, juring, tembereng)',
+                    'Menganalisis hubungan antar elemen lingkaran melalui pemecahan masalah kontekstual',
+                    'Menentukan panjang busur berdasarkan sudut pusat pada masalah kontekstual'
+                ],
+                link: 'pertemuan11-13.html',
+                btnText: 'Akses Modul Ajar'
+            },
+            {
+                type: 'default',
+                title: 'Pertemuan 14-16',
+                icon: 'fa-bezier-curve',
+                items: [
+                    'Menentukan rumus panjang busur lingkaran melalui eksplorasi hubungan sudut pusat dengan keliling',
+                    'Mengeksplorasi hubungan sudut pusat dengan luas juring melalui diskusi dan pemecahan soal',
+                    'Menentukan rumus luas juring lingkaran dan menerapkannya pada masalah sehari-hari'
+                ],
+                link: 'pertemuan14-16.html',
+                btnText: 'Akses Modul Ajar'
+            },
+            {
+                type: 'default',
+                title: 'Pertemuan 17-19',
+                icon: 'fa-project-diagram',
+                items: [
+                    'Mengidentifikasi dan memahami elemen-elemen lingkaran lanjutan terkait panjang busur & luas juring',
+                    'Menganalisis hubungan elemen lingkaran pada panjang busur & luas juring melalui penyelesaian masalah',
+                    'Mengeksplorasi hubungan sudut pusat, panjang busur, dan luas juring melalui proyek mini kontekstual'
+                ],
+                link: 'pertemuan17-19.html',
+                btnText: 'Akses Modul Ajar'
+            }
+        ];
+
+        // === SKELETON LOADING ===
+        function renderSkeleton(count = modules.length) {
+            const container = document.getElementById('moduleContainer');
+            container.innerHTML = '';
+            for (let i = 0; i < count; i++) {
+                const skeleton = document.createElement('div');
+                skeleton.className = 'module-card';
+                skeleton.innerHTML = `
+                    <div class="skeleton skeleton-header"></div>
+                    <div class="skeleton skeleton-body">
+                        <div class="skeleton-item"></div>
+                        <div class="skeleton-item" style="width:60%"></div>
+                        <div class="skeleton-item" style="width:70%"></div>
+                        <div class="skeleton-item" style="width:50%"></div>
+                    </div>
+                    <div class="skeleton skeleton-footer"></div>
+                `;
+                container.appendChild(skeleton);
+            }
+        }
+
+        // === RENDER MODULES ===
+        function renderModules(modulesToShow) {
+            const container = document.getElementById('moduleContainer');
+            container.innerHTML = '';
+            modulesToShow.forEach(mod => {
+                const card = document.createElement('div');
+                card.className = 'module-card fade-in';
+                card.dataset.keywords = `${mod.title} ${mod.items.join(' ')}`.toLowerCase();
+                card.innerHTML = `
+                    <div class="module-header ${mod.type}">
+                        <h3><i class="fas ${mod.icon}"></i> ${mod.title}</h3>
+                    </div>
+                    <div class="module-body">
+                        <ul>
+                            ${mod.items.map(item => `<li>${item}</li>`).join('')}
+                        </ul>
+                    </div>
+                    <div class="module-footer">
+                        <a href="${mod.link}" class="btn ${mod.type}">${mod.btnText}</a>
+                    </div>
+                `;
+                container.appendChild(card);
+                observer.observe(card);
+            });
+        }
+
+        // === SEARCH FILTER ===
+        document.getElementById('moduleSearch').addEventListener('input', (e) => {
+            const term = e.target.value.toLowerCase();
+            if (term === '') {
+                renderModules(modules);
+            } else {
+                const filtered = modules.filter(mod =>
+                    mod.title.toLowerCase().includes(term) ||
+                    mod.items.some(item => item.toLowerCase().includes(term))
+                );
+                renderModules(filtered);
+            }
+        });
+
+        // === INIT ===
+        window.addEventListener('load', () => {
+            renderSkeleton();
+            setTimeout(() => {
+                renderModules(modules);
+            }, 800); // Simulasi loading
+        });
+
+        // === DATE & TIME ===
         function updateDateTime() {
             const now = new Date();
-            
-            // Format tanggal
             const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
-            const dateString = now.toLocaleDateString('id-ID', options);
-            
-            // Format waktu
-            const timeString = now.toLocaleTimeString('id-ID', {
+            document.getElementById('current-date').textContent = now.toLocaleDateString('id-ID', options);
+            document.getElementById('current-time').textContent = now.toLocaleTimeString('id-ID', {
                 hour: '2-digit',
                 minute: '2-digit',
                 second: '2-digit'
             });
-            
-            // Update elemen HTML
-            document.getElementById('current-date').textContent = dateString;
-            document.getElementById('current-time').textContent = timeString;
         }
-        
-        // Update waktu setiap detik
         setInterval(updateDateTime, 1000);
-        
-        // Panggil pertama kali saat halaman dimuat
         updateDateTime();
     </script>
 </body>
