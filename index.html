@@ -810,6 +810,43 @@
             opacity: 1;
             transform: translateY(0);
         }
+        
+        /* Loading states */
+        .loading {
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .loading:after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.4), transparent);
+            animation: loading 1.5s infinite;
+        }
+        
+        @keyframes loading {
+            0% { transform: translateX(-100%); }
+            100% { transform: translateX(100%); }
+        }
+        
+        /* Error states */
+        .error-message {
+            background-color: #fef2f2;
+            border: 1px solid #fecaca;
+            color: #dc2626;
+            padding: 12px 16px;
+            border-radius: 8px;
+            margin: 10px 0;
+            display: none;
+        }
+        
+        .error-message.show {
+            display: block;
+        }
     </style>
 </head>
 <body>
@@ -817,7 +854,7 @@
         <div class="header-pattern"></div>
         <div class="container">
             <div class="header-content">
-                <img src="https://i.ibb.co.com/4gW7L78B/SMAN1-Cluring-emblem.png" alt="Logo SMAN1 Cluring" class="header-logo" loading="lazy">
+                <img src="https://i.ibb.co.com/4gW7L78B/SMAN1-Cluring-emblem.png" alt="Logo SMAN1 Cluring" class="header-logo" loading="lazy" onerror="this.src='https://via.placeholder.com/120x120/004b8d/ffffff?text=SMAN1+Cluring'">
                 <div class="school-info">
                     <h1>MATEMATIKA KELAS XII</h1>
                     <p>SMA Negeri 1 Cluring</p>
@@ -831,7 +868,7 @@
         <!-- Foto -->
         <div class="featured-image animate-on-scroll">
             <a href="https://ibb.co.com/nN5R3Hn8" target="_blank" rel="noopener noreferrer">
-                <img src="https://i.ibb.co.com/nN5R3Hn8/Whats-App-Image-2025-07-10-at-21-02-17.jpg" alt="Kegiatan Belajar Matematika Kelas XII" loading="lazy">
+                <img src="https://i.ibb.co.com/nN5R3Hn8/Whats-App-Image-2025-07-10-at-21-02-17.jpg" alt="Kegiatan Belajar Matematika Kelas XII" loading="lazy" onerror="this.src='https://images.unsplash.com/photo-1596496181871-9681eacf5210?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80'">
             </a>
         </div>
 
@@ -885,7 +922,7 @@
                     <div class="module-header doc">
                         <h3><i class="fas fa-file-word"></i> Instrumen Asesmen</h3>
                     </div>
-                    <img src="https://images.unsplash.com/photo-1581094794329-c8112a89af12?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80" alt="Instrumen Asesmen" class="module-image" loading="lazy">
+                    <img src="https://images.unsplash.com/photo-1581094794329-c8112a89af12?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80" alt="Instrumen Asesmen" class="module-image" loading="lazy" onerror="this.src='https://images.unsplash.com/photo-1559757148-5c350d0d3c56?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80'">
                     <div class="module-body">
                         <ul>
                             <li>Soal evaluasi harian kaidah pencacahan</li>
@@ -904,7 +941,7 @@
                     <div class="module-header pdf">
                         <h3><i class="fas fa-file-pdf"></i> Modul Pembelajaran</h3>
                     </div>
-                    <img src="https://images.unsplash.com/photo-1501504905252-473c47e087f8?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80" alt="Modul Pembelajaran" class="module-image" loading="lazy">
+                    <img src="https://images.unsplash.com/photo-1501504905252-473c47e087f8?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80" alt="Modul Pembelajaran" class="module-image" loading="lazy" onerror="this.src='https://images.unsplash.com/photo-1559757148-5c350d0d3c56?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80'">
                     <div class="module-body">
                         <ul>
                             <li>Materi lengkap kaidah pencacahan (aturan, permutasi, kombinasi)</li>
@@ -923,7 +960,7 @@
                     <div class="module-header">
                         <h3><i class="fas fa-calculator"></i> Kaidah Pencacahan</h3>
                     </div>
-                    <img src="https://images.unsplash.com/photo-1635070041078-e363dbe005cb?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80" alt="Kaidah Pencacahan" class="module-image" loading="lazy">
+                    <img src="https://images.unsplash.com/photo-1635070041078-e363dbe005cb?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80" alt="Kaidah Pencacahan" class="module-image" loading="lazy" onerror="this.src='https://images.unsplash.com/photo-1559757148-5c350d0d3c56?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80'">
                     <div class="module-body">
                         <ul>
                             <li>Memahami prinsip dasar aturan perkalian dan penjumlahan</li>
@@ -942,7 +979,7 @@
                     <div class="module-header">
                         <h3><i class="fas fa-chalkboard-teacher"></i> Pertemuan 1-4</h3>
                     </div>
-                    <img src="https://images.unsplash.com/photo-1636466497217-26a8cbeaf0aa?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80" alt="Pertemuan 1-4" class="module-image" loading="lazy">
+                    <img src="https://images.unsplash.com/photo-1636466497217-26a8cbeaf0aa?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80" alt="Pertemuan 1-4" class="module-image" loading="lazy" onerror="this.src='https://images.unsplash.com/photo-1559757148-5c350d0d3c56?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80'">
                     <div class="module-body">
                         <ul>
                             <li>Mengidentifikasi dan menjelaskan bentuk translasi pada fungsi linear, kuadrat, dan eksponen</li>
@@ -960,7 +997,7 @@
                     <div class="module-header">
                         <h3><i class="fas fa-chalkboard-teacher"></i> Pertemuan 5-8</h3>
                     </div>
-                    <img src="https://images.unsplash.com/photo-1546410531-bb4caa6b424d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80" alt="Pertemuan 5-8" class="module-image" loading="lazy">
+                    <img src="https://images.unsplash.com/photo-1546410531-bb4caa6b424d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80" alt="Pertemuan 5-8" class="module-image" loading="lazy" onerror="this.src='https://images.unsplash.com/photo-1559757148-5c350d0d3c56?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80'">
                     <div class="module-body">
                         <ul>
                             <li>Mengidentifikasi dan menerapkan bentuk dilatasi pada fungsi linear, kuadrat, dan eksponen</li>
@@ -978,7 +1015,7 @@
                     <div class="module-header">
                         <h3><i class="fas fa-circle-notch"></i> Pertemuan 9-10</h3>
                     </div>
-                    <img src="https://images.unsplash.com/photo-1596496181871-9681eacf5210?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80" alt="Pertemuan 9-10" class="module-image" loading="lazy">
+                    <img src="https://images.unsplash.com/photo-1596496181871-9681eacf5210?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80" alt="Pertemuan 9-10" class="module-image" loading="lazy" onerror="this.src='https://images.unsplash.com/photo-1559757148-5c350d0d3c56?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80'">
                     <div class="module-body">
                         <ul>
                             <li>Mengidentifikasi, menggambar, dan menjelaskan bentuk kombinasi transformasi pada fungsi</li>
@@ -994,7 +1031,7 @@
                     <div class="module-header">
                         <h3><i class="fas fa-circle-notch"></i> Pertemuan 11-13</h3>
                     </div>
-                    <img src="https://images.unsplash.com/photo-1589998059171-988d887df646?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80" alt="Pertemuan 11-13" class="module-image" loading="lazy">
+                    <img src="https://images.unsplash.com/photo-1589998059171-988d887df646?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80" alt="Pertemuan 11-13" class="module-image" loading="lazy" onerror="this.src='https://images.unsplash.com/photo-1559757148-5c350d0d3c56?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80'">
                     <div class="module-body">
                         <ul>
                             <li>Mengidentifikasi elemen-elemen lingkaran (titik pusat, jari-jari, diameter, busur, juring, tembereng)</li>
@@ -1012,7 +1049,7 @@
                     <div class="module-header">
                         <h3><i class="fas fa-bezier-curve"></i> Pertemuan 14-16</h3>
                     </div>
-                    <img src="https://images.unsplash.com/photo-1541336032412-2048a678540d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80" alt="Pertemuan 14-16" class="module-image" loading="lazy">
+                    <img src="https://images.unsplash.com/photo-1541336032412-2048a678540d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80" alt="Pertemuan 14-16" class="module-image" loading="lazy" onerror="this.src='https://images.unsplash.com/photo-1559757148-5c350d0d3c56?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80'">
                     <div class="module-body">
                         <ul>
                             <li>Menentukan rumus panjang busur lingkaran melalui eksplorasi hubungan sudut pusat dengan keliling</li>
@@ -1030,7 +1067,7 @@
                     <div class="module-header">
                         <h3><i class="fas fa-project-diagram"></i> Pertemuan 17-19</h3>
                     </div>
-                    <img src="https://images.unsplash.com/photo-1532094349884-543bc11b234d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80" alt="Pertemuan 17-19" class="module-image" loading="lazy">
+                    <img src="https://images.unsplash.com/photo-1532094349884-543bc11b234d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80" alt="Pertemuan 17-19" class="module-image" loading="lazy" onerror="this.src='https://images.unsplash.com/photo-1559757148-5c350d0d3c56?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80'">
                     <div class="module-body">
                         <ul>
                             <li>Mengidentifikasi dan memahami elemen-elemen lingkaran lanjutan terkait panjang busur & luas juring</li>
@@ -1154,6 +1191,15 @@
                     });
                 }
             }
+            
+            // Tambahkan fallback untuk semua gambar
+            const allImages = document.querySelectorAll('img');
+            allImages.forEach(img => {
+                img.addEventListener('error', function() {
+                    this.src = 'https://images.unsplash.com/photo-1559757148-5c350d0d3c56?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80';
+                    this.alt = 'Gambar placeholder';
+                });
+            });
         });
     </script>
 </body>
